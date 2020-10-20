@@ -1,4 +1,4 @@
-# openCX-_your module name_ Development Report
+# openCX-its WHoWhat Development Report
 
 Welcome to the documentation pages of the _your (sub)product name_ of **openCX**!
 
@@ -26,37 +26,23 @@ Please contact us!
 
 Thank you!
 
-_team members names_
+_Emanuel Trigo, Muriel Pinho, Rodrigo Reis, Teresa Corado, Tomás Torres_
 
 ---
 
 ## Product Vision
 
-Start by defining a clear and concise vision for your module, to help members of the team, contributors, and users into focusing their often disparate views into a concise, visual, and short textual form. It provides a "high concept" of the product for marketers, developers, and managers.
-
-A product vision describes the essential of the product and sets the direction to where a product is headed, and what the product will deliver in the future.
-
-**We favor a catchy and concise statement, ideally one sentence.**
-
-To learn more about how to write a good product vision, please see also:
-
-- [How To Create A Convincing Product Vision To Guide Your Team, by uxstudioteam.com](https://uxstudioteam.com/ux-blog/product-vision/)
-- [Product Management: Product Vision, by ProductPlan](https://www.productplan.com/glossary/product-vision/)
-- [Vision, by scrumbook.org](http://scrumbook.org/value-stream/vision.html)
-- [How to write a vision, by dummies.com](https://www.dummies.com/business/marketing/branding/how-to-write-vision-and-mission-statements-for-your-brand/)
-- [20 Inspiring Vision Statement Examples (2019 Updated), by lifehack.org](https://www.lifehack.org/articles/work/20-sample-vision-statement-for-the-new-startup.html)
+Our goal is to increase the engagement between speakers and participants of a remote conference.
 
 ---
 
 ## Elevator Pitch
 
-Draft a small text to help you quickly introduce and describe your product in a short time and a few words (~800 characters), a technique usually known as elevator pitch.
+Presenters often have a hard time keeping their audience engaged and at the same time guaranteeing they managed to learn the information on the presentation. WHoWhat solves that with an app that provides an easy and engaging way to quiz your audience, with WHoWhat you can spend less time worrying and more time engaging with your audience.
 
-Take a look at the following links to learn some techniques:
+Presenters often have a hard time doing quizzes that are effective and keep their audience engaged. We created WHoWhat, a mobile app that aims to be a simple way to create engaging quizzes and give instant feedback to the presenter and attendees. That way the presenter can interact with the audience identify doubts the ateendees have and which topics he needs to tackle again.
 
-- [Crafting an Elevator Pitch](https://www.mindtools.com/pages/article/elevator-pitch.htm)
-- [The Best Elevator Pitch Examples, Templates, and Tactics - A Guide to Writing an Unforgettable Elevator Speech, by strategypeak.com](https://strategypeak.com/elevator-pitch-examples/)
-- [Top 7 Killer Elevator Pitch Examples, by toggl.com](https://blog.toggl.com/elevator-pitch-examples/)
+Presenters often have a hard time doing quizzes that are effective and keep their audience engaged. We created WHoWhat, a mobile app, that aims to be a simple way to create engaging quizzes and give instant feedback to the presenter and attendees. That way everyone can identify the points where there is a prominent lack of knowledge.
 
 ---
 
@@ -67,6 +53,8 @@ In this section, you should describe all kinds of requirements for your module: 
 Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
 
 ### Use case diagram
+
+![](https://i.imgur.com/xhfNkCo.png)
 
 Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
 
@@ -82,6 +70,98 @@ Briefly describe each use case mentioning the following:
 - **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions.
 
 ### User stories
+
+User story #1
+
+**As a user I want to register in the app in order to login afterwards**
+
+User interface mockup
+
+    [image]
+
+Acceptance Test:
+
+```gherkin
+Scenario: register in the app
+    Given a user that has the app
+    When I tap the "register" button
+    And I insert my data
+    Then my account is created
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: S
+
+User story #2
+
+**As a user I want to create quizzes in order to create a session**
+
+User interface mockup
+
+    [image]
+
+Acceptance Test:
+
+```gherkin
+Scenario: create a quiz
+    Given a speaker registered in the app
+    When I tap the "add quiz" button
+    And insert the questions and respective answers
+    Then my quiz is created
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+User story #3
+
+**As a user I want to insert a code in order to answer a Quiz**
+
+User interface mockup
+
+    [image]
+
+Acceptance Test:
+
+```gherkin
+    Scenario: insert a code that gives access to a certain quiz
+    Given a user with a quiz's code
+    When I tap the "join quiz" button
+    And insert the code
+    Then I have access to the quiz
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+User story #4
+
+**As a user I want to select one of my quizzes, so I can edit or delete it**
+
+User interface mockup
+
+    [image]
+
+Acceptance Test:
+
+```gherkin
+Scenario: select and edit or delete a previously created quiz
+    Given a user with a previously created quiz
+    When I tap the "my quizzes" button and select my quiz
+    And tap "edit" or "delete"
+    Then I can edit or delete the data of the quiz selected
+```
+
+Value and effort
+
+- Value: Should have
+- Effort: L
 
 This section will contain the requirements of the product described as **user stories**, organized in a global **[user story map](https://plan.io/blog/user-story-mapping/)** with **user roles** or **themes**.
 
