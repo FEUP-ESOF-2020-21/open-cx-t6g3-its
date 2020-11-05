@@ -3,9 +3,10 @@ import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
+import 'package:whowhat/templates/connection.dart';
 
 class MyMenu extends StatelessWidget {
-  TextEditingController codeInput = new TextEditingController();
+  //TextEditingController codeInput = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +45,18 @@ class MyMenu extends StatelessWidget {
                   TextBox(
                     placeholder: "Insert code here",
                     icon: Icons.vpn_key,
-                    controller: codeInput,
                   ),
                   GradientButton(
-                    text: 'Connect',
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  )
+                      text: 'Connect',
+                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyConnection()),
+                        );
+                      } //connect(context),
+                      )
                 ],
               ),
             ),

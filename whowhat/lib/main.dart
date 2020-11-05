@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/templates/menu.dart';
+//import 'package:whowhat/templates/connection.dart';
 
 void main() {
   runApp(MyApp());
