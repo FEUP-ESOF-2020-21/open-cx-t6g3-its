@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MyConnection extends StatefulWidget {
   @override
@@ -16,6 +18,9 @@ class _MyConnectionState extends State<MyConnection> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore store = FirebaseFirestore.instance;
+    store.collection('/users').get();
+
     return Scaffold(
       //resizeToAvoidBottomPadding: false,
       body: Container(
