@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:whowhat/templates/menu.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:whowhat/templates/connection.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
@@ -15,6 +17,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
     return FutureBuilder(
       // Initialize FlutterFire:
       future: _initialization,
