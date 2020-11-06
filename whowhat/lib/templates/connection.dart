@@ -10,12 +10,7 @@ class MyConnection extends StatefulWidget {
   _MyConnectionState createState() => _MyConnectionState();
 }
 
-Stream usersColletion =
-    FirebaseFirestore.instance.collection('users').snapshots();
-
 class _MyConnectionState extends State<MyConnection> {
-  int _connectedUsers;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +51,13 @@ class _MyConnectionState extends State<MyConnection> {
                         )
                       ],
                     )),
+                const SizedBox(height: 30),
+                RaisedButton(
+                  onPressed: () {},
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  child: const Text('Listen', style: TextStyle(fontSize: 20)),
+                ),
                 const SizedBox(height: 30),
                 RaisedButton(
                   onPressed: () {
