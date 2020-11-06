@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:whowhat/main.dart';
 
-final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+//final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
 class MyConnection extends StatefulWidget {
   @override
@@ -51,25 +51,6 @@ class _MyConnectionState extends State<MyConnection> {
                         )
                       ],
                     )),
-                const SizedBox(height: 30),
-                RaisedButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  color: Colors.blue,
-                  child: const Text('Listen', style: TextStyle(fontSize: 20)),
-                ),
-                const SizedBox(height: 30),
-                RaisedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyApp()),
-                    );
-                  },
-                  textColor: Colors.white,
-                  color: Colors.blue,
-                  child: const Text('Return', style: TextStyle(fontSize: 20)),
-                ),
               ]),
         ),
       ),
@@ -84,7 +65,12 @@ class _MyConnectionState extends State<MyConnection> {
               color: Colors.white,
             ),
           ),
-          onTap: () {}),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyApp()),
+            );
+          }),
     );
   }
 }
