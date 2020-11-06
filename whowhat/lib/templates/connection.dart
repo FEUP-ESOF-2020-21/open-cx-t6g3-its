@@ -10,33 +10,14 @@ class MyConnection extends StatefulWidget {
   _MyConnectionState createState() => _MyConnectionState();
 }
 
-Stream collectionStream =
+Stream usersColletion =
     FirebaseFirestore.instance.collection('users').snapshots();
 
 class _MyConnectionState extends State<MyConnection> {
-  int _connectedUsers = 0;
-
-  void _increaseUsers() {
-    setState(() {
-      //_connectedUsers++;
-    });
-  }
-
-  void _setUsers() {
-    FirebaseFirestore.instance.collection('users').get().then(
-        (QuerySnapshot querySnapshot) =>
-            _connectedUsers = querySnapshot.docs.length);
-  }
-
-  void _enableListen() {
-    collectionStream.listen((event) {
-      _setUsers();
-    });
-  }
+  int _connectedUsers;
 
   @override
   Widget build(BuildContext context) {
-    _enableListen();
     return Scaffold(
       //resizeToAvoidBottomPadding: false,
       body: Container(
@@ -52,27 +33,8 @@ class _MyConnectionState extends State<MyConnection> {
               //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top: 50, bottom: 50),
-                  child: Center(
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          WidgetSpan(
-                            child: Icon(Icons.person,
-                                size: 30, color: Colors.white),
-                          ),
-                          TextSpan(
-                              text: " $_connectedUsers",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontFamily: 'Roboto',
-                              )),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                    padding: EdgeInsets.only(top: 50, bottom: 50),
+                    child: UserInformation()),
                 Padding(
                     padding: EdgeInsets.only(top: 50),
                     child: Column(children: <Widget>[
@@ -110,46 +72,56 @@ class _MyConnectionState extends State<MyConnection> {
         ),
       ),
       floatingActionButton: InkWell(
-        child: Container(
-          height: 40,
-          width: 40,
-          child: Icon(Icons.add, size: 40, color: Colors.blue[800]),
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
+          child: Container(
+            height: 40,
+            width: 40,
+            child: Icon(Icons.add, size: 40, color: Colors.blue[800]),
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+            ),
           ),
-        ),
-        onTap: _increaseUsers,
-      ),
+          onTap: () {}),
     );
   }
 }
 
-// class UserInformation extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     CollectionReference users = FirebaseFirestore.instance.collection('users');
+class UserInformation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-//     return StreamBuilder<QuerySnapshot>(
-//       stream: users.snapshots(),
-//       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-//         if (snapshot.hasError) {
-//           return Text('Something went wrong');
-//         }
+    return StreamBuilder<QuerySnapshot>(
+      stream: users.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
 
-//         if (snapshot.connectionState == ConnectionState.waiting) {
-//           return Text("Loading");
-//         }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
 
-//         return new ListView(
-//           children: snapshot.data.docs.map((DocumentSnapshot document) {
-//             return new ListTile(
-//               title: new Text(document.data()['name']),
-//             );
-//           }).toList(),
-//         );
-//       },
-//     );
-//   }
-// }
+        return new Center(
+          child: RichText(
+            text: TextSpan(
+              children: [
+                WidgetSpan(
+                  child: Icon(Icons.person, size: 30, color: Colors.white),
+                ),
+                TextSpan(
+                    text: ' ' + snapshot.data.docs.length.toString(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontFamily: 'Roboto',
+                    ))
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
