@@ -58,7 +58,8 @@ class _MyConnectionState extends State<MyConnection> {
           child: Container(
             height: 40,
             width: 40,
-            child: Icon(Icons.add, size: 40, color: Colors.blue[800]),
+            child: Icon(Icons.arrow_left_rounded,
+                size: 40, color: Colors.blue[800]),
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(20),
