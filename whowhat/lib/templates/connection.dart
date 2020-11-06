@@ -24,8 +24,7 @@ class _MyConnectionState extends State<MyConnection> {
 
   void _setUsers() {
     FirebaseFirestore.instance.collection('users').get().then(
-        (QuerySnapshot querySnapshot) =>
-            _connectedUsers = querySnapshot.docs.length);
+        (QuerySnapshot querySnapshot) => {print(querySnapshot.docs.length)});
   }
 
   void _enableListen() {
@@ -96,6 +95,13 @@ class _MyConnectionState extends State<MyConnection> {
                     )),
                 const SizedBox(height: 30),
                 RaisedButton(
+                  onPressed: () {},
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  child: const Text('Listen', style: TextStyle(fontSize: 20)),
+                ),
+                const SizedBox(height: 30),
+                RaisedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -126,30 +132,30 @@ class _MyConnectionState extends State<MyConnection> {
   }
 }
 
-// class UserInformation extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     CollectionReference users = FirebaseFirestore.instance.collection('users');
+class UserInformation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-//     return StreamBuilder<QuerySnapshot>(
-//       stream: users.snapshots(),
-//       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-//         if (snapshot.hasError) {
-//           return Text('Something went wrong');
-//         }
+    return StreamBuilder<QuerySnapshot>(
+      stream: users.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
 
-//         if (snapshot.connectionState == ConnectionState.waiting) {
-//           return Text("Loading");
-//         }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
 
-//         return new ListView(
-//           children: snapshot.data.docs.map((DocumentSnapshot document) {
-//             return new ListTile(
-//               title: new Text(document.data()['name']),
-//             );
-//           }).toList(),
-//         );
-//       },
-//     );
-//   }
-// }
+        return new ListView(
+          children: snapshot.data.docs.map((DocumentSnapshot document) {
+            return new ListTile(
+              title: new Text(document.data()['name']),
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+}
