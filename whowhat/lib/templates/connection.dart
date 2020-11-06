@@ -12,14 +12,20 @@ class _MyConnectionState extends State<MyConnection> {
 
   void _increaseUsers() {
     setState(() {
-      _connectedUsers += 1;
+      _connectedUsers++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore store = FirebaseFirestore.instance;
-    store.collection('/users').get();
+    FirebaseFirestore.instance
+        .collection('users')
+        .get()
+        .then((QuerySnapshot querySnapshot) => {
+              querySnapshot.docs.forEach((doc) {
+                print(doc["name"]);
+              })
+            });
 
     return Scaffold(
       //resizeToAvoidBottomPadding: false,
