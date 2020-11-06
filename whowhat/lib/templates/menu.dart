@@ -56,7 +56,7 @@ class MyMenu extends StatelessWidget {
                               builder: (context) => MyConnection()),
                         );
                       } //connect(context),
-                      )
+                      ),
                 ],
               ),
             ),

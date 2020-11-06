@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:whowhat/main.dart';
 
 final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
@@ -9,39 +10,33 @@ class MyConnection extends StatefulWidget {
   _MyConnectionState createState() => _MyConnectionState();
 }
 
-Stream documentStream =
-    FirebaseFirestore.instance.collection('users').doc('ABC123').snapshots();
+Stream collectionStream =
+    FirebaseFirestore.instance.collection('users').snapshots();
 
 class _MyConnectionState extends State<MyConnection> {
   int _connectedUsers = 0;
 
   void _increaseUsers() {
     setState(() {
-      _connectedUsers++;
-      documentStream.listen((event) {
-        FirebaseFirestore.instance
-            .collection('users')
-            .get()
-            .then((QuerySnapshot querySnapshot) => {
-                  querySnapshot.docs.forEach((doc) {
-                    print(doc["name"]);
-                  })
-                });
-      });
+      //_connectedUsers++;
+    });
+  }
+
+  void _setUsers() {
+    FirebaseFirestore.instance.collection('users').get().then(
+        (QuerySnapshot querySnapshot) =>
+            _connectedUsers = querySnapshot.docs.length);
+  }
+
+  void _enableListen() {
+    collectionStream.listen((event) {
+      _setUsers();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore.instance
-        .collection('users')
-        .get()
-        .then((QuerySnapshot querySnapshot) => {
-              querySnapshot.docs.forEach((doc) {
-                print(doc["name"]);
-              })
-            });
-
+    _enableListen();
     return Scaffold(
       //resizeToAvoidBottomPadding: false,
       body: Container(
@@ -99,6 +94,18 @@ class _MyConnectionState extends State<MyConnection> {
                         )
                       ],
                     )),
+                const SizedBox(height: 30),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyApp()),
+                    );
+                  },
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  child: const Text('Return', style: TextStyle(fontSize: 20)),
+                ),
               ]),
         ),
       ),
@@ -119,32 +126,30 @@ class _MyConnectionState extends State<MyConnection> {
   }
 }
 
-class UserInformation extends StatelessWidget {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+// class UserInformation extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-  @override
-  Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+//     return StreamBuilder<QuerySnapshot>(
+//       stream: users.snapshots(),
+//       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+//         if (snapshot.hasError) {
+//           return Text('Something went wrong');
+//         }
 
-    return StreamBuilder<QuerySnapshot>(
-      stream: users.snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text('Something went wrong');
-        }
+//         if (snapshot.connectionState == ConnectionState.waiting) {
+//           return Text("Loading");
+//         }
 
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
-        }
-
-        return new ListView(
-          children: snapshot.data.docs.map((DocumentSnapshot document) {
-            return new ListTile(
-              title: new Text(document.data()['name']),
-            );
-          }).toList(),
-        );
-      },
-    );
-  }
-}
+//         return new ListView(
+//           children: snapshot.data.docs.map((DocumentSnapshot document) {
+//             return new ListTile(
+//               title: new Text(document.data()['name']),
+//             );
+//           }).toList(),
+//         );
+//       },
+//     );
+//   }
+// }
