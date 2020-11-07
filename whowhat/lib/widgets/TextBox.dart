@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextBox extends StatelessWidget {
   // final Gradient gradient;
   final String placeholder;
   final IconData icon;
   final TextEditingController controller;
+  final TextInputType textInputType;
 
-  const TextBox({Key key, this.placeholder, this.icon, this.controller})
+  const TextBox(
+      {Key key,
+      this.placeholder,
+      this.icon,
+      this.controller,
+      this.textInputType})
       : super(key: key);
 
   @override
@@ -53,6 +60,8 @@ class TextBox extends StatelessWidget {
         textAlign: TextAlign.justify,
         style: TextStyle(
             color: Color(0xFF9B9B9B), fontFamily: "Roboto", fontSize: 22),
+        keyboardType:
+            textInputType != null ? textInputType : TextInputType.text,
       ),
     );
   }

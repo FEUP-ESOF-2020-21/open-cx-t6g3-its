@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:whowhat/pages/connection.dart';
 
 String generateRandomSession() {
   var rng;
@@ -13,7 +15,7 @@ String generateRandomSession() {
   return new_session;
 }
 
-void createSession() async {
+Future<String> createSession(BuildContext context) async {
   CollectionReference databaseReference =
       FirebaseFirestore.instance.collection('sessions');
 
@@ -36,4 +38,12 @@ void createSession() async {
           .set({});
     }
   }
+
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => MyConnection(
+                session: newSession,
+                admin: true,
+              )));
 }

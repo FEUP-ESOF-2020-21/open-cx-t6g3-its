@@ -52,18 +52,8 @@ class UserSessionInformation extends StatelessWidget {
   }
 }
 
-bool availableSession(String session) {
-  checkIfDocExists(session).then((b) {
-    print(b);
-    if (b)
-      return true;
-    else
-      return false;
-  });
-}
-
 /// Check If Document Exists
-Future<bool> checkIfDocExists(String session) async {
+Future<bool> availableSession(String session) async {
   try {
     // Get reference to Firestore collection
     var collectionRef = FirebaseFirestore.instance.collection('sessions');

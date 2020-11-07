@@ -60,17 +60,18 @@ class _MyMenuState extends State<MyMenu> {
                     placeholder: "Insert code here",
                     icon: Icons.vpn_key,
                     controller: codeInput,
+                    textInputType: TextInputType.number,
                   ),
                   GradientButton(
                       text: 'Connect',
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                       onPressed: () async {
-                        if (await checkIfDocExists(codeInput.text)) {
+                        if (await availableSession(codeInput.text)) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    MyConnection(session: codeInput.text)),
+                                builder: (context) => MyConnection(
+                                    session: codeInput.text, admin: false)),
                           );
                         } else {
                           _updateStatus("Session is not available!");
@@ -121,8 +122,8 @@ class _MyMenuState extends State<MyMenu> {
                       colors: [Color(0xFF3186E3), Color(0xFF1D36C4)]),
                 ),
               ),
-              onTap: () {
-                createSession();
+              onTap: () async {
+                await createSession(context);
               },
             ),
     );
