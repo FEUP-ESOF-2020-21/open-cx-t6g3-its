@@ -24,6 +24,11 @@ class UserSessionInformation extends StatelessWidget {
           return Text("Loading");
         }
 
+        int nUsers = snapshot.data.docs.length - 1;
+        if (!(nUsers >= 0)) {
+          nUsers = 0;
+        }
+
         return new Center(
           child: RichText(
             text: TextSpan(
@@ -32,7 +37,7 @@ class UserSessionInformation extends StatelessWidget {
                   child: Icon(Icons.person, size: 30, color: Colors.white),
                 ),
                 TextSpan(
-                    text: ' ' + snapshot.data.docs.length.toString(),
+                    text: ' ' + nUsers.toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,

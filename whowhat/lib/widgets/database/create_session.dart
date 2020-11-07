@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'dart:math';
-
-import 'package:flutter/material.dart';
 
 String generateRandomSession() {
   var rng;
@@ -32,6 +29,11 @@ void createSession() async {
       newSession = generateRandomSession();
     } else {
       await databaseReference.doc(newSession).set({});
+      await databaseReference
+          .doc(newSession)
+          .collection('users')
+          .doc('speaker')
+          .set({});
     }
   }
 }
