@@ -3,10 +3,16 @@ import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
-import 'package:whowhat/templates/connection.dart';
+import 'package:whowhat/pages/connection.dart';
+import 'package:whowhat/widgets/database/session_connection.dart';
 
-class MyMenu extends StatelessWidget {
-  //TextEditingController codeInput = new TextEditingController();
+class MyMenu extends StatefulWidget {
+  @override
+  _MyMenuState createState() => _MyMenuState();
+}
+
+class _MyMenuState extends State<MyMenu> {
+  TextEditingController codeInput = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +51,7 @@ class MyMenu extends StatelessWidget {
                   TextBox(
                     placeholder: "Insert code here",
                     icon: Icons.vpn_key,
+                    controller: codeInput,
                   ),
                   GradientButton(
                       text: 'Connect',
@@ -53,9 +60,11 @@ class MyMenu extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => MyConnection()),
+                              builder: (context) =>
+                                  MyConnection(session: codeInput.text)),
                         );
-                      } //connect(context),
+                      }
+                      //connect(context),
                       ),
                 ],
               ),
