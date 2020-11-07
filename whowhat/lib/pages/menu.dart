@@ -66,7 +66,9 @@ class _MyMenuState extends State<MyMenu> {
                       text: 'Connect',
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                       onPressed: () async {
-                        if (await availableSession(codeInput.text)) {
+                        String code = codeInput.text;
+                        if (await availableSession(code)) {
+                          await joinSession(code);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

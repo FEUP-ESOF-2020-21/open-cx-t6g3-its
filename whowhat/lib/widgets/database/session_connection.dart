@@ -64,3 +64,13 @@ Future<bool> availableSession(String session) async {
     throw e;
   }
 }
+
+void joinSession(String session) async {
+  // Get reference to Firestore collection
+  var databaseReference = FirebaseFirestore.instance
+      .collection('sessions')
+      .doc(session)
+      .collection('users');
+
+  await databaseReference.add({});
+}
