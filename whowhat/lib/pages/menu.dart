@@ -4,7 +4,7 @@ import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
 import 'package:whowhat/pages/connection.dart';
-import 'package:whowhat/widgets/database/session_connection.dart';
+import 'package:whowhat/widgets/database/create_session.dart';
 
 class MyMenu extends StatefulWidget {
   @override
@@ -88,16 +88,21 @@ class _MyMenuState extends State<MyMenu> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: keyboardIsOpened
           ? null
-          : Container(
-              height: 80,
-              width: 80,
-              child: Icon(AppIcons.whowhat, size: 40, color: Colors.white),
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(
-                    colors: [Color(0xFF3186E3), Color(0xFF1D36C4)]),
+          : InkWell(
+              child: Container(
+                height: 80,
+                width: 80,
+                child: Icon(AppIcons.whowhat, size: 40, color: Colors.white),
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                      colors: [Color(0xFF3186E3), Color(0xFF1D36C4)]),
+                ),
               ),
+              onTap: () {
+                createSession();
+              },
             ),
     );
   }
