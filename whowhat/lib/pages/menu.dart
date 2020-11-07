@@ -5,6 +5,7 @@ import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
 import 'package:whowhat/pages/connection.dart';
 import 'package:whowhat/widgets/database/create_session.dart';
+import 'package:whowhat/widgets/database/session_connection.dart';
 
 class MyMenu extends StatefulWidget {
   @override
@@ -13,6 +14,13 @@ class MyMenu extends StatefulWidget {
 
 class _MyMenuState extends State<MyMenu> {
   TextEditingController codeInput = new TextEditingController();
+  String _statusLabel = "";
+
+  _updateStatus(String message) {
+    setState(() {
+      _statusLabel = message;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,16 +64,29 @@ class _MyMenuState extends State<MyMenu> {
                   GradientButton(
                       text: 'Connect',
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  MyConnection(session: codeInput.text)),
-                        );
+                      onPressed: () async {
+                        if (await checkIfDocExists(codeInput.text)) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MyConnection(session: codeInput.text)),
+                          );
+                        } else {
+                          _updateStatus("Session is not available!");
+                        }
                       }
                       //connect(context),
                       ),
+                  Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                        _statusLabel,
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontFamily: 'Roboto',
+                            fontSize: 16),
+                      ))
                 ],
               ),
             ),
