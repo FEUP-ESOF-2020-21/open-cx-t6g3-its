@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "167261893486",
+    "firebase_url": "https://whowhat-786d8.firebaseio.com",
+    "project_id": "whowhat-786d8",
+    "storage_bucket": "whowhat-786d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167261893486:android:7d37f614a7a907ac48c77f",
+        "android_client_info": {
+          "package_name": "com.its.whowhat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167261893486-qlpfncd1a11h322mpt6eolgtnqro5e90.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.its.whowhat",
+            "certificate_hash": "75cede2954db1e8d1d3300a4e291d9194adb72c8"
+          }
+        },
+        {
+          "client_id": "167261893486-ouvautthpcvhbb1chsajt3bjiq9a5nu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOAa0CbtLeq_UJdPz2i4PIMbxC52_e-Ec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167261893486-ouvautthpcvhbb1chsajt3bjiq9a5nu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
