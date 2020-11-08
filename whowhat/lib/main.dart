@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whowhat/pages/menu.dart';
+import 'package:whowhat/pages/login.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:firebase_core/firebase_core.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: MyMenu(),
+            home: MyLogin(),
             debugShowCheckedModeBanner: false,
           );
         }
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: MyMenu(),
+            home: MyLogin(),
             debugShowCheckedModeBanner: false,
           );
         }
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: MyMenu(),
+          home: MyLogin(),
           debugShowCheckedModeBanner: false,
         );
       },
