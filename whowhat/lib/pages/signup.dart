@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:whowhat/pages/signup.dart';
+import 'package:whowhat/pages/login.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/pages/menu.dart';
 import 'package:whowhat/widgets/database/auth.dart';
 
-class MyLogin extends StatefulWidget {
-  MyLogin({Key key}) : super(key: key);
+class MySignup extends StatefulWidget {
+  MySignup({Key key}) : super(key: key);
 
   @override
-  _MyLoginState createState() => _MyLoginState();
+  _MySignupState createState() => _MySignupState();
 }
 
-class _MyLoginState extends State<MyLogin> {
+class _MySignupState extends State<MySignup> {
   final AuthService _auth = AuthService();
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +54,7 @@ class _MyLoginState extends State<MyLogin> {
                   Padding(
                       padding: EdgeInsets.only(top: 10),
                       child: Text(
-                        'or Login In with:',
+                        'or Register In with:',
                         style: TextStyle(
                             color: Colors.grey[400],
                             fontFamily: 'Roboto',
@@ -67,7 +67,7 @@ class _MyLoginState extends State<MyLogin> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.all(5),
+                            padding: EdgeInsets.symmetric(vertical: 20),
                             child: InkWell(
                               child: Container(
                                 height: 62,
@@ -101,9 +101,9 @@ class _MyLoginState extends State<MyLogin> {
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: GradientButton(
-                      text: 'Sign In',
+                      text: 'Register',
                       onPressed: () async {
-                        dynamic result = await _auth.signInWithEmail(
+                        dynamic result = await _auth.registerWithEmail(
                             emailController.text, passwordController.text);
                         if (result == null) {
                           print("Error signing in");
@@ -120,12 +120,12 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 5),
+                    padding: EdgeInsets.symmetric(vertical: 20),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Do you have an account?',
+                            'Do you laready have an account?',
                             style: TextStyle(
                                 color: Colors.grey[400],
                                 fontFamily: 'Roboto',
@@ -134,18 +134,18 @@ class _MyLoginState extends State<MyLogin> {
                           ),
                           InkWell(
                             child: Text(
-                              ' Sign Up ',
+                              ' Log In ',
                               style: TextStyle(
                                   color: Colors.blue[900],
                                   fontFamily: 'Roboto',
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 18),
+                                  fontSize: 16),
                             ),
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MySignup(),
+                                    builder: (context) => MyLogin(),
                                   ));
                             },
                           ),
