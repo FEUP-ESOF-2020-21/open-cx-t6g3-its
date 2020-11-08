@@ -110,15 +110,16 @@ Scaffold adminScaffold(BuildContext context, String session) {
                   padding: EdgeInsets.all(3),
                   child: Container(
                     height: 100.0,
-                    width: 300.0,
+                    width: MediaQuery.of(context).size.width * 0.7,
                     decoration: new BoxDecoration(
                       color: Colors.white, //new Color.fromRGBO(255, 0, 0, 0.0),
-                      borderRadius: new BorderRadius.all(Radius.circular(10)),
+                      borderRadius: new BorderRadius.all(Radius.circular(15)),
                     ),
                     child: Center(
                       child: Text(
                         session == null ? '------' : session,
                         style: TextStyle(
+                            color: Colors.black,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.bold,
                             fontSize: 40,
@@ -142,6 +143,26 @@ Scaffold adminScaffold(BuildContext context, String session) {
                       )
                     ],
                   )),
+              Padding(
+                padding: EdgeInsets.only(top: 60),
+                child: InkWell(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      height: 62,
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: new BorderRadius.all(Radius.circular(15)),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.play_arrow_rounded,
+                          color: Colors.black, //Color(0xFF265DD3),
+                          size: 50,
+                        ),
+                      ),
+                    ),
+                    onTap: () {}),
+              ),
             ]),
       ),
     ),

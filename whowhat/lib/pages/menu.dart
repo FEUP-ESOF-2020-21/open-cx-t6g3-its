@@ -33,7 +33,8 @@ class _MyMenuState extends State<MyMenu> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(bottom: 220),
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height * 0.2),
               child: Stack(
                 clipBehavior: Clip.none,
                 alignment: Alignment.center,
@@ -67,16 +68,20 @@ class _MyMenuState extends State<MyMenu> {
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                       onPressed: () async {
                         String code = codeInput.text;
-                        if (await availableSession(code)) {
-                          await joinSession(code);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MyConnection(
-                                    session: codeInput.text, admin: false)),
-                          );
+                        if (code == null || code == "") {
+                          _updateStatus("You need to insert a code!");
                         } else {
-                          _updateStatus("Session is not available!");
+                          if (await availableSession(code)) {
+                            await joinSession(code);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyConnection(
+                                      session: codeInput.text, admin: false)),
+                            );
+                          } else {
+                            _updateStatus("Session is not available!");
+                          }
                         }
                       }
                       //connect(context),
