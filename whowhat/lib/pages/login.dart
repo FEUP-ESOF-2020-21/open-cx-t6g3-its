@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
+import 'package:whowhat/pages/menu.dart';
 
 class MyLogin extends StatefulWidget {
   MyLogin({Key key}) : super(key: key);
@@ -108,14 +109,23 @@ class _MyLoginState extends State<MyLogin> {
                                 fontWeight: FontWeight.w400,
                                 fontSize: 18),
                           ),
-                          Text(
-                            ' Sign Up ',
-                            style: TextStyle(
-                                color: Colors.blue[900],
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          )
+                          InkWell(
+                            child: Text(
+                              ' Sign Up ',
+                              style: TextStyle(
+                                  color: Colors.blue[900],
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MyMenu(),
+                                  ));
+                            },
+                          ),
                         ]),
                   )
                 ],
