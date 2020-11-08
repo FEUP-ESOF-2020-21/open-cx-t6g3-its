@@ -110,7 +110,7 @@ Scaffold adminScaffold(BuildContext context, String session) {
                   padding: EdgeInsets.all(3),
                   child: Container(
                     height: 100.0,
-                    width: MediaQuery.of(context).size.width * 0.7,
+                    width: MediaQuery.of(context).size.width * 0.8,
                     decoration: new BoxDecoration(
                       color: Colors.white, //new Color.fromRGBO(255, 0, 0, 0.0),
                       borderRadius: new BorderRadius.all(Radius.circular(15)),
@@ -147,7 +147,7 @@ Scaffold adminScaffold(BuildContext context, String session) {
                 padding: EdgeInsets.only(top: 60),
                 child: InkWell(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      width: MediaQuery.of(context).size.width * 0.8,
                       height: 62,
                       decoration: new BoxDecoration(
                         color: Colors.white,

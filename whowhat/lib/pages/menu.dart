@@ -46,14 +46,14 @@ class _MyMenuState extends State<MyMenu> {
                       text:
                           'Welcome to WHowhat!\n\n\"Let\'s increase the engagement between speakers and participants in a conference.\"',
                       height: 220,
-                      width: MediaQuery.of(context).size.width * 0.7,
+                      width: MediaQuery.of(context).size.width * 0.8,
                     ),
                   ),
                 ],
               ),
             ),
             FractionallySizedBox(
-              widthFactor: 0.7,
+              widthFactor: 0.8,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
