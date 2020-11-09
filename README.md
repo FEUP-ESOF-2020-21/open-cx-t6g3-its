@@ -303,3 +303,11 @@ We recommend to use the simplest tool that can possibly work for the team.
 ## Evolution - contributions to open-cx
 
 Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
+
+---
+
+## Releases
+
+- [Sprint #1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
+
+Releases include the source code and built versions for Android and iOS.
