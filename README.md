@@ -123,7 +123,11 @@ User story #3
 
 User interface mockup
 
-    [image]
+<img src="docs/mockups/menu.png" height="800" align="left"/>
+
+
+
+    ![image]("docs/menu.png")
 
 Acceptance Test:
 
