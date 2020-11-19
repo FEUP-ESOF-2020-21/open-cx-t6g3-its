@@ -7,13 +7,15 @@ class TextBox extends StatelessWidget {
   final IconData icon;
   final TextEditingController controller;
   final TextInputType textInputType;
+  final bool obscureText;
 
   const TextBox(
       {Key key,
       this.placeholder,
       this.icon,
       this.controller,
-      this.textInputType})
+      this.textInputType,
+      this.obscureText})
       : super(key: key);
 
   @override
@@ -62,6 +64,7 @@ class TextBox extends StatelessWidget {
             color: Color(0xFF9B9B9B), fontFamily: "Roboto", fontSize: 22),
         keyboardType:
             textInputType != null ? textInputType : TextInputType.text,
+        obscureText: obscureText != null ? obscureText : false,
       ),
     );
   }
