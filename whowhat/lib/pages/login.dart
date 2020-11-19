@@ -78,45 +78,25 @@ class _MyLoginState extends State<MyLogin> {
                             fontSize: 18),
                       )),
                   Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.all(5),
-                            child: InkWell(
-                                child: Container(
-                                  height: 62,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.25,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: Color(0xFFECECEC),
-                                  ),
-                                  child: Icon(AppIcons.google,
-                                      color: Color(0xFF9B9B9B)),
-                                ),
-                                onTap: () async {
-                                  _auth.signInWithGoogle();
-                                }),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(5),
-                            child: InkWell(
-                              child: Container(
-                                height: 62,
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Color(0xFFECECEC),
-                                ),
-                                child: Icon(AppIcons.facebook,
-                                    color: Color(0xFF9B9B9B)),
-                              ),
+                    padding: EdgeInsets.all(10),
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: InkWell(
+                          child: Container(
+                            height: 62,
+                            width: MediaQuery.of(context).size.width * 0.25,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Color(0xFFECECEC),
                             ),
+                            child:
+                                Icon(AppIcons.google, color: Color(0xFF9B9B9B)),
                           ),
-                        ],
-                      )),
+                          onTap: () async {
+                            _auth.signInWithGoogle();
+                          }),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: GradientButton(
