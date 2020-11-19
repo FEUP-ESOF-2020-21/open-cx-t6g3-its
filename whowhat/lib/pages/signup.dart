@@ -18,6 +18,8 @@ class _MySignupState extends State<MySignup> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final jobController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +33,7 @@ class _MySignupState extends State<MySignup> {
               widthFactor: 0.8,
               child: Column(
                 children: <Widget>[
-                  Image(image: AssetImage('assets/images/login.png')),
+                  /*Image(image: AssetImage('assets/images/login.png')),*/
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: TextBox(
@@ -49,6 +51,24 @@ class _MySignupState extends State<MySignup> {
                       controller: passwordController,
                       obscureText: true,
                       textInputType: TextInputType.visiblePassword,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: TextBox(
+                      icon: Icons.person,
+                      placeholder: 'Name',
+                      controller: nameController,
+                      textInputType: TextInputType.name,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: TextBox(
+                      icon: Icons.cases,
+                      placeholder: 'Job',
+                      controller: jobController,
+                      textInputType: TextInputType.name,
                     ),
                   ),
                   Padding(
@@ -104,7 +124,10 @@ class _MySignupState extends State<MySignup> {
                       text: 'Register',
                       onPressed: () async {
                         dynamic result = await _auth.registerWithEmail(
-                            emailController.text, passwordController.text);
+                            emailController.text,
+                            passwordController.text,
+                            nameController.text,
+                            jobController.text);
                         if (result == null) {
                           print("Error signing in");
                         } else {
