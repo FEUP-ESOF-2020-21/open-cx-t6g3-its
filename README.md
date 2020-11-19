@@ -54,7 +54,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### Use case diagram
 
-![](https://i.imgur.com/xhfNkCo.png)
+![Use case diagram](https://i.imgur.com/pVvqdBX.png)
 
 Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
 
@@ -72,6 +72,54 @@ Briefly describe each use case mentioning the following:
 ### User stories
 
 User story #1
+
+**As a attendee I want to insert a code in order to join a session**
+
+User interface mockup
+
+    [image]
+
+Acceptance Test:
+
+```gherkin
+    Scenario: insert a code that gives access to a session
+    Given an existing session code
+    When I insert the code
+    And I tap the "connect" button
+    Then I have access to the session
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+
+User story #2
+
+**As a speaker I want to create a session**
+
+User interface mockup
+
+    [image]
+
+Acceptance Test:
+
+```gherkin
+    Scenario: create a new session
+    When I tap the "WHoWhat" button
+    Then I have created a session
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+
+
+
+User story #3
 
 **As a user I want to register in the app in order to login afterwards**
 
@@ -94,7 +142,7 @@ Value and effort
 - Value: Must have
 - Effort: S
 
-User story #2
+User story #4
 
 **As a user I want to create quizzes in order to create a session**
 
@@ -117,30 +165,9 @@ Value and effort
 - Value: Must have
 - Effort: M
 
-User story #3
 
-**As a user I want to insert a code in order to answer a Quiz**
 
-User interface mockup
-
-    [image]
-
-Acceptance Test:
-
-```gherkin
-    Scenario: insert a code that gives access to a certain quiz
-    Given a user with a quiz's code
-    When I tap the "join quiz" button
-    And insert the code
-    Then I have access to the quiz
-```
-
-Value and effort
-
-- Value: Must have
-- Effort: M
-
-User story #4
+User story #5
 
 **As a user I want to select one of my quizzes, so I can edit or delete it**
 
@@ -210,9 +237,12 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 
 ### Physical architecture
 
-The goal of this subsection is to document the high-level physical structure of the software system (machines, connections, software components installed, and their dependencies) using UML deployment diagrams or component diagrams (separate or integrated), showing the physical structure of the system.
+![](https://i.imgur.com/8CKqepO.png)
 
-It should describe also the technologies considered and justify the selections made. Examples of technologies relevant for openCX are, for example, frameworks for mobile applications (Flutter vs ReactNative vs ...), languages to program with microbit, and communication with things (beacons, sensors, etc.).
+<img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="100" align="right"/>
+
+- We chose **Flutter** in order to integrate our app with the `open-cx` main project.
+- We chose **Firebase** for database management and backend server, because has a good integration with **Flutter**.
 
 ### Prototype
 
@@ -273,3 +303,11 @@ We recommend to use the simplest tool that can possibly work for the team.
 ## Evolution - contributions to open-cx
 
 Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
+
+---
+
+## Releases
+
+- [Sprint #1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
+
+Releases include the source code and built versions for Android and iOS.
