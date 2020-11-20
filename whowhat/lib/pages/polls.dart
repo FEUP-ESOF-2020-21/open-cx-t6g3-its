@@ -31,7 +31,10 @@ class _MyPollsState extends State<MyPolls> {
     return Scaffold(
       appBar: AppBar(
         title: Text('My WHoWhats'),
-        leading: Icon(Icons.arrow_back_ios_rounded),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () => Navigator.pop(context, false),
+        ),
         backgroundColor: Colors.blue[800],
       ),
       //resizeToAvoidBottomPadding: false,

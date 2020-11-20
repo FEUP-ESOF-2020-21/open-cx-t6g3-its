@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/create_poll.dart';
+import 'package:whowhat/pages/polls.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
@@ -45,7 +46,7 @@ class _MyMenuState extends State<MyMenu> {
                     top: 100,
                     child: TextPanel(
                       text:
-                          'Welcome to WHowhat!\n\n\"Let\'s increase the engagement between speakers and participants in a conference.\"',
+                          'Welcome to WHoWhat!\n\n\"Let\'s increase the engagement between speakers and participants in a conference.\"',
                       height: 220,
                       width: MediaQuery.of(context).size.width * 0.8,
                     ),
@@ -113,13 +114,7 @@ class _MyMenuState extends State<MyMenu> {
             label: 'Settings',
           ),
         ],
-        onTap: (selected) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MyCreatePoll(),
-              ));
-        },
+        onTap: _onItemTapped,
         selectedItemColor: Colors.blue[800],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -142,5 +137,21 @@ class _MyMenuState extends State<MyMenu> {
               },
             ),
     );
+  }
+
+  void _onItemTapped(int value) {
+    if (value == 0) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyCreatePoll(),
+          ));
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyPolls(),
+          ));
+    }
   }
 }
