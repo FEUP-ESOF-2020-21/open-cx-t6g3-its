@@ -6,6 +6,8 @@ import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/pages/menu.dart';
 import 'package:whowhat/widgets/database/auth.dart';
 
+import 'create_poll.dart';
+
 class MyLogin extends StatefulWidget {
   MyLogin({Key key}) : super(key: key);
 
@@ -132,7 +134,7 @@ class _MyLoginState extends State<MyLogin> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MySignup(),
+                                    builder: (context) => MyCreatePoll(),
                                   ));
                             },
                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whowhat/pages/create_poll.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
@@ -112,6 +113,13 @@ class _MyMenuState extends State<MyMenu> {
             label: 'Settings',
           ),
         ],
+        onTap: (selected) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyCreatePoll(),
+              ));
+        },
         selectedItemColor: Colors.blue[800],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
