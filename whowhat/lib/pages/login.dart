@@ -18,6 +18,22 @@ class _MyLoginState extends State<MyLogin> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  checkSignIn() async {
+    dynamic result = await _auth.signInWithEmail(
+        emailController.text, passwordController.text);
+    if (result == null) {
+      print("Error signing in");
+    } else {
+      print('signed in');
+      print(result);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyMenu(),
+          ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,60 +78,31 @@ class _MyLoginState extends State<MyLogin> {
                             fontSize: 18),
                       )),
                   Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.all(5),
-                            child: InkWell(
-                              child: Container(
-                                height: 62,
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Color(0xFFECECEC),
-                                ),
-                                child: Icon(AppIcons.google,
-                                    color: Color(0xFF9B9B9B)),
-                              ),
+                    padding: EdgeInsets.all(10),
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: InkWell(
+                          child: Container(
+                            height: 62,
+                            width: MediaQuery.of(context).size.width * 0.25,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Color(0xFFECECEC),
                             ),
+                            child:
+                                Icon(AppIcons.google, color: Color(0xFF9B9B9B)),
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(5),
-                            child: InkWell(
-                              child: Container(
-                                height: 62,
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Color(0xFFECECEC),
-                                ),
-                                child: Icon(AppIcons.facebook,
-                                    color: Color(0xFF9B9B9B)),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
+                          onTap: () async {
+                            _auth.signInWithGoogle();
+                          }),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: GradientButton(
                       text: 'Sign In',
                       onPressed: () async {
-                        dynamic result = await _auth.signInWithEmail(
-                            emailController.text, passwordController.text);
-                        if (result == null) {
-                          print("Error signing in");
-                        } else {
-                          print('signed in');
-                          print(result);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MyMenu(),
-                              ));
-                        }
+                        checkSignIn();
                       },
                     ),
                   ),
