@@ -132,14 +132,18 @@ class _MyMenuState extends State<MyMenu> {
                       colors: [Color(0xFF3186E3), Color(0xFF1D36C4)]),
                 ),
               ),
-              onTap: () async {
-                await createSession(context);
-              },
-            ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyPolls(),
+                    ));
+              }),
     );
   }
 
   void _onItemTapped(int value) {
+    /*
     if (value == 0) {
       Navigator.push(
           context,
@@ -152,6 +156,6 @@ class _MyMenuState extends State<MyMenu> {
           MaterialPageRoute(
             builder: (context) => MyPolls(),
           ));
-    }
+    }*/
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whowhat/pages/create_poll.dart';
 import 'package:whowhat/widgets/PollCard.dart';
 
 class MyPolls extends StatefulWidget {
@@ -64,7 +65,13 @@ class _MyPollsState extends State<MyPolls> {
                       colors: [Color(0xFF3186E3), Color(0xFF1D36C4)]),
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyCreatePoll(),
+                    ));
+              },
             ),
     );
   }
