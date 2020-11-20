@@ -67,7 +67,7 @@ User story #1
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-07.png)
+<img src="docs/mockups/WHOWHAT-07.png" with="300">
 
 Acceptance Test:
 
@@ -91,7 +91,7 @@ User story #2
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-10.png)
+<img src="docs/mockups/WHOWHAT-10.png" with="300">
 
 Acceptance Test:
 
@@ -113,8 +113,8 @@ User story #3
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-03.png)
-![image](docs/mockups/WHOWHAT-04.png)
+<img src="docs/mockups/WHOWHAT-03.png" with="300">
+<img src="docs/mockups/WHOWHAT-04.png" with="300">
 
 Acceptance Test:
 
