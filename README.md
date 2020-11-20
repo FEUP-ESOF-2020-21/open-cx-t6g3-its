@@ -32,13 +32,17 @@ _Emanuel Trigo, Muriel Pinho, Rodrigo Reis, Teresa Corado, Tomás Torres_
 
 ## Product Vision
 
-Increase the engagement between speakers and attendees perspectives on a matter, creating a more captivating experience of a remote conference.
+Our goal is to increase the engagement between speakers and participants of a remote conference.
 
 ---
 
 ## Elevator Pitch
 
-Presenters sometimes have a difficult time getting the attendees perspectives in a conference while keeping the audience engaged. WHoWhat solves that with an app that provides an easy and engaging way to poll your audience anywhere, in real-time.
+Presenters often have a hard time keeping their audience engaged and at the same time guaranteeing they managed to learn the information on the presentation. WHoWhat solves that with an app that provides an easy and engaging way to quiz your audience, with WHoWhat you can spend less time worrying and more time engaging with your audience.
+
+Presenters often have a hard time doing quizzes that are effective and keep their audience engaged. We created WHoWhat, a mobile app that aims to be a simple way to create engaging quizzes and give instant feedback to the presenter and attendees. That way the presenter can interact with the audience identify doubts the ateendees have and which topics he needs to tackle again.
+
+Presenters often have a hard time doing quizzes that are effective and keep their audience engaged. We created WHoWhat, a mobile app, that aims to be a simple way to create engaging quizzes and give instant feedback to the presenter and attendees. That way everyone can identify the points where there is a prominent lack of knowledge.
 
 ---
 
@@ -50,7 +54,13 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 
 ### Use case diagram
 
-![use case diagram](docs/diagrams/use_case_diagram.png)
+![Use case diagram](https://i.imgur.com/pVvqdBX.png)
+
+Create a use-case diagram in UML with all high-level use cases possibly addressed by your module.
+
+Give each use case a concise, results-oriented name. Use cases should reflect the tasks the user needs to be able to accomplish using the system. Include an action verb and a noun.
+
+Briefly describe each use case mentioning the following:
 
 - **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks.
 - **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case.
@@ -67,7 +77,7 @@ User story #1
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-07.png" with="300">
+    [image]
 
 Acceptance Test:
 
@@ -91,7 +101,7 @@ User story #2
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-10.png" with="300">
+    [image]
 
 Acceptance Test:
 
@@ -107,14 +117,15 @@ Value and effort
 - Effort: M
 
 
+
+
 User story #3
 
 **As a user I want to register in the app in order to login afterwards**
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-03.png" with="300">
-<img src="docs/mockups/WHOWHAT-04.png" with="300">
+    [image]
 
 Acceptance Test:
 
@@ -133,20 +144,20 @@ Value and effort
 
 User story #4
 
-**As a user I want to create polls in order to create a session**
+**As a user I want to create quizzes in order to create a session**
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-09.png)
+    [image]
 
 Acceptance Test:
 
 ```gherkin
-Scenario: create a poll
+Scenario: create a quiz
     Given a speaker registered in the app
-    When I tap the "add poll" button
+    When I tap the "add quiz" button
     And insert the questions and respective answers
-    Then my poll is created
+    Then my quiz is created
 ```
 
 Value and effort
@@ -158,20 +169,20 @@ Value and effort
 
 User story #5
 
-**As a user I want to select one of my polls, so I can edit or delete it**
+**As a user I want to select one of my quizzes, so I can edit or delete it**
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-11.png)
+    [image]
 
 Acceptance Test:
 
 ```gherkin
-Scenario: select and edit or delete a previously created poll
-    Given a user with a previously created poll
-    When I tap the "my polls" button and select my poll
+Scenario: select and edit or delete a previously created quiz
+    Given a user with a previously created quiz
+    When I tap the "my quizzes" button and select my quiz
     And tap "edit" or "delete"
-    Then I can edit or delete the data of the poll selected
+    Then I can edit or delete the data of the quiz selected
 ```
 
 Value and effort
@@ -226,8 +237,7 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 
 ### Physical architecture
 
-<img src="docs/diagrams/physical_architecture.png" height="200" align="left"/>
-<br>
+![](https://i.imgur.com/8CKqepO.png)
 
 <img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="100" align="right"/>
 

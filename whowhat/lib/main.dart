@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:whowhat/pages/create_poll.dart';
-import 'package:whowhat/pages/loading.dart';
 import 'package:whowhat/pages/login.dart';
-import 'package:whowhat/pages/polls.dart';
 import 'package:whowhat/pages/error.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:whowhat/pages/signup.dart';
-
 //import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
@@ -58,7 +53,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: MyLoading(),
+          home: MyError(errorMsg: "Loading"),
           debugShowCheckedModeBanner: false,
         );
       },
