@@ -8,6 +8,8 @@ class TextBox extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType textInputType;
   final bool obscureText;
+  final bool radio;
+  final int size;
 
   const TextBox(
       {Key key,
@@ -15,7 +17,9 @@ class TextBox extends StatelessWidget {
       this.icon,
       this.controller,
       this.textInputType,
-      this.obscureText})
+      this.obscureText,
+      this.size,
+      this.radio})
       : super(key: key);
 
   @override
@@ -48,23 +52,32 @@ class TextBox extends StatelessWidget {
       child: TextFormField(
         controller: this.controller,
         decoration: InputDecoration(
-            focusedBorder: focusBorder,
-            border: border,
-            //placeholder style
-            hintStyle: TextStyle(
-              color: Color(0xFF9B9B9B),
-              fontFamily: "Roboto",
-            ),
-            filled: true,
-            prefixIcon: preIcon,
-            fillColor: Color(0xFFECECEC),
-            hintText: this.placeholder),
+          focusedBorder: focusBorder,
+          border: border,
+          //placeholder style
+          hintStyle: TextStyle(
+            color: Color(0xFF9B9B9B),
+            fontFamily: "Roboto",
+          ),
+          filled: true,
+          prefixIcon: preIcon,
+
+          fillColor: Color(0xFFECECEC),
+          hintText: this.placeholder,
+          suffixIcon: this.radio == true
+              ? IconButton(
+                  icon: Icon(Icons.crop_square_rounded),
+                  onPressed: () {},
+                )
+              : null,
+        ),
         textAlign: TextAlign.justify,
         style: TextStyle(
             color: Color(0xFF9B9B9B), fontFamily: "Roboto", fontSize: 22),
         keyboardType:
             textInputType != null ? textInputType : TextInputType.text,
         obscureText: obscureText != null ? obscureText : false,
+        maxLines: obscureText == false ? this.size : 1,
       ),
     );
   }
