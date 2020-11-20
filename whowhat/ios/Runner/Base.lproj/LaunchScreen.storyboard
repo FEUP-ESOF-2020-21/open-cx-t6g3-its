@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
@@ -16,6 +17,25 @@
                         <viewControllerLayoutGuide type="bottom" id="xbc-2k-c8Z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+<<<<<<< HEAD
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="NpB-5q-pBj">
+                                <rect key="frame" x="104.33333333333333" y="322.66666666666669" width="166.66666666666669" height="166.66666666666669"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="cRP-lF-tcm">
+                                <rect key="frame" x="169" y="587.66666666666663" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18730628256837911" green="0.49334836112275116" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NpB-5q-pBj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="C45-JZ-Nbu"/>
+                            <constraint firstItem="cRP-lF-tcm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PSr-CJ-hIx"/>
+                            <constraint firstItem="NpB-5q-pBj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="jKe-vK-uPZ"/>
+                            <constraint firstItem="cRP-lF-tcm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="200" id="qgq-Fj-xfi"/>
+=======
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -33,6 +53,7 @@
                             <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4X2-HB-R7a"/>
                             <constraint firstItem="APB-sR-9LQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="555-ZX-0EB"/>
                             <constraint firstItem="APB-sR-9LQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="200" id="JY3-ME-UXs"/>
+>>>>>>> 621107dfdee0520949ee6d39e51d35f7d2186c5b
                         </constraints>
                     </view>
                 </viewController>
@@ -42,6 +63,10 @@
         </scene>
     </scenes>
     <resources>
+<<<<<<< HEAD
+        <image name="LaunchImage" width="166.66667175292969" height="166.66667175292969"/>
+=======
         <image name="LaunchImage" width="250" height="250"/>
+>>>>>>> 621107dfdee0520949ee6d39e51d35f7d2186c5b
     </resources>
 </document>
