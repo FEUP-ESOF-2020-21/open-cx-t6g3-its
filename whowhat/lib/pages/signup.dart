@@ -18,8 +18,6 @@ class _MySignupState extends State<MySignup> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final nameController = TextEditingController();
-  final jobController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +31,7 @@ class _MySignupState extends State<MySignup> {
               widthFactor: 0.8,
               child: Column(
                 children: <Widget>[
-                  /*Image(image: AssetImage('assets/images/login.png')),*/
+                  Image(image: AssetImage('assets/images/login.png')),
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: TextBox(
@@ -54,24 +52,6 @@ class _MySignupState extends State<MySignup> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10),
-                    child: TextBox(
-                      icon: Icons.person,
-                      placeholder: 'Name',
-                      controller: nameController,
-                      textInputType: TextInputType.name,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: TextBox(
-                      icon: Icons.cases,
-                      placeholder: 'Job',
-                      controller: jobController,
-                      textInputType: TextInputType.name,
-                    ),
-                  ),
-                  Padding(
                       padding: EdgeInsets.only(top: 10),
                       child: Text(
                         'or Register In with:',
@@ -82,32 +62,49 @@ class _MySignupState extends State<MySignup> {
                             fontSize: 18),
                       )),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: InkWell(
-                        child: Container(
-                          height: 62,
-                          width: MediaQuery.of(context).size.width * 0.25,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Color(0xFFECECEC),
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 20),
+                            child: InkWell(
+                              child: Container(
+                                height: 62,
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xFFECECEC),
+                                ),
+                                child: Icon(AppIcons.google,
+                                    color: Color(0xFF9B9B9B)),
+                              ),
+                            ),
                           ),
-                          child:
-                              Icon(AppIcons.google, color: Color(0xFF9B9B9B)),
-                        ),
-                        onTap: () async {
-                          _auth.signInWithGoogle();
-                        }),
-                  ),
+                          Padding(
+                            padding: EdgeInsets.all(5),
+                            child: InkWell(
+                              child: Container(
+                                height: 62,
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xFFECECEC),
+                                ),
+                                child: Icon(AppIcons.facebook,
+                                    color: Color(0xFF9B9B9B)),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: GradientButton(
                       text: 'Register',
                       onPressed: () async {
                         dynamic result = await _auth.registerWithEmail(
-                            emailController.text,
-                            passwordController.text,
-                            nameController.text,
-                            jobController.text);
+                            emailController.text, passwordController.text);
                         if (result == null) {
                           print("Error signing in");
                         } else {
