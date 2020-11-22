@@ -5,20 +5,26 @@ import 'package:whowhat/widgets/GradientButton.dart';
 
 class MyCreatePoll extends StatefulWidget {
   MyCreatePoll({Key key}) : super(key: key);
+  static List<Widget> list = new List<Widget>();
+  static bool first = true;
 
   @override
   _MyCreatePollState createState() => _MyCreatePollState();
 }
 
-List<Widget> getPolls() {
-  List<Widget> list = new List<Widget>();
-  for (var i = 0; i < 5; i++) {
-    list.add(PollCreateCard(number: i + 1));
-  }
-  return list;
+
+void addPoll() {
+  MyCreatePoll.list.add(PollCreateCard(number: 1));
 }
 
+List<Widget> getPolls() {
+  if(MyCreatePoll.first) addPoll();
+  return MyCreatePoll.list;
+}
+
+
 class _MyCreatePollState extends State<MyCreatePoll> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,7 +135,10 @@ class _MyCreatePollState extends State<MyCreatePoll> {
                 child: GradientButton(
                   text: '   +   ',
                   onPressed: () {
-                    print('signed in');
+                    MyCreatePoll.first=false;
+                    addPoll();
+                    //print(MyCreatePoll.list);
+                    getPolls();
                   },
                 ),
               ),
