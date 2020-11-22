@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:whowhat/pages/create_poll.dart';
 import 'package:whowhat/pages/polls.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
 import 'package:whowhat/pages/connection.dart';
-import 'package:whowhat/widgets/database/create_session.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
 
 class MyMenu extends StatefulWidget {

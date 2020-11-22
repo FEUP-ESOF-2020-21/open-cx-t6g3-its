@@ -5,25 +5,34 @@ import 'package:whowhat/widgets/GradientButton.dart';
 
 class MyCreatePoll extends StatefulWidget {
   MyCreatePoll({Key key}) : super(key: key);
-  static List<Widget> list = new List<Widget>();
-  static bool first = true;
 
   @override
   _MyCreatePollState createState() => _MyCreatePollState();
 }
 
-
-void addPoll() {
-  MyCreatePoll.list.add(PollCreateCard(number: 1));
-}
-
-List<Widget> getPolls() {
-  if(MyCreatePoll.first) addPoll();
-  return MyCreatePoll.list;
-}
-
-
 class _MyCreatePollState extends State<MyCreatePoll> {
+  List<Widget> list = new List<Widget>();
+  bool first = true;
+  int nPolls = 0;
+
+  _MyCreatePollState();
+
+  void _addPoll() {
+    nPolls++;
+    list.add(PollCreateCard(number: nPolls));
+  }
+
+  void _removePoll() {
+    if (nPolls > 1) {
+      nPolls--;
+      list.removeLast();
+    }
+  }
+
+  List<Widget> _getPolls() {
+    if (first) _addPoll();
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,24 +134,37 @@ class _MyCreatePollState extends State<MyCreatePoll> {
               padding: EdgeInsets.only(top: 20, bottom: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: getPolls(),
+                children: _getPolls(),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 10),
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: GradientButton(
-                  text: '   +   ',
-                  onPressed: () {
-                    MyCreatePoll.first=false;
-                    addPoll();
-                    //print(MyCreatePoll.list);
-                    getPolls();
-                  },
-                ),
-              ),
-            ),
+                padding: EdgeInsets.only(
+                    bottom: 10, left: MediaQuery.of(context).size.width * 0.1),
+                child: Row(children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: GradientButton(
+                      text: 'Add',
+                      onPressed: () {
+                        first = false;
+                        setState(() {
+                          _addPoll();
+                        });
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: GradientButton(
+                      text: 'Remove',
+                      onPressed: () {
+                        setState(() {
+                          _removePoll();
+                        });
+                      },
+                    ),
+                  ),
+                ])),
             Padding(
               padding: EdgeInsets.all(10),
               child: Container(
@@ -150,7 +172,7 @@ class _MyCreatePollState extends State<MyCreatePoll> {
                 child: GradientButton(
                   text: 'Create WHoWhat',
                   onPressed: () {
-                    print('signed in');
+                    print(list);
                   },
                 ),
               ),

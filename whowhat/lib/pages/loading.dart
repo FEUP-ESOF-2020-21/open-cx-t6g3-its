@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyLoading extends StatefulWidget {
-  String errorMsg;
-
-  MyLoading({Key key, this.errorMsg}) : super(key: key);
+  MyLoading({Key key}) : super(key: key);
 
   @override
   _MyLoadingState createState() => _MyLoadingState();

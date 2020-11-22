@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
 
-//final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
 class MyConnection extends StatefulWidget {
   String session;
   bool admin = false;

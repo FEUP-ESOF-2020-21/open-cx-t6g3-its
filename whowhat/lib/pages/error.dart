@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyError extends StatefulWidget {
-  String errorMsg;
+  final String errorMsg;
 
   MyError({Key key, this.errorMsg}) : super(key: key);
 
