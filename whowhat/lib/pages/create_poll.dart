@@ -11,9 +11,8 @@ class MyCreatePoll extends StatefulWidget {
 }
 
 class _MyCreatePollState extends State<MyCreatePoll> {
-  List<Widget> list = new List<Widget>();
-  bool first = true;
-  int nPolls = 0;
+  int nPolls = 1;
+  List<Widget> list = [PollCreateCard(number: 1)];
 
   _MyCreatePollState();
 
@@ -30,7 +29,6 @@ class _MyCreatePollState extends State<MyCreatePoll> {
   }
 
   List<Widget> _getPolls() {
-    if (first) _addPoll();
     return list;
   }
 
@@ -146,7 +144,6 @@ class _MyCreatePollState extends State<MyCreatePoll> {
                     child: GradientButton(
                       text: 'Add',
                       onPressed: () {
-                        first = false;
                         setState(() {
                           _addPoll();
                         });
