@@ -1,8 +1,8 @@
-# openCX-its WHoWhat Development Report
+# openCX-WHoWhat Development Report
 
-Welcome to the documentation pages of the _your (sub)product name_ of **openCX**!
+Welcome to the documentation pages of the _WHoWhat_ of **openCX**!
 
-You can find here detailed about the (sub)product, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP):
+You can find here detailed about the WHoWhat, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP):
 
 - Business modeling
   - [Product Vision](#Product-Vision)
@@ -113,8 +113,11 @@ User story #3
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-03.png" width="300">
+<img src="docs/mockups/WHOWHAT-03.png" width="300" align="left">
+
 <img src="docs/mockups/WHOWHAT-04.png" width="300">
+<br>
+
 
 Acceptance Test:
 
@@ -209,11 +212,7 @@ To better understand the context of the software system, it is very useful to ha
 
 The architecture of a software system encompasses the set of key decisions about its overall organization.
 
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
-
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them.
-
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
+We will be talking about the logical architecture, a high-level view of the code structure, and the physical architecture, which will show the connection between each machine and the used technologies.
 
 ### Logical architecture
 
@@ -226,10 +225,10 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 
 ### Physical architecture
 
-<img src="docs/diagrams/physical_architecture.png" height="350" align="left"/>
+<img src="docs/diagrams/physical_architecture.png" height="350" />
 <br>
 
-<img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="100" align="right"/>
+<img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="200" align="right"/>
 
 - We chose **Flutter** in order to integrate our app with the `open-cx` main project.
 - We chose **Firebase** for database management and backend server, because has a good integration with **Flutter**.
@@ -245,11 +244,12 @@ In this subsection please describe in more detail which, and how, user(s) story(
 
 ## Implementation
 
-Regular product increments are a good practice of product management.
+The implementation was divided in iterations, here are the releases for each of them:
 
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
+- [Iteration #1 - v0.1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
+- [Iteration #2 - v0.2](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.2)
 
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+Releases include the source code and built versions for Android and iOS.
 
 ---
 
@@ -270,7 +270,7 @@ A good practice is to simplify this, avoiding repetitions, and automating the te
 
 Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
 
-For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
+For the purpose of ESOF, we used a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
 
 ---
 
@@ -288,10 +288,4 @@ Describe your contribution to open-cx (iteration 5), linking to the appropriate 
 
 ---
 
-## Releases
 
-- [Sprint #1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
-- [Sprint #2](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.2)
-
-
-Releases include the source code and built versions for Android and iOS.
