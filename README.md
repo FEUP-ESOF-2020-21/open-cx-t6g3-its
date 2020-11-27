@@ -67,7 +67,7 @@ User story #1
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-07.png" with="300">
+<img src="docs/mockups/WHOWHAT-07.png" width="300">
 
 Acceptance Test:
 
@@ -91,7 +91,7 @@ User story #2
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-10.png" with="300">
+<img src="docs/mockups/WHOWHAT-10.png" width="300">
 
 Acceptance Test:
 
@@ -113,8 +113,8 @@ User story #3
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-03.png" with="300">
-<img src="docs/mockups/WHOWHAT-04.png" with="300">
+<img src="docs/mockups/WHOWHAT-03.png" width="300">
+<img src="docs/mockups/WHOWHAT-04.png" width="300">
 
 Acceptance Test:
 
@@ -137,7 +137,7 @@ User story #4
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-09.png)
+<img src="docs/mockups/WHOWHAT-09.png" width="300">
 
 Acceptance Test:
 
@@ -162,7 +162,7 @@ User story #5
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-11.png)
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
 
 Acceptance Test:
 
@@ -226,13 +226,14 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 
 ### Physical architecture
 
-<img src="docs/diagrams/physical_architecture.png" height="200" align="left"/>
+<img src="docs/diagrams/physical_architecture.png" height="350" align="left"/>
 <br>
 
 <img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="100" align="right"/>
 
 - We chose **Flutter** in order to integrate our app with the `open-cx` main project.
 - We chose **Firebase** for database management and backend server, because has a good integration with **Flutter**.
+- 
 
 ### Prototype
 
