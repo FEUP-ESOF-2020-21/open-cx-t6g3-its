@@ -220,6 +220,9 @@ To help on validating all the architectural, design and technological decisions 
 
 In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
 
+
+#### Include an export from figma 
+
 ---
 
 ## Implementation
