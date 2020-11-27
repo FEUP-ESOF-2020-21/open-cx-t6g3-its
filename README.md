@@ -300,5 +300,7 @@ Describe your contribution to open-cx (iteration 5), linking to the appropriate 
 ## Releases
 
 - [Sprint #1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
+- [Sprint #2](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.2)
+
 
 Releases include the source code and built versions for Android and iOS.
