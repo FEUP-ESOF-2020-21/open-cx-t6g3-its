@@ -212,7 +212,7 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 
 - We chose **Flutter** in order to integrate our app with the `open-cx` main project.
 - We chose **Firebase** for database management and backend server, because has a good integration with **Flutter**.
-- 
+- Our project's physical architecture is simple, the user installs the WHoWhat app on his smartphone, serving as his client, and the app communicates with the firebase server via HTTPS requests, where our database is stored, the server handles the communication of the API with the Database, storing and retrieving all information needed.
 
 ### Prototype
 
@@ -266,6 +266,5 @@ To plan and manage our product development we used **Github Projects**:
 
 Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
 
----
 
 
