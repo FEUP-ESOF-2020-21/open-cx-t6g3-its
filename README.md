@@ -1,8 +1,8 @@
-# openCX-its WHoWhat Development Report
+# openCX-WHoWhat Development Report
 
-Welcome to the documentation pages of the _your (sub)product name_ of **openCX**!
+Welcome to the documentation pages of the _WHoWhat_ of **openCX**!
 
-You can find here detailed about the (sub)product, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP):
+You can find here detailed about the WHoWhat, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP):
 
 - Business modeling
   - [Product Vision](#Product-Vision)
@@ -67,7 +67,7 @@ User story #1
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-07.png" with="300">
+<img src="docs/mockups/WHOWHAT-07.png" width="300">
 
 Acceptance Test:
 
@@ -91,7 +91,7 @@ User story #2
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-10.png" with="300">
+<img src="docs/mockups/WHOWHAT-10.png" width="300">
 
 Acceptance Test:
 
@@ -113,8 +113,11 @@ User story #3
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-03.png" with="300">
-<img src="docs/mockups/WHOWHAT-04.png" with="300">
+<img src="docs/mockups/WHOWHAT-03.png" width="300" align="left">
+
+<img src="docs/mockups/WHOWHAT-04.png" width="300">
+<br>
+
 
 Acceptance Test:
 
@@ -137,7 +140,7 @@ User story #4
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-09.png)
+<img src="docs/mockups/WHOWHAT-09.png" width="300">
 
 Acceptance Test:
 
@@ -162,7 +165,7 @@ User story #5
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-11.png)
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
 
 Acceptance Test:
 
@@ -179,26 +182,6 @@ Value and effort
 - Value: Should have
 - Effort: L
 
-This section will contain the requirements of the product described as **user stories**, organized in a global **[user story map](https://plan.io/blog/user-story-mapping/)** with **user roles** or **themes**.
-
-For each theme, or role, you may add a small description. User stories should be detailed in the tool you decided to use for project management (e.g. trello or github projects).
-
-A user story is a description of desired functionality told from the perspective of the user or customer. A starting template for the description of a user story is
-
-_As a < user role >, I want < goal > so that < reason >._
-
-**INVEST in good user stories**.
-You may add more details after, but the shorter and complete, the better. In order to decide if the user story is good, please follow the [INVEST guidelines](https://xp123.com/articles/invest-in-good-stories-and-smart-tasks/).
-
-**User interface mockups**.
-After the user story text, you should add a draft of the corresponding user interfaces, a simple mockup or draft, if applicable.
-
-**Acceptance tests**.
-For each user story you should write also the acceptance tests (textually in Gherkin), i.e., a description of scenarios (situations) that will help to confirm that the system satisfies the requirements addressed by the user story.
-
-**Value and effort**.
-At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using t-shirt sizes (XS, S, M, L, XL).
-
 ### Domain model
 
 To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
@@ -209,11 +192,7 @@ To better understand the context of the software system, it is very useful to ha
 
 The architecture of a software system encompasses the set of key decisions about its overall organization.
 
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
-
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them.
-
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
+We will be talking about the logical architecture, a high-level view of the code structure, and the physical architecture, which will show the connection between each machine and the used technologies.
 
 ### Logical architecture
 
@@ -226,29 +205,34 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 
 ### Physical architecture
 
-<img src="docs/diagrams/physical_architecture.png" height="200" align="left"/>
+<img src="docs/diagrams/physical_architecture.png" height="350" />
 <br>
 
-<img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="100" align="right"/>
+<img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="200" align="right"/>
 
 - We chose **Flutter** in order to integrate our app with the `open-cx` main project.
 - We chose **Firebase** for database management and backend server, because has a good integration with **Flutter**.
+- Our project's physical architecture is simple, the user installs the **WHoWhat** app on his smartphone, serving as his client, and the app communicates with the firebase server via HTTPS requests, where our database is stored, the server handles the communication of the API with the Database, storing and retrieving all information needed for **WHoWhat**.
 
 ### Prototype
 
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
+To design our project's UI we used **Figma**, which enabled us to create screen mockups, plan an usage flow to the app and link them together to create a usable prototype. Here's a GIF from the result:
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+![Prototype](docs/Prototype.gif)
+
+
+#### Include an export from figma 
 
 ---
 
 ## Implementation
 
-Regular product increments are a good practice of product management.
+The implementation was divided in iterations, here are the releases for each of them:
 
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
+- [Iteration #1 - v0.1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
+- [Iteration #2 - v0.2](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.2)
 
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+Releases include the source code and built versions for Android and iOS.
 
 ---
 
@@ -269,24 +253,15 @@ A good practice is to simplify this, avoiding repetitions, and automating the te
 
 Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
 
-For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
+For the purpose of ESOF, we used a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
 
 ---
 
 ## Project management
 
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
+To plan and manage our product development we used **Github Projects**:
+[WHoWhat Project Board](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/projects/1)
 
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
-
-Example of tools to do this are:
-
-- [Trello.com](https://trello.com)
-- [Github Projects](https://github.com/features/project-management/com)
-- [Pivotal Tracker](https://www.pivotaltracker.com)
-- [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
 
 ---
 
@@ -294,10 +269,5 @@ We recommend to use the simplest tool that can possibly work for the team.
 
 Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
 
----
 
-## Releases
 
-- [Sprint #1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
-
-Releases include the source code and built versions for Android and iOS.
