@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 
-Widget Option(text) {
+Widget Option(id, text) {
   return Padding(
     padding: EdgeInsets.all(10),
     child: TextBox(
       placeholder: text,
       textInputType: TextInputType.text,
       obscureText: false,
-      radio: true,
       size: 1,
     ),
   );
@@ -58,22 +57,28 @@ class _MyPollCreateCardState extends State<PollCreateCard> {
 
   int numOptions = 2;
 
-  List<Widget> options = [
-    Option('Option 1'),
-    Option('Option 2'),
-  ];
+  List<Widget> options = [Option(1, 'Option 1'), Option(2, 'Option 2')];
 
   void _addOption() {
     setState(() {
       if (numOptions < 4) {
         numOptions++;
-        options.add(Option('Option ' + numOptions.toString()));
+        options.add(Option(numOptions, 'Option ' + numOptions.toString()));
       }
     });
   }
 
   List<Widget> _getOptions() {
     return options;
+  }
+
+  void _removeOption() {
+    setState(() {
+      if (numOptions > 2) {
+        options.removeLast();
+        numOptions--;
+      }
+    });
   }
 
   @override
@@ -127,6 +132,8 @@ class _MyPollCreateCardState extends State<PollCreateCard> {
                     children: [
                       SmallButton(
                           context, '+', Colors.greenAccent, () => _addOption()),
+                      SmallButton(context, '-', Colors.redAccent,
+                          () => _removeOption()),
                     ],
                   )),
             ],
