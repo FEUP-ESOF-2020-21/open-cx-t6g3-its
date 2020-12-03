@@ -5,8 +5,10 @@ class PollCard extends StatelessWidget {
   //final Image image;
   final String title;
   final String description;
+  final String imageURL;
 
-  PollCard({Key key, this.title, this.description}) : super(key: key);
+  PollCard({Key key, this.title, this.description, this.imageURL})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,10 @@ class PollCard extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.2,
               width: MediaQuery.of(context).size.width * 0.8 * 0.4,
               decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(imageURL),
+                  fit: BoxFit.cover,
+                ),
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(15),
                     bottomLeft: Radius.circular(15)),

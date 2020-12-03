@@ -37,7 +37,8 @@ class MyPolls extends StatelessWidget {
           polls.add(PollCard(
               title: element.data()['title'].toString(),
               description:
-                  element.data()['nr_questions'].toString() + ' questions'));
+                  element.data()['nr_questions'].toString() + ' questions',
+              imageURL: element.data()['image'].toString()));
         });
 
         return Scaffold(
