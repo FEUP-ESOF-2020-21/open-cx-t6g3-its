@@ -1,9 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 
-class PollCreateCard extends StatelessWidget {
+Widget Option(id, text) {
+  return Padding(
+    padding: EdgeInsets.all(10),
+    child: TextBox(
+      placeholder: text,
+      textInputType: TextInputType.text,
+      obscureText: false,
+      size: 1,
+    ),
+  );
+}
+
+Widget SmallButton(context, text, color, function) {
+  return InkWell(
+      child: Padding(
+          padding: EdgeInsets.only(top: 10, left: 10),
+          child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                alignment: Alignment.topLeft,
+                height: MediaQuery.of(context).size.width * 0.15,
+                width: MediaQuery.of(context).size.width * 0.15,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  color: color,
+                ),
+                child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      text,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 30),
+                    )),
+              ))),
+      onTap: function);
+}
+
+class PollCreateCard extends StatefulWidget {
   final int number;
   PollCreateCard({Key key, this.number}) : super(key: key);
+
+  @override
+  _MyPollCreateCardState createState() => _MyPollCreateCardState(this.number);
+}
+
+class _MyPollCreateCardState extends State<PollCreateCard> {
+  final int number;
+
+  _MyPollCreateCardState(this.number);
+
+  int numOptions = 2;
+
+  List<Widget> options = [Option(1, 'Option 1'), Option(2, 'Option 2')];
+
+  void _addOption() {
+    setState(() {
+      if (numOptions < 4) {
+        numOptions++;
+        options.add(Option(numOptions, 'Option ' + numOptions.toString()));
+      }
+    });
+  }
+
+  List<Widget> _getOptions() {
+    return options;
+  }
+
+  void _removeOption() {
+    setState(() {
+      if (numOptions > 2) {
+        options.removeLast();
+        numOptions--;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,46 +124,18 @@ class PollCreateCard extends StatelessWidget {
                   size: 2,
                 ),
               ),
+              Column(children: _getOptions()),
               Padding(
-                padding: EdgeInsets.all(10),
-                child: TextBox(
-                  placeholder: 'Option 1',
-                  textInputType: TextInputType.text,
-                  obscureText: false,
-                  radio: true,
-                  size: 1,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextBox(
-                  placeholder: 'Option 2',
-                  textInputType: TextInputType.text,
-                  obscureText: false,
-                  radio: true,
-                  size: 1,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextBox(
-                  placeholder: 'Option 3',
-                  textInputType: TextInputType.text,
-                  obscureText: false,
-                  radio: true,
-                  size: 1,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextBox(
-                  placeholder: 'Option 4',
-                  textInputType: TextInputType.text,
-                  obscureText: false,
-                  radio: true,
-                  size: 1,
-                ),
-              ),
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SmallButton(
+                          context, '+', Colors.greenAccent, () => _addOption()),
+                      SmallButton(context, '-', Colors.redAccent,
+                          () => _removeOption()),
+                    ],
+                  )),
             ],
           ),
           decoration: BoxDecoration(

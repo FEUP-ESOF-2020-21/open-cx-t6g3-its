@@ -28,6 +28,12 @@ class _MyCreatePollState extends State<MyCreatePoll> {
     }
   }
 
+  void _send() {
+    for (Widget widget in list) {
+      print(widget.toString());
+    }
+  }
+
   List<Widget> _getPolls() {
     return list;
   }
@@ -169,7 +175,7 @@ class _MyCreatePollState extends State<MyCreatePoll> {
                 child: GradientButton(
                   text: 'Create WHoWhat',
                   onPressed: () {
-                    print(list);
+                    _send();
                   },
                 ),
               ),

@@ -10,6 +10,7 @@ class TextBox extends StatelessWidget {
   final bool obscureText;
   final bool radio;
   final int size;
+  final Function onRemove;
 
   const TextBox(
       {Key key,
@@ -19,7 +20,8 @@ class TextBox extends StatelessWidget {
       this.textInputType,
       this.obscureText,
       this.size,
-      this.radio})
+      this.radio,
+      this.onRemove})
       : super(key: key);
 
   @override
@@ -66,8 +68,13 @@ class TextBox extends StatelessWidget {
           hintText: this.placeholder,
           suffixIcon: this.radio == true
               ? IconButton(
-                  icon: Icon(Icons.crop_square_rounded),
-                  onPressed: () {},
+                  icon: Icon(
+                    Icons.delete_forever_rounded,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    this.onRemove();
+                  },
                 )
               : null,
         ),
