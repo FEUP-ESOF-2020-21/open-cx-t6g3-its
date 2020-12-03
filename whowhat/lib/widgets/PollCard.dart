@@ -13,7 +13,7 @@ class PollCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: 10, bottom: 10),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.9,
         height: MediaQuery.of(context).size.height * 0.2,
         child: Row(children: <Widget>[
           Container(
@@ -31,12 +31,14 @@ class PollCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    this.title,
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Roboto'),
+                  Flexible(
+                    child: Text(
+                      this.title,
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto'),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 5),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whowhat/pages/polls.dart';
+import 'package:whowhat/pages/mypolls.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
