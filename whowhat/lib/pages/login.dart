@@ -44,7 +44,7 @@ class _MyLoginState extends State<MyLogin> {
               EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
           child: Center(
             child: FractionallySizedBox(
-              widthFactor: 0.8,
+              widthFactor: 0.9,
               child: Column(
                 children: <Widget>[
                   Image(image: AssetImage('assets/images/login.png')),

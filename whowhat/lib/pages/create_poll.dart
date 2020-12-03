@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:whowhat/pages/list_questions.dart';
 import 'package:whowhat/pages/upload_image.dart';
-import 'package:whowhat/widgets/PollCreateCard.dart';
+import 'package:whowhat/widgets/QuestionCard.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
+import 'package:whowhat/model/polls.dart';
 
 class MyCreatePoll extends StatefulWidget {
   MyCreatePoll({Key key}) : super(key: key);
@@ -19,9 +21,8 @@ class _MyCreatePollState extends State<MyCreatePoll> {
   String pollID = FirebaseAuth.instance.currentUser.uid.toString() +
       DateTime.now().hashCode.toString();
 
-  int nPolls = 1;
-  List<Widget> list = [PollCreateCard(number: 1)];
-  bool hasImage = false;
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
 
   File _imageFile;
 
@@ -39,30 +40,6 @@ class _MyCreatePollState extends State<MyCreatePoll> {
     setState(() {
       _imageFile = selected;
     });
-  }
-
-  _MyCreatePollState();
-
-  void _addPoll() {
-    nPolls++;
-    list.add(PollCreateCard(number: nPolls));
-  }
-
-  void _removePoll() {
-    if (nPolls > 1) {
-      nPolls--;
-      list.removeLast();
-    }
-  }
-
-  void _send() {
-    for (Widget widget in list) {
-      print(widget.toString());
-    }
-  }
-
-  List<Widget> _getPolls() {
-    return list;
   }
 
   @override
@@ -118,10 +95,11 @@ class _MyCreatePollState extends State<MyCreatePoll> {
                                 '  Name: ',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 22),
+                                  color: Colors.black,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 22,
+                                ),
                               ))),
                         ),
                       ),
@@ -129,6 +107,7 @@ class _MyCreatePollState extends State<MyCreatePoll> {
                         padding: EdgeInsets.all(10),
                         child: TextBox(
                           textInputType: TextInputType.text,
+                          controller: titleController,
                         ),
                       ),
                       Padding(
@@ -148,6 +127,7 @@ class _MyCreatePollState extends State<MyCreatePoll> {
                       Padding(
                         padding: EdgeInsets.all(10),
                         child: TextBox(
+                          controller: descriptionController,
                           textInputType: TextInputType.text,
                           obscureText: false,
                           size: 5,
@@ -174,47 +154,16 @@ class _MyCreatePollState extends State<MyCreatePoll> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20, bottom: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: _getPolls(),
-              ),
-            ),
-            Padding(
-                padding: EdgeInsets.only(
-                    bottom: 10, left: MediaQuery.of(context).size.width * 0.1),
-                child: Row(children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: GradientButton(
-                      text: 'Add',
-                      onPressed: () {
-                        setState(() {
-                          _addPoll();
-                        });
-                      },
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: GradientButton(
-                      text: 'Remove',
-                      onPressed: () {
-                        setState(() {
-                          _removePoll();
-                        });
-                      },
-                    ),
-                  ),
-                ])),
-            Padding(
               padding: EdgeInsets.all(10),
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: GradientButton(
-                  text: 'Create WHoWhat',
+                  text: 'Continue',
                   onPressed: () {
-                    _send();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListQuestions()),
+                    );
                   },
                 ),
               ),
