@@ -15,7 +15,7 @@ String generateRandomSession() {
   return newSession;
 }
 
-Future<String> createSession(BuildContext context) async {
+Future<String> createSession(BuildContext context, String pollName) async {
   CollectionReference databaseReference =
       FirebaseFirestore.instance.collection('sessions');
 
@@ -43,6 +43,7 @@ Future<String> createSession(BuildContext context) async {
       context,
       MaterialPageRoute(
           builder: (context) => MyConnection(
+                pollName: pollName,
                 session: newSession,
                 admin: true,
               )));

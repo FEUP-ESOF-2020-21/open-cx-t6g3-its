@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whowhat/widgets/PollCard.dart';
 import 'package:whowhat/pages/create_poll.dart';
+import 'package:whowhat/widgets/database/create_session.dart';
 
 class MyPolls extends StatelessWidget {
   const MyPolls({Key key}) : super(key: key);
@@ -35,11 +36,13 @@ class MyPolls extends StatelessWidget {
         List<Widget> polls = [];
         snapshot.data.docs.forEach((element) {
           polls.add(PollCard(
-            title: element.data()['title'].toString(),
-            description:
-                element.data()['nr_questions'].toString() + ' questions',
-            imageURL: element.data()['image'].toString(),
-          ));
+              title: element.data()['title'].toString(),
+              description:
+                  element.data()['nr_questions'].toString() + ' questions',
+              imageURL: element.data()['image'].toString(),
+              onTap: () {
+                createSession(context, element.data()['title'].toString());
+              }));
         });
 
         return Scaffold(

@@ -159,12 +159,13 @@ class _MyCreatePollState extends State<MyCreatePoll> {
                 child: GradientButton(
                   text: 'Create and continue',
                   onPressed: () async {
-                    await addPoll(titleController.text,
+                    await addPoll(pollID, titleController.text,
                         descriptionController.text, _imageFile);
 
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListQuestions()),
+                      MaterialPageRoute(
+                          builder: (context) => ListQuestions(id: pollID)),
                     );
                   },
                 ),
