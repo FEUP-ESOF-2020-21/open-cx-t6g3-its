@@ -35,10 +35,11 @@ class MyPolls extends StatelessWidget {
         List<Widget> polls = [];
         snapshot.data.docs.forEach((element) {
           polls.add(PollCard(
-              title: element.data()['title'].toString(),
-              description:
-                  element.data()['nr_questions'].toString() + ' questions',
-              imageURL: element.data()['image'].toString()));
+            title: element.data()['title'].toString(),
+            description:
+                element.data()['nr_questions'].toString() + ' questions',
+            imageURL: element.data()['image'].toString(),
+          ));
         });
 
         return Scaffold(

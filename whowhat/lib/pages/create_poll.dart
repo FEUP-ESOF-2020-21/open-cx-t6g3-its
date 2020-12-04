@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:whowhat/pages/list_questions.dart';
 import 'package:whowhat/pages/upload_image.dart';
-import 'package:whowhat/widgets/QuestionCard.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
-import 'package:whowhat/model/polls.dart';
+import 'package:whowhat/widgets/database/db_polls.dart';
 
 class MyCreatePoll extends StatefulWidget {
   MyCreatePoll({Key key}) : super(key: key);
@@ -158,8 +157,11 @@ class _MyCreatePollState extends State<MyCreatePoll> {
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: GradientButton(
-                  text: 'Continue',
-                  onPressed: () {
+                  text: 'Create and continue',
+                  onPressed: () async {
+                    await addPoll(titleController.text,
+                        descriptionController.text, _imageFile);
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => ListQuestions()),

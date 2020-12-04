@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -15,12 +14,6 @@ Future<File> _pickImage(ImageSource source) async {
   final File selected = File(pickedFile.path);
 
   return selected;
-}
-
-Future<void> saveImage(
-    File _image, CollectionReference ref, String pollID) async {
-  String imageURL = await uploadFile(_image, pollID);
-  ref.doc(pollID).set({"image": imageURL});
 }
 
 Future<String> uploadFile(File _image, String pollID) async {
