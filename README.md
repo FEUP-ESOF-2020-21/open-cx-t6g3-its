@@ -292,7 +292,7 @@ Acceptance Test:
 ```gherkin
 Scenario: login with google
     Given a user that has an google account
-    When I Tap the google icon
+    When I Tap the "google" icon
     And I insert my data
     Then my google account is used to sign in
 ```
@@ -338,8 +338,8 @@ Acceptance Test:
 ```gherkin
 Scenario: answer question in poll
     Given a user who joined a session
-    When the session starts and the questions appear 
-    Then i can an option to answer the question
+    When the session starts and the "questions" appear 
+    Then i can select an option to answer the question
 ```
 
 Value and effort
