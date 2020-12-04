@@ -44,7 +44,7 @@ Presenters sometimes have a difficult time getting the attendees perspectives in
 
 ## Requirements
 
-In this section, you we describe all kinds of requirements for our module: functional and non-functional requirements.
+In this section, we describe all kinds of requirements for our module: functional and non-functional requirements.
 
 ### Use case diagram
 
