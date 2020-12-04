@@ -78,7 +78,7 @@ Acceptance Test:
     Given an existing session code
     When I insert the code
     And I tap the "connect" button
-    Then I have access to the session
+    Then I have joined the session
 ```
 
 Value and effort
@@ -89,7 +89,7 @@ Value and effort
 
 User story #2
 
-**As a speaker I want to create a session**
+**As a speaker I want to start a poll**
 
 User interface mockup
 
@@ -98,10 +98,10 @@ User interface mockup
 Acceptance Test:
 
 ```gherkin
-    Scenario: create a new session
+    Scenario: start a poll
     When I tap the "WHoWhat" button and select my poll
     And tap the Start Session button
-    Then I have created a session
+    Then I have started a session
 ```
 
 Value and effort
@@ -124,7 +124,7 @@ Acceptance Test:
 ```gherkin
 Scenario: register in the app
     Given a user that has the app
-    When I tap the "register" button
+    When I tap the "Sign Up" button
     And I insert my data
     Then my account is created
 ```
@@ -136,7 +136,7 @@ Value and effort
 
 User story #4
 
-**As a user I want to create a poll**
+**As a speaker I want to create a poll**
 
 User interface mockup
 
@@ -147,8 +147,8 @@ Acceptance Test:
 ```gherkin
 Scenario: create a poll
     Given a speaker registered in the app
-    When I tap the "add poll" button
-    And insert the questions and respective answers
+    When I tap the "add poll" button and insert name and description
+    And I tap create and continue
     Then my poll is created
 ```
 
@@ -170,11 +170,11 @@ User interface mockup
 Acceptance Test:
 
 ```gherkin
-Scenario: select and edit or delete a previously created poll
-    Given a user with a previously created poll
-    When I tap the "WHoWhat" button and select my poll
+Scenario: edit or delete a previously created poll
+    Given a user with previously created polls
+    When I tap the "profile" button and select my poll
     And tap the "poll card"
-    Then I can edit or delete the data of the poll selected
+    Then I can edit or delete the data of the poll
 ```
 
 Value and effort
@@ -184,34 +184,103 @@ Value and effort
 
 User story #6
 
-**As a user I want to login in the app**
+**As a user I want to login with my account**
 
 User interface mockup
 
 <img src="docs/mockups/WHOWHAT-03.png" width="300" >
 
 
-<br>
-
-
 Acceptance Test:
 
 ```gherkin
-Scenario: register in the app
-    Given a user that has the app
-    When I tap the "register" button
-    And I insert my data
-    Then my account is created
+Scenario: login in the app
+    Given a user that has an created account
+    When I insert my data
+    And I tap the "Sign In" button
+    Then my account is used to sign in
 ```
 
 Value and effort
 
 - Value: Must have
-- Effort: S
+- Effort: M
 
 User story #7
 
-**As a speaker i want to add questions to my poll**
+**As a speaker i want to insert the options to a question**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-12.png" width="300" >
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: add options to question
+    Given a speaker that has a created poll
+    When I create a "question"
+    And I fill the options 
+    Then options are added to the question
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: L
+
+User story #8
+
+**As a speaker i want to add and image representing my poll**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-09.png" width="300" >
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: add image to poll
+    Given a speaker registered in the app
+    When I tap the "add poll" button and click on the image
+    And select and image from the gallery
+    Then my image is added to my poll
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+User story #9
+
+**As a speaker i want to create the questions of a poll**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-13.png" width="300" >
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: add question to poll
+    Given a speaker that has an created poll
+    When I select a created "poll" and 
+    And press the "+" button
+    Then a question is added to poll
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+User story #10
+
+**As a user I want to login with google**
 
 User interface mockup
 
@@ -221,17 +290,86 @@ User interface mockup
 Acceptance Test:
 
 ```gherkin
-Scenario: add questions to poll
-    Given a user that has the app
-    When I create a "poll"
+Scenario: login with google
+    Given a user that has an google account
+    When I Tap the google icon
     And I insert my data
-    Then my account is created
+    Then my google account is used to sign in
 ```
 
 Value and effort
 
-- Value: Must have
+- Value: Should have
 - Effort: S
+
+User story #11
+
+**As a user I want to select a polls**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
+
+Acceptance Test:
+
+```gherkin
+Scenario: select a previously created poll
+    Given a user with a previously created poll
+    When I tap the "WHoWhat" button 
+    And select my poll
+    Then i can start a session or edit the poll
+```
+
+Value and effort
+
+- Value: must have
+- Effort: M
+
+User story #12
+
+**As a atendee I want to answer the question on a poll**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-06.png" width="300">
+
+Acceptance Test:
+
+```gherkin
+Scenario: answer question in poll
+    Given a user who joined a session
+    When the session starts and the questions appear 
+    Then i can an option to answer the question
+```
+
+Value and effort
+
+- Value: must have
+- Effort: L
+
+
+
+User story #13
+
+**As a user I want to select my polls**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
+
+Acceptance Test:
+
+```gherkin
+Scenario: select my previously created polls
+    Given a user with previously created polls
+    When I tap the "WHoWhat" button 
+    Then i have acess to my polls
+```
+
+Value and effort
+
+- Value: must have
+- Effort: M
 
 
 ### Domain model
