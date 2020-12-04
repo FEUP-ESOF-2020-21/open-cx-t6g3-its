@@ -26,7 +26,7 @@ Please contact us!
 
 Thank you!
 
-_Emanuel Trigo, Muriel Pinho, Rodrigo Reis, Teresa Corado, Tomás Torres_
+_Emanuel Trigo, Muriel Pinho, Rodrigo Reis, Teresa Corado_
 
 ---
 
@@ -44,9 +44,7 @@ Presenters sometimes have a difficult time getting the attendees perspectives in
 
 ## Requirements
 
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
-
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+In this section, you we describe all kinds of requirements for our module: functional and non-functional requirements.
 
 ### Use case diagram
 
@@ -348,7 +346,6 @@ Value and effort
 - Effort: L
 
 
-
 User story #13
 
 **As a user I want to select my polls**
@@ -384,7 +381,6 @@ Our domain consists of two main classes Session and Poll and a Ternary relation 
 - Answer is a ternary relation between Session, Atendeee and Option, as an answer depends on those three to be created. 
 
 
-
 ---
 
 ## Architecture and Design
@@ -418,9 +414,6 @@ It can be beneficial to present the system both in a horizontal or vertical deco
 To design our project's UI we used **Figma**, which enabled us to create screen mockups, plan an usage flow to the app and link them together to create a usable prototype. Here's a GIF from the result:
 
 ![Prototype](docs/Prototype.gif)
-
-
-#### Include an export from figma 
 
 ---
 
