@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:whowhat/pages/mypolls.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
 import 'package:whowhat/pages/connection.dart';
-import 'package:whowhat/widgets/database/create_session.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
 
 class MyMenu extends StatefulWidget {
@@ -129,10 +129,30 @@ class _MyMenuState extends State<MyMenu> {
                       colors: [Color(0xFF3186E3), Color(0xFF1D36C4)]),
                 ),
               ),
-              onTap: () async {
-                await createSession(context);
-              },
-            ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyPolls(),
+                    ));
+              }),
     );
+  }
+
+  void _onItemTapped(int value) {
+    /*
+    if (value == 0) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyCreatePoll(),
+          ));
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyPolls(),
+          ));
+    }*/
   }
 }
