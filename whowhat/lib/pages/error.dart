@@ -4,7 +4,7 @@ import 'package:whowhat/widgets/database/session_connection.dart';
 //final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
 class MyError extends StatefulWidget {
-  String errorMsg;
+  final String errorMsg;
 
   MyError({Key key, this.errorMsg}) : super(key: key);
 

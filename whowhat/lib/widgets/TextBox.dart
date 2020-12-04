@@ -8,6 +8,9 @@ class TextBox extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType textInputType;
   final bool obscureText;
+  final bool radio;
+  final int size;
+  final Function onRemove;
 
   const TextBox(
       {Key key,
@@ -15,7 +18,10 @@ class TextBox extends StatelessWidget {
       this.icon,
       this.controller,
       this.textInputType,
-      this.obscureText})
+      this.obscureText,
+      this.size,
+      this.radio,
+      this.onRemove})
       : super(key: key);
 
   @override
@@ -48,17 +54,30 @@ class TextBox extends StatelessWidget {
       child: TextFormField(
         controller: this.controller,
         decoration: InputDecoration(
-            focusedBorder: focusBorder,
-            border: border,
-            //placeholder style
-            hintStyle: TextStyle(
-              color: Color(0xFF9B9B9B),
-              fontFamily: "Roboto",
-            ),
-            filled: true,
-            prefixIcon: preIcon,
-            fillColor: Color(0xFFECECEC),
-            hintText: this.placeholder),
+          focusedBorder: focusBorder,
+          border: border,
+          //placeholder style
+          hintStyle: TextStyle(
+            color: Color(0xFF9B9B9B),
+            fontFamily: "Roboto",
+          ),
+          filled: true,
+          prefixIcon: preIcon,
+
+          fillColor: Color(0xFFECECEC),
+          hintText: this.placeholder,
+          suffixIcon: this.radio == true
+              ? IconButton(
+                  icon: Icon(
+                    Icons.delete_forever_rounded,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    this.onRemove();
+                  },
+                )
+              : null,
+        ),
         textAlign: TextAlign.justify,
         style: TextStyle(
             color: Color(0xFF9B9B9B), fontFamily: "Roboto", fontSize: 22),

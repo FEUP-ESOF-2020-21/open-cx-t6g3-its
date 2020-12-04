@@ -5,17 +5,17 @@ import 'package:whowhat/pages/connection.dart';
 
 String generateRandomSession() {
   var rng;
-  String new_session = "";
+  String newSession = "";
 
   for (var i = 0; i < 6; i++) {
     rng = new Random();
-    new_session += rng.nextInt(9).toString();
+    newSession += rng.nextInt(9).toString();
   }
 
-  return new_session;
+  return newSession;
 }
 
-Future<String> createSession(BuildContext context) async {
+Future<String> createSession(BuildContext context, String pollName) async {
   CollectionReference databaseReference =
       FirebaseFirestore.instance.collection('sessions');
 
@@ -43,7 +43,9 @@ Future<String> createSession(BuildContext context) async {
       context,
       MaterialPageRoute(
           builder: (context) => MyConnection(
+                pollName: pollName,
                 session: newSession,
                 admin: true,
               )));
+  return newSession;
 }
