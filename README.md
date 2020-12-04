@@ -184,7 +184,16 @@ Value and effort
 
 ### Domain model
 
-To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
+<img src="docs/diagrams/problem_domain.png" width="600">
+
+Our domain consists of two main classes Session and Poll and a Ternary relation called Answer.
+- Poll is composed of Question and Session, having Zero or more Sessions and 1 or more Questions which in turn are composed of between 2 and 4 Options. 
+- Poll has one Speaker but a Speaker can have multiple Polls.
+- Speaker and Atendee are generalizations of User.
+- Session has exactly one Speaker and 0 or more Atendees
+- Answer is a ternary relation between Session, Atendeee and Option, as an answer depends on those three to be created. 
+
+
 
 ---
 
@@ -231,6 +240,7 @@ The implementation was divided in iterations, here are the releases for each of 
 
 - [Iteration #1 - v0.1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
 - [Iteration #2 - v0.2](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.2)
+- [Iteration #3 - v0.3](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.3)
 
 Releases include the source code and built versions for Android and iOS.
 
