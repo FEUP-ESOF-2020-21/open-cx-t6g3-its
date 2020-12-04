@@ -41,5 +41,25 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>WHoWhat needs photos library access to import pictures</string>
+	<key>NSCameraUsageDescription</key>
+	<string>WHoWhat needs camera access to take pictures</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>WHoWhat needs microphone access to record videos</string>
+	<!-- Put me in the [my_project]/ios/Runner/Info.plist file -->
+<!-- Google Sign-in Section -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.167261893486-s1uhedg75gokk9aam9rp017afghbsl6v</string>
+			</array>
+		</dict>
+	</array>
+	<!-- End of the Google Sign-in Section -->
 </dict>
 </plist>

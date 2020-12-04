@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
 
-//final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
 class MyConnection extends StatefulWidget {
   String session;
+  String pollName;
   bool admin = false;
 
-  MyConnection({Key key, this.session, this.admin}) : super(key: key);
+  MyConnection({Key key, this.pollName, this.session, this.admin})
+      : super(key: key);
 
   @override
   _MyConnectionState createState() =>
-      _MyConnectionState(this.session, this.admin);
+      _MyConnectionState(this.pollName, this.session, this.admin);
 }
 
 class _MyConnectionState extends State<MyConnection> {
   final String session;
   final bool admin;
+  final String pollName;
 
-  _MyConnectionState(this.session, this.admin);
+  _MyConnectionState(this.pollName, this.session, this.admin);
 
   @override
   Widget build(BuildContext context) {
     if (this.admin) {
-      return adminScaffold(context, session);
+      return adminScaffold(context, session, this.pollName);
     } else {
-      return userScaffold(context, session);
+      return userScaffold(context, session, this.pollName);
     }
   }
 }
 
-Scaffold userScaffold(BuildContext context, String session) {
+Scaffold userScaffold(BuildContext context, String session, String pollName) {
   return Scaffold(
     //resizeToAvoidBottomPadding: false,
     body: Container(
@@ -61,7 +62,7 @@ Scaffold userScaffold(BuildContext context, String session) {
                   child: Column(
                     children: <Widget>[
                       Text(
-                        'Quiz name here',
+                        pollName != null ? pollName : 'Poll name here',
                         style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Roboto',
@@ -76,7 +77,7 @@ Scaffold userScaffold(BuildContext context, String session) {
   );
 }
 
-Scaffold adminScaffold(BuildContext context, String session) {
+Scaffold adminScaffold(BuildContext context, String session, String pollName) {
   //print(session);
   return Scaffold(
     //resizeToAvoidBottomPadding: false,
@@ -134,7 +135,7 @@ Scaffold adminScaffold(BuildContext context, String session) {
                   child: Column(
                     children: <Widget>[
                       Text(
-                        'Quiz name here',
+                        pollName != null ? pollName : 'Poll name here',
                         style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Roboto',
