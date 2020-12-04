@@ -93,13 +93,14 @@ User story #2
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-10.png" width="300">
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
 
 Acceptance Test:
 
 ```gherkin
     Scenario: create a new session
-    When I tap the "WHoWhat" button
+    When I tap the "WHoWhat" button and select my poll
+    And tap the Start Session button
     Then I have created a session
 ```
 
@@ -111,14 +112,11 @@ Value and effort
 
 User story #3
 
-**As a user I want to register in the app in order to login afterwards**
+**As a user I want to register in the app**
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-03.png" width="300" align="left">
-
 <img src="docs/mockups/WHOWHAT-04.png" width="300">
-<br>
 
 
 Acceptance Test:
@@ -138,7 +136,7 @@ Value and effort
 
 User story #4
 
-**As a user I want to create polls in order to create a session**
+**As a user I want to create a poll**
 
 User interface mockup
 
@@ -163,7 +161,7 @@ Value and effort
 
 User story #5
 
-**As a user I want to select one of my polls, so I can edit or delete it**
+**As a user I want to manage my polls**
 
 User interface mockup
 
@@ -174,8 +172,8 @@ Acceptance Test:
 ```gherkin
 Scenario: select and edit or delete a previously created poll
     Given a user with a previously created poll
-    When I tap the "my polls" button and select my poll
-    And tap "edit" or "delete"
+    When I tap the "WHoWhat" button and select my poll
+    And tap the "poll card"
     Then I can edit or delete the data of the poll selected
 ```
 
@@ -183,6 +181,58 @@ Value and effort
 
 - Value: Should have
 - Effort: L
+
+User story #6
+
+**As a user I want to login in the app**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-03.png" width="300" >
+
+
+<br>
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: register in the app
+    Given a user that has the app
+    When I tap the "register" button
+    And I insert my data
+    Then my account is created
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: S
+
+User story #7
+
+**As a speaker i want to add questions to my poll**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-03.png" width="300" >
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: add questions to poll
+    Given a user that has the app
+    When I create a "poll"
+    And I insert my data
+    Then my account is created
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: S
+
 
 ### Domain model
 
