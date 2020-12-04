@@ -60,6 +60,7 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 - **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions.
 
 ### User stories
+
 <img src="docs/diagrams/user_story_map.jpg" width="1000">
 
 User story #1
