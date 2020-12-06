@@ -32,13 +32,13 @@ _Emanuel Trigo, Muriel Pinho, Rodrigo Reis, Teresa Corado_
 
 ## Product Vision
 
-Increase the engagement between speakers and attendees perspectives on a matter, creating a more captivating experience of a remote conference.
+Polling perspectives on a matter, creating a more captivating experience of a remote conference.
 
 ---
 
 ## Elevator Pitch
 
-Presenters sometimes have a difficult time getting the attendees perspectives in a conference while keeping the audience engaged. WHoWhat solves that with an app that provides an easy and engaging way to poll your audience anywhere, in real-time.
+Presenters sometimes have a difficult time getting the attendees perspectives in a conference while keeping the audience engaged. WHoWhat solves that with an app that provides an easy and engaging way to poll audiences anywhere, in real-time.
 
 ---
 
@@ -56,6 +56,160 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 - **Normal Flow**. Provide a detailed description of the user actions and system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. This is best done as a numbered list of actions performed by the actor, alternating with responses provided by the system.
 - **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions.
+
+##### Answer Poll
+
+- **Actor**. Atendee
+
+- **Description**. 
+
+- **Preconditions and Postconditions**. 
+
+- **Normal Flow**.
+
+- **Alternative Flows and Exceptions**.
+
+##### Start Poll Session
+
+- **Actor**. Speaker
+
+- **Description**. This use case exists in order to 
+
+- **Preconditions and Postconditions**. 
+
+- **Normal Flow**.
+
+- **Alternative Flows and Exceptions**.
+
+##### Create Poll
+
+- **Actor**. Speaker
+
+- **Description**. This use case exists so that the speaker can create new polls.
+
+- **Preconditions and Postconditions**. The user must have a valid account. After the creating the poll will be added to the account polls.
+
+- **Normal Flow**.
+    1. The speaker chooses to create a new poll.
+    2. A new poll screen will be prompt.
+    3. The speaker type the poll information.
+    4. The speaker chooses to add questions.
+    5. The speaker type the question and options.
+    6. The new poll is added to the database and the speaker account
+
+- **Alternative Flows and Exceptions**.
+    1. The speaker chooses to create a new poll.
+    2. A new poll screen will be prompt.
+    3. The speaker invalid information.
+    4. An error message will appear.
+
+
+
+##### Edit Poll
+
+- **Actor**. Speaker
+
+- **Description**. This use case exists so that the speaker can change at any time his polls attributes .
+
+- **Preconditions and Postconditions**. The speaker must have a valid poll selected . After being submitted the poll information is updated in the database.
+
+- **Normal Flow**.
+    1. The speaker selects a valid poll.
+    2. A new screen will open with the poll information.
+    3. The speaker changes the poll information and submits.
+    4. All the poll attributes will be updated on the database.
+
+- **Alternative Flows and Exceptions**.
+    1. The speaker selects a valid poll.
+    2. A new screen will open with the poll information.
+    3. The speaker changes the poll information.
+    4. The new information is invalid.
+    5. An error message will appear warning the speaker to redo the changes.
+
+
+##### Delete Poll
+
+- **Actor**. Speaker
+
+- **Description**.  This use case exists so that the speaker can delete his previous created polls.
+
+- **Preconditions and Postconditions**. The speaker must select a valid poll.
+
+- **Normal Flow**.
+    1. The speaker select a valid poll.
+    2. The speaker chooses to delete the selected poll.
+    3. The poll will be deleted in the database.
+
+- **Alternative Flows and Exceptions**.
+
+
+##### Register
+
+- **Actor**. User
+
+- **Description**. this use case exists so that the user is able to create a personal account in order save their data such as the polls they will use in upcoming conferences.
+
+- **Preconditions and Postconditions**. in order to register in the app the user must insert their respective data, such as their personal email and a password.
+
+- **Normal Flow**.
+    1. The user selects the register option.
+    2. The user inserts their personal email and password.
+    3. The user selects the submitting button.
+    4. A new account is created with the data of the user.
+    5. The screen is redirrected to the home page of the app with the user's new account logged in.
+
+- **Alternative Flows and Exceptions**.
+
+##### Log in with google
+
+- **Actor**. User
+
+- **Description**. this use case exists so that the user is able to enter in their personal account associated with their already existing google account in order save their data such as the polls they will use in upcoming conferences.
+
+- **Preconditions and Postconditions**. in order to register in the app via google the user must have a personal google account.
+
+- **Normal Flow**.
+    1. The user selects the 'Log in with google' option.
+    2. The user logs in their google account.
+    3. The user selects the submitting button.
+    4. The screen is redirrected to the home page of the app with the user's account logged in.
+
+- **Alternative Flows and Exceptions**.
+
+##### Log in
+
+- **Actor**. User
+
+- **Description**. 
+
+- **Preconditions and Postconditions**. in order to log in on the app the user must have previously registered in it and insert the same credentials. 
+
+- **Normal Flow**.
+    1. The user inserts the email and password associated with their account.
+    2. The user selects the log in button.
+    3. The screen is redirrected to the home page with the user's logged in account.
+
+- **Alternative Flows and Exceptions**.
+    1. The user inserts an incorrect email or password associated with their personal account.
+    2. The user selects the log in button.
+    3. An error message appears, stating that one of the fields was typed incorrectly.
+    4. The user inserts the correct data associated with their account.
+    5. The user selects the log in button.
+    6. The screen is redirrected to the home page with the user's logged in account.
+
+
+##### Log out
+
+- **Actor**. User
+
+- **Description**. 
+
+- **Preconditions and Postconditions**. In order to log out from the app, the user must be already logged in. 
+
+- **Normal Flow**.
+    
+- **Alternative Flows and Exceptions**.
+
 
 ### User stories
 
@@ -391,12 +545,13 @@ We will be talking about the logical architecture, a high-level view of the code
 
 ### Logical architecture
 
-The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
+![use case diagram](docs/diagrams/logic_diagram.png)
 
-It can be beneficial to present the system both in a horizontal or vertical decomposition:
+We choose the MVC approach because it fits perfectly the project structure and it's simple.
 
-- horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts;
-- vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
+The Model contains the main packages of data: Sessions, Polls, Users, Questions. The View is composed of Widgets and Pages that are responsible of displaying the information.
+
+The Controller responsability is to query the database using Model (Authenticator and Database Controller) and retrieve the information to the View, in order to display it.
 
 ### Physical architecture
 
