@@ -48,7 +48,7 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 ### Use case diagram
 
-![use case diagram](docs/diagrams/use_case_diagram.png)
+<img src="docs/diagrams/use_case_diagram.png" width="1000">
 
 - **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks.
 - **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case.
@@ -545,7 +545,8 @@ We will be talking about the logical architecture, a high-level view of the code
 
 ### Logical architecture
 
-![use case diagram](docs/diagrams/logic_diagram.png)
+<img src="docs/diagrams/logic_diagram.png" width="1000">
+
 
 We choose the MVC approach because it fits perfectly the project structure and it's simple.
 
