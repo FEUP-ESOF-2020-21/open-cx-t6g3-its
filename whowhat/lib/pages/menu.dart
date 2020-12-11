@@ -4,7 +4,7 @@ import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
-import 'package:whowhat/pages/connection.dart';
+import 'package:whowhat/pages/session_loop.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
 
 class MyMenu extends StatefulWidget {
@@ -76,8 +76,8 @@ class _MyMenuState extends State<MyMenu> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MyConnection(
-                                      session: codeInput.text, admin: false)),
+                                  builder: (context) =>
+                                      SessionLoop(id: codeInput.text)),
                             );
                           } else {
                             _updateStatus("Session is not available!");
