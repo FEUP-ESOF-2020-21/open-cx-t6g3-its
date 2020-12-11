@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -24,7 +25,7 @@ class UserSessionInformation extends StatelessWidget {
           return Text("Loading");
         }
 
-        int nUsers = snapshot.data.docs.length - 1;
+        int nUsers = snapshot.data.docs.length;
         if (!(nUsers >= 0)) {
           nUsers = 0;
         }
@@ -66,11 +67,12 @@ Future<bool> availableSession(String session) async {
 }
 
 void joinSession(String session) async {
+  FirebaseAuth auth = FirebaseAuth.instance;
   // Get reference to Firestore collection
   var databaseReference = FirebaseFirestore.instance
       .collection('sessions')
       .doc(session)
       .collection('users');
 
-  await databaseReference.add({});
+  await databaseReference.doc(auth.currentUser.uid).set({});
 }
