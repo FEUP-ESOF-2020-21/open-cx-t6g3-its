@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/connection.dart';
+import 'package:whowhat/pages/session_loop.dart';
 
 String generateRandomSession() {
   var rng;
@@ -15,9 +17,11 @@ String generateRandomSession() {
   return newSession;
 }
 
-Future<String> createSession(BuildContext context, String pollName) async {
+Future<void> createSession(BuildContext context, String pollName) async {
   CollectionReference databaseReference =
       FirebaseFirestore.instance.collection('sessions');
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   String newSession = generateRandomSession();
 
@@ -33,19 +37,10 @@ Future<String> createSession(BuildContext context, String pollName) async {
       await databaseReference.doc(newSession).set({});
       await databaseReference
           .doc(newSession)
-          .collection('users')
-          .doc('speaker')
-          .set({});
+          .set({"speaker": auth.currentUser.uid, "status": 0});
     }
   }
 
-  Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => MyConnection(
-                pollName: pollName,
-                session: newSession,
-                admin: true,
-              )));
-  return newSession;
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => SessionLoop(id: newSession)));
 }
