@@ -40,12 +40,16 @@ Future<void> addQuestion(
     "title": question,
   });
 
+  int counter = 1;
   for (String option in options) {
-    await databaseReference
-        .doc(questionId.toString())
-        .collection('options')
-        .doc()
-        .set({"text": option});
+    if (option != "") {
+      await databaseReference
+          .doc(questionId.toString())
+          .collection('options')
+          .doc(counter.toString())
+          .set({"text": option});
+      counter++;
+    }
   }
   await updateNumberQuestions(pollId);
 }
@@ -67,4 +71,44 @@ Future<int> getNumberQuestions(String id) async {
   DocumentSnapshot ds = await pollReference.get();
 
   return ds.data()["nr_questions"];
+}
+
+Future<Map<String, dynamic>> getQuestion(String id, int nr_question) async {
+  String pollId = await getPollId(id);
+
+  CollectionReference questionsReference = FirebaseFirestore.instance
+      .collection('polls')
+      .doc(pollId)
+      .collection('questions');
+
+  DocumentSnapshot questionSnap =
+      await questionsReference.doc(nr_question.toString()).get();
+
+  String title = questionSnap.data()['title'];
+
+  QuerySnapshot optionsSnap = await questionsReference
+      .doc(nr_question.toString())
+      .collection('options')
+      .get();
+
+  Map<String, String> options = new Map();
+
+  optionsSnap.docs.forEach((element) {
+    String text = element.data()["text"];
+    if (text != "") options[element.id] = element.data()["text"];
+  });
+
+  Map<String, dynamic> question = {"title": title, "options": options};
+
+  return question;
+}
+
+Future<String> getPollId(String sessionId) async {
+  DocumentReference dr =
+      FirebaseFirestore.instance.collection('sessions').doc(sessionId);
+
+  print(sessionId);
+
+  DocumentSnapshot ds = await dr.get();
+  return ds.data()["poll"];
 }

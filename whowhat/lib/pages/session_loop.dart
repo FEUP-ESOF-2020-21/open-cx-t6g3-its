@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:whowhat/pages/answer_question.dart';
 import 'package:whowhat/pages/connection.dart';
-import 'package:whowhat/pages/create_question.dart';
+import 'package:whowhat/widgets/database/db_polls.dart';
 
 class SessionLoop extends StatefulWidget {
   final String id;
@@ -46,7 +47,21 @@ class _SessionLoopState extends State<SessionLoop> {
             case -1:
               break;
             default:
-              return Scaffold(body: Center(child: Text("admin")));
+              return FutureBuilder(
+                  future: getQuestion(id, snapshot.data["status"]),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<Map<String, dynamic>> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong');
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Text("Loading");
+                    }
+
+                    return AnswerQuestion(info: snapshot.data);
+                  });
+
               break;
           }
         } else {
