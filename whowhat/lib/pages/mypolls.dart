@@ -41,7 +41,7 @@ class MyPolls extends StatelessWidget {
                   element.data()['nr_questions'].toString() + ' questions',
               imageURL: element.data()['image'].toString(),
               onTap: () {
-                createSession(context, element.data()['title'].toString());
+                createSession(context, element.id.toString());
               }));
         });
 

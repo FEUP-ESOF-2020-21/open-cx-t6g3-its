@@ -17,7 +17,7 @@ String generateRandomSession() {
   return newSession;
 }
 
-Future<void> createSession(BuildContext context, String pollName) async {
+Future<void> createSession(BuildContext context, String pollID) async {
   CollectionReference databaseReference =
       FirebaseFirestore.instance.collection('sessions');
 
@@ -37,7 +37,7 @@ Future<void> createSession(BuildContext context, String pollName) async {
       await databaseReference.doc(newSession).set({});
       await databaseReference
           .doc(newSession)
-          .set({"speaker": auth.currentUser.uid, "status": 0});
+          .set({"poll": pollID, "speaker": auth.currentUser.uid, "status": 0});
     }
   }
 

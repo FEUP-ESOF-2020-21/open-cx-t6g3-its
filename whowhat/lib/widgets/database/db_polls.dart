@@ -34,27 +34,37 @@ Future<void> addQuestion(
       .doc(pollId)
       .collection('questions');
 
-  String code = question.hashCode.toString() +
-      pollId.hashCode.toString() +
-      DateTime.now().hashCode.toString();
+  int questionId = await getNumberQuestions(pollId) + 1;
 
-  await databaseReference.doc(code).set({
+  await databaseReference.doc(questionId.toString()).set({
     "title": question,
   });
 
   for (String option in options) {
     await databaseReference
-        .doc(code)
+        .doc(questionId.toString())
         .collection('options')
         .doc()
         .set({"text": option});
   }
+  await updateNumberQuestions(pollId);
+}
 
-/*
-  CollectionReference nrquestions =
-      FirebaseFirestore.instance.collection('polls');
+Future<void> updateNumberQuestions(String id) async {
+  DocumentReference pollReference =
+      FirebaseFirestore.instance.collection('polls').doc(id);
 
-  await nrquestions
-      .doc(pollId)
-      .set({"nr_questions": databaseReference.get().then((value) => null)});*/
+  int nr_questions = await getNumberQuestions(id) + 1;
+
+  await pollReference.update({"nr_questions": nr_questions}).then(
+      (value) => print("Status updated!"));
+}
+
+Future<int> getNumberQuestions(String id) async {
+  DocumentReference pollReference =
+      FirebaseFirestore.instance.collection('polls').doc(id);
+
+  DocumentSnapshot ds = await pollReference.get();
+
+  return ds.data()["nr_questions"];
 }
