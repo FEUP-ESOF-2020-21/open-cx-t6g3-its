@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:whowhat/pages/session_loop.dart';
+import 'package:whowhat/widgets/database/create_session.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
 
 class MyConnection extends StatefulWidget {
@@ -162,7 +164,9 @@ Scaffold adminScaffold(BuildContext context, String session, String pollName) {
                         ),
                       ),
                     ),
-                    onTap: () {}),
+                    onTap: () async {
+                      increaseStatus(context, session);
+                    }),
               ),
             ]),
       ),

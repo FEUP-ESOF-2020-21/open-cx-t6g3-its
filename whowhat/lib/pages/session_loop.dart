@@ -46,6 +46,7 @@ class _SessionLoopState extends State<SessionLoop> {
             case -1:
               break;
             default:
+              return Scaffold(body: Center(child: Text("admin")));
               break;
           }
         } else {
@@ -56,6 +57,7 @@ class _SessionLoopState extends State<SessionLoop> {
             case -1:
               break;
             default:
+              return Scaffold(body: Center(child: Text("USER")));
               break;
           }
         }

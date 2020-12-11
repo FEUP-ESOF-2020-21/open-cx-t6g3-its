@@ -44,3 +44,17 @@ Future<void> createSession(BuildContext context, String pollName) async {
   Navigator.push(context,
       MaterialPageRoute(builder: (context) => SessionLoop(id: newSession)));
 }
+
+Future<void> increaseStatus(BuildContext context, String id) async {
+  DocumentReference databaseReference =
+      FirebaseFirestore.instance.collection('sessions').doc(id);
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  DocumentSnapshot ds = await databaseReference.get();
+
+  int newStatus = ds.data()["status"] + 1;
+
+  await databaseReference
+      .update({"status": newStatus}).then((value) => print("Status updated!"));
+}
