@@ -43,10 +43,15 @@ class TextPanel extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(24, 16, 24, 16),
-                child: Text(
-                  this.text,
-                  style: TextStyle(
-                      color: Colors.white, fontFamily: 'Roboto', fontSize: 22),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    this.text,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Roboto',
+                        fontSize: 22),
+                  ),
                 ),
               ),
             )),
