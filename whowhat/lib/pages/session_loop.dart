@@ -59,7 +59,7 @@ class _SessionLoopState extends State<SessionLoop> {
                       return Text("Loading");
                     }
 
-                    return AnswerQuestion(info: snapshot.data);
+                    return AnswerQuestion(info: snapshot.data, session: id);
                   });
 
               break;

@@ -107,8 +107,17 @@ Future<String> getPollId(String sessionId) async {
   DocumentReference dr =
       FirebaseFirestore.instance.collection('sessions').doc(sessionId);
 
-  print(sessionId);
-
   DocumentSnapshot ds = await dr.get();
   return ds.data()["poll"];
+}
+
+Future<String> getImagePath(String sessionId) async {
+  String pollId = await getPollId(sessionId);
+
+  DocumentReference dr =
+      FirebaseFirestore.instance.collection('polls').doc(pollId);
+
+  DocumentSnapshot ds = await dr.get();
+
+  return ds.data()["image"];
 }
