@@ -19,39 +19,43 @@ Widget Option(context, id, text) {
   }
 
   return InkWell(
-    child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Row(children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * 0.10,
-            width: MediaQuery.of(context).size.width * 0.05,
-            decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    bottomLeft: Radius.circular(15))),
-          ),
-          Container(
+    child: Center(
+      child: Padding(
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.width * 0.02,
+              bottom: MediaQuery.of(context).size.width * 0.02),
+          child: Row(children: <Widget>[
+            Container(
               height: MediaQuery.of(context).size.height * 0.10,
-              width: MediaQuery.of(context).size.width * 0.70,
+              width: MediaQuery.of(context).size.width * 0.05,
               decoration: BoxDecoration(
-                  color: Colors.grey[200],
+                  color: color,
                   borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(15),
-                      bottomRight: Radius.circular(15))),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                      padding: EdgeInsets.only(
-                          left: MediaQuery.of(context).size.width * 0.05),
-                      child: Text(
-                        text,
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 20,
-                        ),
-                      )))),
-        ])),
+                      topLeft: Radius.circular(15),
+                      bottomLeft: Radius.circular(15))),
+            ),
+            Container(
+                height: MediaQuery.of(context).size.height * 0.10,
+                width: MediaQuery.of(context).size.width * 0.70,
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(15),
+                        bottomRight: Radius.circular(15))),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.05),
+                        child: Text(
+                          text,
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 20,
+                          ),
+                        )))),
+          ])),
+    ),
     onTap: () {},
   );
 }
