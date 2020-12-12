@@ -17,7 +17,8 @@ String generateRandomSession() {
   return newSession;
 }
 
-Future<void> createSession(BuildContext context, String pollID) async {
+Future<void> createSession(
+    BuildContext context, String pollID, String pollTitle) async {
   CollectionReference databaseReference =
       FirebaseFirestore.instance.collection('sessions');
 
@@ -41,8 +42,10 @@ Future<void> createSession(BuildContext context, String pollID) async {
     }
   }
 
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => SessionLoop(id: newSession)));
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => SessionLoop(id: newSession, title: pollTitle)));
 }
 
 Future<void> increaseStatus(BuildContext context, String id) async {

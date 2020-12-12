@@ -7,17 +7,19 @@ import 'package:whowhat/widgets/database/db_polls.dart';
 
 class SessionLoop extends StatefulWidget {
   final String id;
+  final String title;
 
-  SessionLoop({Key key, this.id}) : super(key: key);
+  SessionLoop({Key key, this.id, this.title}) : super(key: key);
 
   @override
-  _SessionLoopState createState() => _SessionLoopState(this.id);
+  _SessionLoopState createState() => _SessionLoopState(this.id, this.title);
 }
 
 class _SessionLoopState extends State<SessionLoop> {
   final String id;
+  final String title;
 
-  _SessionLoopState(this.id);
+  _SessionLoopState(this.id, this.title);
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +40,10 @@ class _SessionLoopState extends State<SessionLoop> {
         }
 
         bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
-
         if (snapshot.data["speaker"] == auth.currentUser.uid) {
           switch (snapshot.data["status"]) {
             case 0:
-              return adminScaffold(context, id, 'Poll');
+              return adminScaffold(context, id, title);
               break;
             case -1:
               break;
@@ -59,7 +60,8 @@ class _SessionLoopState extends State<SessionLoop> {
                       return Text("Loading");
                     }
 
-                    return AnswerQuestion(info: snapshot.data, session: id);
+                    return AnswerQuestion(
+                        info: snapshot.data, session: id);
                   });
 
               break;
@@ -67,7 +69,7 @@ class _SessionLoopState extends State<SessionLoop> {
         } else {
           switch (snapshot.data["status"]) {
             case 0:
-              return userScaffold(context, id, 'Poll');
+              return userScaffold(context, id, title);
               break;
             case -1:
               break;

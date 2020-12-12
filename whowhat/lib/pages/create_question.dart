@@ -41,7 +41,7 @@ class _MyListQuestions extends State<CreateQuestion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Create WHoWhat"),
+          title: Text("WHoWhat Questions"),
           backgroundColor: Colors.blue[800],
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios_rounded),

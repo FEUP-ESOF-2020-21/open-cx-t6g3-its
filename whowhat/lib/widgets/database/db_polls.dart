@@ -98,7 +98,11 @@ Future<Map<String, dynamic>> getQuestion(String id, int nr_question) async {
     if (text != "") options[element.id] = element.data()["text"];
   });
 
-  Map<String, dynamic> question = {"title": title, "options": options};
+  Map<String, dynamic> question = {
+    "title": title,
+    "options": options,
+    "nr_question": nr_question
+  };
 
   return question;
 }
