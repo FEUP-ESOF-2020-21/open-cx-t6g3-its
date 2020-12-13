@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserSessionInformation extends StatelessWidget {
+class AnswersNumber extends StatelessWidget {
   final String session;
+  final String question;
+  final String option;
+  final String text;
 
-  const UserSessionInformation({Key key, this.session}) : super(key: key);
+  const AnswersNumber(
+      {Key key, this.session, this.question, this.option, this.text})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance
+    CollectionReference questions = FirebaseFirestore.instance
         .collection('sessions')
         .doc(this.session)
-        .collection('users');
+        .collection('questions');
+
+    CollectionReference answers = FirebaseFirestore.instance
+        .collection('sessions')
+        .doc(this.session)
+        .collection('questions')
+        .doc(this.question)
+        .collection('options')
+        .doc(this.option)
+        .collection('answers');
 
     return StreamBuilder<QuerySnapshot>(
-      stream: users.snapshots(),
+      stream: answers.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Text('Something went wrong');
@@ -23,31 +37,83 @@ class UserSessionInformation extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading");
         }
+        return StreamBuilder(
+          stream: questions.snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot2) {
+            if (snapshot2.hasError) {
+              return Text('Something went wrong');
+            }
 
-        int nUsers = snapshot.data.docs.length;
-        if (!(nUsers >= 0)) {
-          nUsers = 0;
-        }
+            if (snapshot2.connectionState == ConnectionState.waiting) {
+              return Text("Loading");
+            }
+            int totalAnswers = 0;
+            double percentage = 0;
+            int nAnswers = 0;
+            if (snapshot.data != null) nAnswers = snapshot.data.docs.length;
+            if (snapshot2.data != null)
+              totalAnswers = snapshot2.data.docs.first.get('totalAnswers');
 
-        return new Center(
-          child: RichText(
-            text: TextSpan(
-              children: [
-                WidgetSpan(
-                  child: Icon(Icons.person, size: 30, color: Colors.white),
-                ),
-                TextSpan(
-                    text: ' ' + nUsers.toString(),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: 'Roboto',
-                    ))
-              ],
-            ),
-          ),
+            percentage = nAnswers / totalAnswers;
+            return Option(context, option, text, percentage);
+          },
         );
       },
+    );
+  }
+
+  Widget Option(context, id, text, percentage) {
+    Color color;
+
+    switch (id) {
+      case "1":
+        color = Colors.red;
+        break;
+      case "2":
+        color = Colors.blue;
+        break;
+      case "3":
+        color = Colors.green;
+        break;
+      case "4":
+        color = Colors.orange;
+    }
+    return Center(
+      child: Padding(
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.width * 0.015,
+              bottom: MediaQuery.of(context).size.width * 0.015),
+          child: Stack(children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height * 0.08,
+              decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.08,
+              width: MediaQuery.of(context).size.width * percentage,
+              decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.08,
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.08),
+                      child: Text(
+                        text,
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 20,
+                        ),
+                      ))),
+            )
+          ])),
     );
   }
 }

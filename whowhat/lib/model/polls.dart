@@ -32,9 +32,6 @@ class Poll {
   }
 }
 
-/**
- * Question
- */
 class Question {
   String title;
 
@@ -60,7 +57,7 @@ class Option {
     return text;
   }
 
-  String setOption(String option) {
+  void setOption(String option) {
     this.text = option;
   }
 }

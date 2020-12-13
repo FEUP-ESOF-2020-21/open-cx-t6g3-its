@@ -29,10 +29,6 @@ class MyPolls extends StatelessWidget {
 
         bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
 
-        if (auth.currentUser != null) {
-          print(auth.currentUser.uid);
-        }
-
         List<Widget> polls = [];
         snapshot.data.docs.forEach((element) {
           polls.add(PollCard(
@@ -41,8 +37,11 @@ class MyPolls extends StatelessWidget {
                   element.data()['nr_questions'].toString() + ' questions',
               imageURL: element.data()['image'].toString(),
               onTap: () {
-                createSession(context, element.id.toString(),
-                    element.data()['title'].toString());
+                createSession(
+                    context,
+                    element.id.toString(),
+                    element.data()['title'].toString(),
+                    element.data()['nr_questions']);
               }));
         });
 

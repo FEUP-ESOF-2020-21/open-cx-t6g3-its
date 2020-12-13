@@ -39,13 +39,14 @@ class _SessionLoopState extends State<SessionLoop> {
           return Text("Loading");
         }
 
-        bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
         if (snapshot.data["speaker"] == auth.currentUser.uid) {
           switch (snapshot.data["status"]) {
             case 0:
               return adminScaffold(context, id, title);
               break;
             case -1:
+              Navigator.pop(context, false);
+
               break;
             default:
               return FutureBuilder(
@@ -61,7 +62,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     return AnswerQuestion(
-                        info: snapshot.data, session: id);
+                        info: snapshot.data, session: id, speaker: false);
                   });
 
               break;
@@ -72,9 +73,24 @@ class _SessionLoopState extends State<SessionLoop> {
               return userScaffold(context, id, title);
               break;
             case -1:
+              Navigator.pop(context, false);
               break;
             default:
-              return Scaffold(body: Center(child: Text("USER")));
+              return FutureBuilder(
+                  future: getQuestion(id, snapshot.data["status"]),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<Map<String, dynamic>> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong');
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Text("Loading");
+                    }
+
+                    return AnswerQuestion(
+                        info: snapshot.data, session: id, speaker: true);
+                  });
               break;
           }
         }

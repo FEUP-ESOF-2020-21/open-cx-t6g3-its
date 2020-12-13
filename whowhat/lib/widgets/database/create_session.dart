@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:whowhat/pages/connection.dart';
 import 'package:whowhat/pages/session_loop.dart';
 
 String generateRandomSession() {
@@ -17,8 +16,8 @@ String generateRandomSession() {
   return newSession;
 }
 
-Future<void> createSession(
-    BuildContext context, String pollID, String pollTitle) async {
+Future<void> createSession(BuildContext context, String pollID,
+    String pollTitle, int nrQuestions) async {
   CollectionReference databaseReference =
       FirebaseFirestore.instance.collection('sessions');
 
@@ -36,9 +35,12 @@ Future<void> createSession(
       newSession = generateRandomSession();
     } else {
       await databaseReference.doc(newSession).set({});
-      await databaseReference
-          .doc(newSession)
-          .set({"poll": pollID, "speaker": auth.currentUser.uid, "status": 0});
+      await databaseReference.doc(newSession).set({
+        "poll": pollID,
+        "speaker": auth.currentUser.uid,
+        "status": 0,
+        "nrQuestions": nrQuestions
+      });
     }
   }
 
@@ -52,12 +54,14 @@ Future<void> increaseStatus(BuildContext context, String id) async {
   DocumentReference databaseReference =
       FirebaseFirestore.instance.collection('sessions').doc(id);
 
-  FirebaseAuth auth = FirebaseAuth.instance;
-
   DocumentSnapshot ds = await databaseReference.get();
-
-  int newStatus = ds.data()["status"] + 1;
-
+  int newStatus = 0;
+  int tmpStatus = ds.data()["status"] + 1;
+  int maxQuestions = await ds.data()["nrQuestions"];
+  if (tmpStatus > maxQuestions) {
+    tmpStatus = -1;
+  }
+  newStatus = tmpStatus;
   await databaseReference
       .update({"status": newStatus}).then((value) => print("Status updated!"));
 }

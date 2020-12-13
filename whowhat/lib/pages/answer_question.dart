@@ -1,31 +1,74 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:whowhat/widgets/GradientButton.dart';
+import 'package:whowhat/widgets/database/answers_stats.dart';
+import 'package:whowhat/widgets/database/create_session.dart';
 import 'package:whowhat/widgets/database/db_polls.dart';
 
 class AnswerQuestion extends StatefulWidget {
   final Map<String, dynamic> info;
   final String session;
+  final bool speaker;
 
-  AnswerQuestion({Key key, this.info, this.session}) : super(key: key);
+  AnswerQuestion({Key key, this.info, this.session, this.speaker})
+      : super(key: key);
 
   @override
-  _MyAnswerQuestion createState() => _MyAnswerQuestion(this.info, this.session);
+  _MyAnswerQuestion createState() =>
+      _MyAnswerQuestion(this.info, this.session, this.speaker);
 }
 
 class _MyAnswerQuestion extends State<AnswerQuestion> {
   final Map<String, dynamic> info;
   final String session;
+  final bool speaker;
   bool answered = false;
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  _MyAnswerQuestion(this.info, this.session);
+  _MyAnswerQuestion(this.info, this.session, this.speaker);
 
   List<Widget> _getOption() {
     List<Widget> list = new List();
 
     info['options'].entries.forEach(
         (element) => list.add(Option(context, element.key, element.value)));
+
+    return list;
+  }
+
+  List<Widget> _getStats() {
+    List<Widget> list = new List();
+
+    info['options'].entries.forEach((element) => list.add(AnswersNumber(
+        session: session,
+        question: info["nr_question"].toString(),
+        option: element.key,
+        text: element.value)));
+
+    return list;
+  }
+
+  List<Widget> _getStatsSpeaker() {
+    List<Widget> list = new List();
+
+    info['options'].entries.forEach((element) => list.add(AnswersNumber(
+        session: session,
+        question: info["nr_question"].toString(),
+        option: element.key,
+        text: element.value)));
+
+    list.add(
+      GradientButton(
+        text: 'Next Question',
+        padding: EdgeInsets.only(
+            top: MediaQuery.of(context).size.width * 0.06,
+            bottom: MediaQuery.of(context).size.width * 0.02),
+        onPressed: () {
+          increaseStatus(context, session);
+        },
+      ),
+    );
 
     return list;
   }
@@ -48,7 +91,10 @@ class _MyAnswerQuestion extends State<AnswerQuestion> {
                     height: screenHeight * 0.30,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(snapshot.data),
+                            image: snapshot.data != null
+                                ? NetworkImage(snapshot.data)
+                                : NetworkImage(
+                                    'https://firebasestorage.googleapis.com/v0/b/whowhat-786d8.appspot.com/o/pollImages%2Fdefault.jpg?alt=media&token=c040ec37-4516-4172-93ef-2ed09842c82e'),
                             fit: BoxFit.cover)));
               }),
           Container(
@@ -68,28 +114,23 @@ class _MyAnswerQuestion extends State<AnswerQuestion> {
                       overflow: TextOverflow.clip,
                       softWrap: true),
                 ),
-                answered == false
-                    ? Column(
-                        children: _getOption(),
-                      )
-                    : Padding(
-                        padding: EdgeInsets.only(top: screenHeight * 0.05),
-                        child: Text('Statistics',
-                            style: TextStyle(
-                                fontFamily: 'Roboto',
-                                color: Colors.black,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
-                            overflow: TextOverflow.clip,
-                            softWrap: true),
-                      ),
+                if (speaker)
+                  Column(children: _getStatsSpeaker())
+                else
+                  answered == false
+                      ? Column(
+                          children: _getOption(),
+                        )
+                      : Column(
+                          children: _getStatsSpeaker(),
+                        )
               ])),
         ]))));
   }
 
   Future<void> chooseAnswer(option) async {
     setState(() {
-      //answered = true;
+      answered = true;
     });
     String question = info["nr_question"].toString();
     String uid = auth.currentUser.uid;
@@ -98,7 +139,14 @@ class _MyAnswerQuestion extends State<AnswerQuestion> {
         .doc(session)
         .collection('questions')
         .doc(question);
-    await questionReference.collection('options').doc(option).set({"uid": uid});
+    await questionReference
+        .collection('options')
+        .doc(option)
+        .collection('answers')
+        .doc()
+        .set({"uid": uid});
+    await questionReference.set(
+        {"totalAnswers": FieldValue.increment(1)}, SetOptions(merge: true));
   }
 
   Widget Option(context, id, text) {

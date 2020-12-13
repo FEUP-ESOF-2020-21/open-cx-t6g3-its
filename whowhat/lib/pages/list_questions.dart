@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/create_question.dart';
 
@@ -19,7 +18,6 @@ class _MyListQuestions extends State<ListQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth auth = FirebaseAuth.instance;
     CollectionReference questionsReference = FirebaseFirestore.instance
         .collection('polls')
         .doc(this.id)
@@ -34,12 +32,6 @@ class _MyListQuestions extends State<ListQuestions> {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading");
-        }
-
-        bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
-
-        if (auth.currentUser != null) {
-          print(auth.currentUser.uid);
         }
 
         final List<String> entries = <String>[];

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:whowhat/pages/session_loop.dart';
+
 import 'package:whowhat/widgets/database/create_session.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
 
 class MyConnection extends StatefulWidget {
-  String session;
-  String pollName;
+  final String session;
+  final String pollName;
   bool admin = false;
 
   MyConnection({Key key, this.pollName, this.session, this.admin})
