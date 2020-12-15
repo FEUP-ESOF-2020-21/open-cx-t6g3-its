@@ -122,7 +122,7 @@ class _MyAnswerQuestion extends State<AnswerQuestion> {
                           children: _getOption(),
                         )
                       : Column(
-                          children: _getStatsSpeaker(),
+                          children: _getStats(),
                         )
               ])),
         ]))));

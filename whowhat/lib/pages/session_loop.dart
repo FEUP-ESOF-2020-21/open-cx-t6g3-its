@@ -62,7 +62,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     return AnswerQuestion(
-                        info: snapshot.data, session: id, speaker: false);
+                        info: snapshot.data, session: id, speaker: true);
                   });
 
               break;
@@ -89,7 +89,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     return AnswerQuestion(
-                        info: snapshot.data, session: id, speaker: true);
+                        info: snapshot.data, session: id, speaker: false);
                   });
               break;
           }
