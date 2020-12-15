@@ -13,10 +13,11 @@ class AnswersNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference questions = FirebaseFirestore.instance
+    DocumentReference questions = FirebaseFirestore.instance
         .collection('sessions')
         .doc(this.session)
-        .collection('questions');
+        .collection('questions')
+        .doc(this.question);
 
     CollectionReference answers = FirebaseFirestore.instance
         .collection('sessions')
@@ -39,8 +40,8 @@ class AnswersNumber extends StatelessWidget {
         }
         return StreamBuilder(
           stream: questions.snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot2) {
+          builder: (BuildContext context,
+              AsyncSnapshot<DocumentSnapshot> snapshot2) {
             if (snapshot2.hasError) {
               return Text('Something went wrong');
             }
@@ -48,12 +49,15 @@ class AnswersNumber extends StatelessWidget {
             if (snapshot2.connectionState == ConnectionState.waiting) {
               return Text("Loading");
             }
-            int totalAnswers = 0;
-            double percentage = 0;
+            int totalAnswers = 1;
+            double percentage = 0.5;
             int nAnswers = 0;
             if (snapshot.data != null) nAnswers = snapshot.data.docs.length;
-            if (snapshot2.data != null)
-              totalAnswers = snapshot2.data.docs.first.get('totalAnswers');
+
+            if (nAnswers != 0) {
+              if (snapshot2.data != null)
+                totalAnswers = snapshot2.data.get('totalAnswers');
+            }
 
             percentage = nAnswers / totalAnswers;
             return Option(context, option, text, percentage);
