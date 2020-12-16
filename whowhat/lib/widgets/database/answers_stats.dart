@@ -50,7 +50,7 @@ class AnswersNumber extends StatelessWidget {
               return Text("Loading");
             }
             int totalAnswers = 1;
-            double percentage = 0.5;
+            double percentage = 0;
             int nAnswers = 0;
             if (snapshot.data != null) nAnswers = snapshot.data.docs.length;
 
