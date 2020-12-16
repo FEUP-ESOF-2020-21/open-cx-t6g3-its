@@ -61,14 +61,14 @@ class AnswersNumber extends StatelessWidget {
             }
 
             percentage = nAnswers / totalAnswers;
-            return Option(context, option, text, percentage);
+            return Option(context, option, text, percentage, nAnswers);
           },
         );
       },
     );
   }
 
-  Widget Option(context, id, text, percentage) {
+  Widget Option(context, id, text, percentage, nAnswers) {
     Color color;
 
     switch (id) {
@@ -112,6 +112,21 @@ class AnswersNumber extends StatelessWidget {
                           left: MediaQuery.of(context).size.width * 0.08),
                       child: Text(
                         text,
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 20,
+                        ),
+                      ))),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.08,
+              child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.width * 0.08),
+                      child: Text(
+                        nAnswers.toString(),
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           fontSize: 20,
