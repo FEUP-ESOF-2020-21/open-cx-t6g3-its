@@ -36,12 +36,14 @@ class _MyLoginState extends State<MyLogin> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+          padding: EdgeInsets.only(top: screenHeight * 0.05),
           child: Center(
             child: FractionallySizedBox(
               widthFactor: 0.9,
@@ -49,7 +51,7 @@ class _MyLoginState extends State<MyLogin> {
                 children: <Widget>[
                   Image(image: AssetImage('assets/images/login.png')),
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(screenHeight * 0.01),
                     child: TextBox(
                       icon: Icons.email_rounded,
                       placeholder: 'Email',
@@ -58,7 +60,7 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(screenHeight * 0.01),
                     child: TextBox(
                       icon: Icons.lock_rounded,
                       placeholder: 'Password',
@@ -68,7 +70,7 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.only(top: screenHeight * 0.01),
                       child: Text(
                         'or Login In with:',
                         style: TextStyle(
@@ -78,13 +80,13 @@ class _MyLoginState extends State<MyLogin> {
                             fontSize: 18),
                       )),
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(screenHeight * 0.01),
                     child: Padding(
-                      padding: EdgeInsets.all(5),
+                      padding: EdgeInsets.all(screenHeight * 0.005),
                       child: InkWell(
                           child: Container(
                             height: 62,
-                            width: MediaQuery.of(context).size.width * 0.25,
+                            width: screenWidth * 0.25,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color: Color(0xFFECECEC),
@@ -98,7 +100,7 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(screenHeight * 0.01),
                     child: GradientButton(
                       text: 'Sign In',
                       onPressed: () async {
@@ -107,7 +109,7 @@ class _MyLoginState extends State<MyLogin> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 5),
+                    padding: EdgeInsets.only(top: screenHeight * 0.01),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
