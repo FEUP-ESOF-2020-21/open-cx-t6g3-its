@@ -61,23 +61,34 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 - **Actor**. Atendee
 
-- **Description**. 
+- **Description**. This use case exists so that the attendee can answer a certain poll.
 
-- **Preconditions and Postconditions**. 
+- **Preconditions and Postconditions**. The poll must have already been created and started by its speaker.
 
-- **Normal Flow**.
+- **Normal Flow**. 
+    1. The attendee inserts a code that gives access to a session.
+    2. The attendee taps the "connect" button.
+    3. The attendee gets in the poll and is presented with its questions.
 
 - **Alternative Flows and Exceptions**.
+    1. The attendee inserts an invalid code that gives access to a session.
+    2. The code is rejected.
+    3. The attendee inserts a valid code.
+    2. The attendee taps the "connect" button.
+    3. The attendee gets in the poll and is presented with its questions.
 
 ##### Start Poll Session
 
 - **Actor**. Speaker
 
-- **Description**. This use case exists in order to 
+- **Description**. This use case exists in order to start a poll that has been previously created.
 
-- **Preconditions and Postconditions**. 
+- **Preconditions and Postconditions**. The user must have already created the poll.
 
 - **Normal Flow**.
+    1. The speaker selects a poll from their created polls area.
+    2. The speaker selects start poll session.
+    3. The poll session is started.
 
 - **Alternative Flows and Exceptions**.
 
