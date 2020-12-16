@@ -26,14 +26,16 @@ class UserInScreen extends Given1WithWorld<String, FlutterWorld> {
 class EnterCredentials extends When2WithWorld<String, String, FlutterWorld> {
   @override
   Future<void> executeStep(String email, String password) async {
-    final emailField = find.byValueKey('email');
-    await FlutterDriverUtils.tap(context.world.driver, emailField);
-    await FlutterDriverUtils.enterText(context.world.driver, emailField, email);
 
-    final passwordField = find.byValueKey('password');
-    await FlutterDriverUtils.tap(context.world.driver, passwordField);
-    await FlutterDriverUtils.enterText(context.world.driver, passwordField, password);
-    }
+    final emailFinder = find.byValueKey(email);
+    final passwordFinder = find.byValueKey(password);
+
+    var present1 = await FlutterDriverUtils.isPresent(world.driver, emailFinder);
+    var present2 = await FlutterDriverUtils.isPresent(world.driver, passwordFinder);
+
+    expectMatch(true, present1);
+    expectMatch(true, present2);
+  }
 
   @override
   RegExp get pattern => RegExp(r"I enter {string} as my email and {string} as my password");
