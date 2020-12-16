@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
+import 'package:whowhat/widgets/TextPanel.dart';
 
 class PollCard extends StatelessWidget {
   // final Gradient gradient;
@@ -42,7 +43,8 @@ class PollCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Flexible(
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
                       child: Text(
                         this.title,
                         style: TextStyle(
