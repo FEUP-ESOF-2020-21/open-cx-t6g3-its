@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whowhat/widgets/GradientButton.dart';
 
 class PollCard extends StatelessWidget {
   // final Gradient gradient;
@@ -13,8 +14,8 @@ class PollCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Padding(
+    return Stack(children: [
+      Padding(
         padding: EdgeInsets.only(top: 10, bottom: 10),
         child: Container(
           width: MediaQuery.of(context).size.width * 0.9,
@@ -51,7 +52,7 @@ class PollCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 5),
                       child: Text(this.description),
-                    )
+                    ),
                   ]),
             ),
           ]),
@@ -72,7 +73,36 @@ class PollCard extends StatelessWidget {
           ),
         ),
       ),
-      onTap: onTap,
-    );
+      Positioned(
+          top: MediaQuery.of(context).size.height * 0.01,
+          left: MediaQuery.of(context).size.width * 0.73,
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.create_rounded,
+                      color: Colors.blue[400],
+                      size: 30,
+                    ),
+                    onPressed: () {}),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.play_circle_fill,
+                    color: Colors.green[400],
+                    size: 35,
+                  ),
+                  onPressed: () {
+                    onTap();
+                  },
+                ),
+              )
+            ],
+          ))
+    ]);
   }
 }
