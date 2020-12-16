@@ -12,7 +12,7 @@ Future<void> addPoll(
 
   String imageURL;
   if (image != null) {
-    imageURL = await uploadFile(image, pollID);
+    imageURL = await uploadPoll(image, pollID);
   } else {
     imageURL =
         'https://firebasestorage.googleapis.com/v0/b/whowhat-786d8.appspot.com/o/pollImages%2Fdefault.jpg?alt=media&token=c040ec37-4516-4172-93ef-2ed09842c82e';

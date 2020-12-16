@@ -16,7 +16,20 @@ Future<File> _pickImage(ImageSource source) async {
   return selected;
 }
 
-Future<String> uploadFile(File _image, String pollID) async {
+Future<String> uploadProfile(File _image, String uid) async {
+  StorageReference storageReference =
+      FirebaseStorage.instance.ref().child('profileImages/$uid');
+  StorageUploadTask uploadTask = storageReference.putFile(_image);
+  await uploadTask.onComplete;
+
+  String returnURL;
+  await storageReference.getDownloadURL().then((fileURL) {
+    returnURL = fileURL;
+  });
+  return returnURL;
+}
+
+Future<String> uploadPoll(File _image, String pollID) async {
   StorageReference storageReference =
       FirebaseStorage.instance.ref().child('pollImages/$pollID');
   StorageUploadTask uploadTask = storageReference.putFile(_image);
