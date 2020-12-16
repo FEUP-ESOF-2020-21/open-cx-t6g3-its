@@ -3,7 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/answer_question.dart';
 import 'package:whowhat/pages/connection.dart';
+import 'package:whowhat/pages/pollDone.dart';
 import 'package:whowhat/widgets/database/db_polls.dart';
+
+import 'loading.dart';
 
 class SessionLoop extends StatefulWidget {
   final String id;
@@ -36,7 +39,7 @@ class _SessionLoopState extends State<SessionLoop> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return MyLoading();
         }
 
         if (snapshot.data["speaker"] == auth.currentUser.uid) {
@@ -45,7 +48,7 @@ class _SessionLoopState extends State<SessionLoop> {
               return adminScaffold(context, id, title);
               break;
             case -1:
-              Navigator.pop(context, false);
+              return MyPollDone();
 
               break;
             default:
@@ -58,7 +61,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("Loading");
+                      return MyLoading();
                     }
 
                     return AnswerQuestion(
@@ -73,7 +76,7 @@ class _SessionLoopState extends State<SessionLoop> {
               return userScaffold(context, id, title);
               break;
             case -1:
-              Navigator.pop(context, false);
+              return MyPollDone();
               break;
             default:
               return FutureBuilder(
@@ -85,7 +88,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("Loading");
+                      return MyLoading();
                     }
 
                     return AnswerQuestion(

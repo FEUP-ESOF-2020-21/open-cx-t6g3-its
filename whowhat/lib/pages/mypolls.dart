@@ -5,6 +5,8 @@ import 'package:whowhat/widgets/PollCard.dart';
 import 'package:whowhat/pages/create_poll.dart';
 import 'package:whowhat/widgets/database/create_session.dart';
 
+import 'loading.dart';
+
 class MyPolls extends StatelessWidget {
   const MyPolls({Key key}) : super(key: key);
 
@@ -24,7 +26,7 @@ class MyPolls extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return MyLoading();
         }
 
         bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
@@ -94,11 +96,3 @@ class MyPolls extends StatelessWidget {
     );
   }
 }
-
-/*
-Future<List> getPollsByUser(BuildContext context) async {
-  CollectionReference databaseReference =
-      FirebaseFirestore.instance.collection('polls');
-
-  
-}*/

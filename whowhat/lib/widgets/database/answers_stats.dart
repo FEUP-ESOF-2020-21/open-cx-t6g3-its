@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:whowhat/pages/loading.dart';
 
 class AnswersNumber extends StatelessWidget {
   final String session;
@@ -36,7 +37,7 @@ class AnswersNumber extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return MyLoading();
         }
         return StreamBuilder(
           stream: questions.snapshots(),
@@ -47,7 +48,7 @@ class AnswersNumber extends StatelessWidget {
             }
 
             if (snapshot2.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
+              return MyLoading();
             }
             int totalAnswers = 1;
             double percentage = 0;

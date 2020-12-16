@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:whowhat/pages/loading.dart';
 
 class UserSessionInformation extends StatelessWidget {
   final String session;
@@ -22,7 +23,7 @@ class UserSessionInformation extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return MyLoading();
         }
 
         int nUsers = snapshot.data.docs.length;

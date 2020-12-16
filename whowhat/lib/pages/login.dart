@@ -112,7 +112,7 @@ class _MyLoginState extends State<MyLogin> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Do you have an account?',
+                            'Do you need an account?',
                             style: TextStyle(
                                 color: Colors.grey[400],
                                 fontFamily: 'Roboto',

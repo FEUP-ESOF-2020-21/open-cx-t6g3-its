@@ -128,7 +128,7 @@ class _MySignupState extends State<MySignup> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Do you laready have an account?',
+                            'Do you have an account?',
                             style: TextStyle(
                                 color: Colors.grey[400],
                                 fontFamily: 'Roboto',

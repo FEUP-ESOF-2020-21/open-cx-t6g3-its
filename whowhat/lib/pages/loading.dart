@@ -37,9 +37,10 @@ Scaffold loadingScaffold(BuildContext context) {
                     alignment: Alignment.center,
                     width: MediaQuery.of(context).size.width / 2,
                     height: MediaQuery.of(context).size.width / 2,
-                    image: AssetImage('assets/images/whowhat logo.png')))),
+                    image: AssetImage('assets/images/whowhatlogo.png')))),
         Padding(
-            padding: EdgeInsets.only(top: 50),
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.width / 3),
             child: Align(
                 alignment: Alignment.center,
                 child: Theme(
