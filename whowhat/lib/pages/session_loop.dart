@@ -39,7 +39,7 @@ class _SessionLoopState extends State<SessionLoop> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return MyLoading();
+          return Text("Loading");
         }
 
         if (snapshot.data["speaker"] == auth.currentUser.uid) {
@@ -61,7 +61,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return MyLoading();
+                      return Text("Loading");
                     }
 
                     return AnswerQuestion(
@@ -88,7 +88,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return MyLoading();
+                      return Text("Loading");
                     }
 
                     return AnswerQuestion(

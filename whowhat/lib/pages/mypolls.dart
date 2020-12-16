@@ -26,7 +26,7 @@ class MyPolls extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return MyLoading();
+          return Text("Loading");
         }
 
         bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;

@@ -13,12 +13,38 @@ class _MyLoadingState extends State<MyLoading> {
 
   @override
   Widget build(BuildContext context) {
-    return Text('dasd');
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: Color(0xFF365ED4),
+        ));
   }
 }
 
 Scaffold loadingScaffold(BuildContext context) {
   return Scaffold(
-      //resizeToAvoidBottomPadding: false,
-      body: Text('dasd'));
+    //resizeToAvoidBottomPadding: false,
+    body: Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: Color(0xFF365ED4),
+      ),
+      child: Column(children: <Widget>[
+        Padding(
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.width / 2),
+            child: Align(
+                alignment: Alignment.center,
+                child: Image(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.width / 2,
+                    image: AssetImage('assets/images/whowhat logo.png')))),
+      ]),
+    ),
+  );
 }

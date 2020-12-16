@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: MyLoading(),
+          home: MyError(errorMsg: "Loading"),
           debugShowCheckedModeBanner: false,
         );
       },

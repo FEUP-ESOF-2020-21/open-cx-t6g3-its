@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/create_question.dart';
 
-import 'loading.dart';
-
 class ListQuestions extends StatefulWidget {
   final String id;
 
@@ -33,7 +31,7 @@ class _MyListQuestions extends State<ListQuestions> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return MyLoading();
+          return Text("Loading");
         }
 
         final List<String> entries = <String>[];
