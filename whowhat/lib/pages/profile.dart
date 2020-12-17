@@ -36,16 +36,27 @@ class _MyProfileState extends State<MyProfile> {
     });
   }
 
+  initState() {
+    getImage();
+  }
+
+  logout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }
+
   Future<void> getImage() async {
     var ref = FirebaseStorage.instance.ref().child('profileImages/' + uid);
-    _imageUrl = await ref.getDownloadURL();
+    _tmpUrl = await ref.getDownloadURL();
+    setState(() {
+      _imageUrl = _tmpUrl;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     CollectionReference usersReference =
         FirebaseFirestore.instance.collection('users');
-    getImage();
     return FutureBuilder<DocumentSnapshot>(
         future: usersReference.doc(uid).get(),
         builder:
@@ -53,7 +64,6 @@ class _MyProfileState extends State<MyProfile> {
           if (snapshot.hasError) {
             return Text('Something went wrong');
           }
-
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text("");
           }
@@ -73,10 +83,14 @@ class _MyProfileState extends State<MyProfile> {
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(width * 0.1),
+                    padding: EdgeInsets.only(
+                        top: height * 0.05,
+                        bottom: height * 0.08,
+                        left: width * 0.1,
+                        right: width * 0.1),
                     child: Container(
                       width: width * 0.8,
-                      height: height * 0.75,
+                      height: height * 0.58,
                       child: Column(children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(top: height * 0.05),
@@ -178,6 +192,28 @@ class _MyProfileState extends State<MyProfile> {
                         ],
                       ),
                     ),
+                  ),
+                  InkWell(
+                    child: Container(
+                      height: height * 0.07,
+                      width: width * 0.5,
+                      child: Center(
+                          child: Text(
+                        "Log Out",
+                        style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.normal),
+                      )),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.red[400]),
+                    ),
+                    onTap: () {
+                      logout();
+                    },
                   ),
                 ],
               ),
