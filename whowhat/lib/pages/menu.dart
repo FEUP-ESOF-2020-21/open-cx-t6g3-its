@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/mypolls.dart';
+import 'package:whowhat/pages/profile.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
-import 'package:whowhat/pages/connection.dart';
+import 'package:whowhat/pages/session_loop.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
 
 class MyMenu extends StatefulWidget {
@@ -76,8 +77,8 @@ class _MyMenuState extends State<MyMenu> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MyConnection(
-                                      session: codeInput.text, admin: false)),
+                                  builder: (context) =>
+                                      SessionLoop(id: codeInput.text)),
                             );
                           } else {
                             _updateStatus("Session is not available!");
@@ -113,6 +114,7 @@ class _MyMenuState extends State<MyMenu> {
           ),
         ],
         selectedItemColor: Colors.blue[800],
+        onTap: _onItemTapped,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: keyboardIsOpened
@@ -140,19 +142,12 @@ class _MyMenuState extends State<MyMenu> {
   }
 
   void _onItemTapped(int value) {
-    /*
     if (value == 0) {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MyCreatePoll(),
+            builder: (context) => MyProfile(),
           ));
-    } else {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MyPolls(),
-          ));
-    }*/
+    } else {}
   }
 }

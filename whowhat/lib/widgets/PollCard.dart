@@ -13,16 +13,18 @@ class PollCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Padding(
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return Stack(children: [
+      Padding(
         padding: EdgeInsets.only(top: 10, bottom: 10),
         child: Container(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.2,
+          width: width * 0.9,
+          height: height * 0.2,
           child: Row(children: <Widget>[
             Container(
-                height: MediaQuery.of(context).size.height * 0.2,
-                width: MediaQuery.of(context).size.width * 0.8 * 0.4,
+                height: height * 0.2,
+                width: width * 0.8 * 0.4,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: NetworkImage(imageURL),
@@ -34,12 +36,13 @@ class PollCard extends StatelessWidget {
                   color: Colors.grey[400],
                 )),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.only(top: 20, bottom: 20, left: 10),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Flexible(
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
                       child: Text(
                         this.title,
                         style: TextStyle(
@@ -51,7 +54,7 @@ class PollCard extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 5),
                       child: Text(this.description),
-                    )
+                    ),
                   ]),
             ),
           ]),
@@ -72,7 +75,39 @@ class PollCard extends StatelessWidget {
           ),
         ),
       ),
-      onTap: onTap,
-    );
+      Container(
+          width: width * 0.9,
+          height: height * 0.2,
+          alignment: Alignment.centerRight,
+          child: Column(children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(
+                  bottom: height * 0.03,
+                  top: height * 0.02,
+                  right: height * 0.005),
+              child: IconButton(
+                  icon: Icon(
+                    Icons.create_rounded,
+                    color: Colors.blue[400],
+                    size: 30,
+                  ),
+                  onPressed: () {}),
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.only(top: height * 0.025, right: height * 0.005),
+              child: IconButton(
+                icon: Icon(
+                  Icons.play_circle_fill,
+                  color: Colors.green[400],
+                  size: 35,
+                ),
+                onPressed: () {
+                  onTap();
+                },
+              ),
+            )
+          ]))
+    ]);
   }
 }

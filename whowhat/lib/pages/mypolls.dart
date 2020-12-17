@@ -5,6 +5,8 @@ import 'package:whowhat/widgets/PollCard.dart';
 import 'package:whowhat/pages/create_poll.dart';
 import 'package:whowhat/widgets/database/create_session.dart';
 
+import 'loading.dart';
+
 class MyPolls extends StatelessWidget {
   const MyPolls({Key key}) : super(key: key);
 
@@ -29,10 +31,6 @@ class MyPolls extends StatelessWidget {
 
         bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
 
-        if (auth.currentUser != null) {
-          print(auth.currentUser.uid);
-        }
-
         List<Widget> polls = [];
         snapshot.data.docs.forEach((element) {
           polls.add(PollCard(
@@ -41,7 +39,11 @@ class MyPolls extends StatelessWidget {
                   element.data()['nr_questions'].toString() + ' questions',
               imageURL: element.data()['image'].toString(),
               onTap: () {
-                createSession(context, element.data()['title'].toString());
+                createSession(
+                    context,
+                    element.id.toString(),
+                    element.data()['title'].toString(),
+                    element.data()['nr_questions']);
               }));
         });
 
@@ -94,11 +96,3 @@ class MyPolls extends StatelessWidget {
     );
   }
 }
-
-/*
-Future<List> getPollsByUser(BuildContext context) async {
-  CollectionReference databaseReference =
-      FirebaseFirestore.instance.collection('polls');
-
-  
-}*/
