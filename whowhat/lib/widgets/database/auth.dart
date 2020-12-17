@@ -29,7 +29,7 @@ class AuthService {
       } else if (e.code == 'wrong-password') {
         return 'Wrong password';
       }
-      return "An Error as ocurred";
+      return "An Error has ocurred";
     }
   }
 
@@ -42,7 +42,9 @@ class AuthService {
 
       String uid = user.uid.toString();
 
-      await databaseReference.doc(uid).set({'name': name, 'job': job});
+      await databaseReference
+          .doc(uid)
+          .set({'name': name, 'job': job, "email": email});
     } catch (e) {
       print("code" + e.code);
       if (e.code == 'weak-password') {
@@ -50,7 +52,7 @@ class AuthService {
       } else if (e.code == 'email-already-in-use') {
         return 'The account already exists for that email.';
       }
-      return "An Error as ocurred";
+      return "An Error has ocurred";
     }
     return null;
   }

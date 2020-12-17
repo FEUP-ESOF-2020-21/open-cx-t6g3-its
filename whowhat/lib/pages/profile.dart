@@ -16,6 +16,7 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile> {
   String uid = FirebaseAuth.instance.currentUser.uid.toString();
+
   String _imageUrl;
   String _tmpUrl;
 
@@ -43,6 +44,7 @@ class _MyProfileState extends State<MyProfile> {
 
   @override
   Widget build(BuildContext context) {
+    print("user id " + uid);
     CollectionReference usersReference =
         FirebaseFirestore.instance.collection('users');
     getImage();
