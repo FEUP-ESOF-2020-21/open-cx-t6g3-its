@@ -87,16 +87,19 @@ class _MyListQuestions extends State<ListQuestions> {
                             ),
                           ),
                           onTap: () async {
+                            /**/
+                            print(id);
+                            print(index + 1);
                             Map<String, dynamic> info =
-                                await getQuestion(this.id, 0);
-
-                            print(this.id);
-
+                                await getQuestionByPollId(id, index + 1);
+                            print(info['options']['1']);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      EditQuestion(id: this.id),
+                                  builder: (context) => EditQuestion(
+                                      id: this.id,
+                                      info: info,
+                                      index: index + 1),
                                 ));
                             ;
                           });

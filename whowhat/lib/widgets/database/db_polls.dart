@@ -61,6 +61,29 @@ Future<void> addQuestion(
   await updateNumberQuestions(pollId);
 }
 
+Future<void> editQuestion(
+    String pollId, String question, List<String> options, String id) async {
+  DocumentReference databaseReference = FirebaseFirestore.instance
+      .collection('polls')
+      .doc(pollId)
+      .collection('questions')
+      .doc(id);
+
+  await databaseReference.set({
+    "title": question,
+  });
+
+  int counter = 1;
+  for (String option in options) {
+    await databaseReference
+        .collection('options')
+        .doc(counter.toString())
+        .set({"text": option});
+    counter++;
+  }
+  await updateNumberQuestions(pollId);
+}
+
 Future<void> updateNumberQuestions(String id) async {
   DocumentReference pollReference =
       FirebaseFirestore.instance.collection('polls').doc(id);
@@ -86,6 +109,39 @@ Future<Map<String, dynamic>> getQuestion(String id, int nr_question) async {
   CollectionReference questionsReference = FirebaseFirestore.instance
       .collection('polls')
       .doc(pollId)
+      .collection('questions');
+
+  DocumentSnapshot questionSnap =
+      await questionsReference.doc(nr_question.toString()).get();
+
+  String title = questionSnap.data()['title'];
+
+  QuerySnapshot optionsSnap = await questionsReference
+      .doc(nr_question.toString())
+      .collection('options')
+      .get();
+
+  Map<String, String> options = new Map();
+
+  optionsSnap.docs.forEach((element) {
+    String text = element.data()["text"];
+    if (text != "") options[element.id] = element.data()["text"];
+  });
+
+  Map<String, dynamic> question = {
+    "title": title,
+    "options": options,
+    "nr_question": nr_question
+  };
+
+  return question;
+}
+
+Future<Map<String, dynamic>> getQuestionByPollId(
+    String id, int nr_question) async {
+  CollectionReference questionsReference = FirebaseFirestore.instance
+      .collection('polls')
+      .doc(id)
       .collection('questions');
 
   DocumentSnapshot questionSnap =

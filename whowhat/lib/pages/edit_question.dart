@@ -18,15 +18,19 @@ Widget Option(id, text, optionController) {
 
 class EditQuestion extends StatefulWidget {
   final String id;
-  // final Map<String, dynamic> info;
+  final Map<String, dynamic> info;
+  final int index;
 
-  EditQuestion({Key key, this.id}) : super(key: key);
+  EditQuestion({Key key, this.id, this.info, this.index}) : super(key: key);
 
   @override
-  _MyListQuestions createState() => _MyListQuestions(this.id);
+  _MyListQuestions createState() =>
+      _MyListQuestions(this.id, this.info, this.index);
 }
 
 class _MyListQuestions extends State<EditQuestion> {
+  final Map<String, dynamic> info;
+  final int index;
   // final Map<String, dynamic> info;
   final option1Controller = new TextEditingController();
   final option2Controller = new TextEditingController();
@@ -36,11 +40,17 @@ class _MyListQuestions extends State<EditQuestion> {
   final questionController = new TextEditingController();
 
   @override
-  void initState() {}
+  void initState() {
+    questionController.text = this.info['title'].toString();
+    option1Controller.text = this.info['options']['1'];
+    option2Controller.text = this.info['options']['2'];
+    option3Controller.text = this.info['options']['3'];
+    option4Controller.text = this.info['options']['4'];
+  }
 
   final String id;
 
-  _MyListQuestions(this.id);
+  _MyListQuestions(this.id, this.info, this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -107,14 +117,15 @@ class _MyListQuestions extends State<EditQuestion> {
                   child: GradientButton(
                     text: 'Add Question',
                     onPressed: () async {
+                      print(option3Controller.text);
                       List<String> options = [];
                       options.add(option1Controller.text);
                       options.add(option2Controller.text);
                       options.add(option3Controller.text);
                       options.add(option4Controller.text);
 
-                      await addQuestion(
-                          this.id, questionController.text, options);
+                      await editQuestion(this.id, questionController.text,
+                          options, this.index.toString());
 
                       Navigator.pop(context, false);
                     },
