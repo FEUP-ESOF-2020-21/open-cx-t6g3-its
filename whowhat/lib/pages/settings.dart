@@ -49,7 +49,7 @@ class MySettings extends StatelessWidget {
                                       fontFamily: 'Roboto'),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: height * 0.08),
+                                  padding: EdgeInsets.only(top: height * 0.05),
                                   child: Text(
                                     "Developed by",
                                     style: TextStyle(
@@ -83,7 +83,7 @@ class MySettings extends StatelessWidget {
                                       fontFamily: 'Roboto'),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: height * 0.1),
+                                  padding: EdgeInsets.only(top: height * 0.06),
                                   child: Text(
                                     "©2020 ITS Team",
                                     style: TextStyle(

@@ -90,7 +90,7 @@ class _MyProfileState extends State<MyProfile> {
                         right: width * 0.1),
                     child: Container(
                       width: width * 0.8,
-                      height: height * 0.58,
+                      height: height * 0.65,
                       child: Column(children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(top: height * 0.05),
