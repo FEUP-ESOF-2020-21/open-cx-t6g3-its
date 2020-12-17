@@ -1,27 +1,24 @@
 import 'dart:ffi';
 import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:whowhat/pages/list_questions.dart';
 import 'package:whowhat/pages/upload_image.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
-import 'package:whowhat/widgets/database/db_polls.dart';
 
 class MyEditPoll extends StatefulWidget {
-  final String id;
-  MyEditPoll({Key key, this.id}) : super(key: key);
+  final Map<String, dynamic> info;
+  MyEditPoll({Key key, this.info}) : super(key: key);
 
   @override
-  _MyEditPollState createState() => _MyEditPollState(this.id);
+  _MyEditPollState createState() => _MyEditPollState(this.info);
 }
 
-
 class _MyEditPollState extends State<MyEditPoll> {
-
-  final String id;
-  _MyEditPollState(this.id);
+  final Map<String, dynamic> info;
+  _MyEditPollState(this.info);
 
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -46,6 +43,9 @@ class _MyEditPollState extends State<MyEditPoll> {
 
   @override
   Widget build(BuildContext context) {
+    titleController.text = this.info['title'];
+    descriptionController.text = this.info['description'];
+
     return Scaffold(
       appBar: AppBar(
           title: Text("Edit WHoWhat"),
@@ -75,8 +75,7 @@ class _MyEditPollState extends State<MyEditPoll> {
                               image: DecorationImage(
                                 image: _imageFile != null
                                     ? FileImage(_imageFile)
-                                    : NetworkImage(
-                                        'https://firebasestorage.googleapis.com/v0/b/whowhat-786d8.appspot.com/o/pollImages%2Fdefault.jpg?alt=media&token=c040ec37-4516-4172-93ef-2ed09842c82e'),
+                                    : NetworkImage(this.info['image']),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius: BorderRadius.only(
@@ -161,16 +160,7 @@ class _MyEditPollState extends State<MyEditPoll> {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: GradientButton(
                   text: 'Create and continue',
-                  onPressed: () async {
-                    await addPoll(pollID, titleController.text,
-                        descriptionController.text, _imageFile);
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ListQuestions(id: pollID)),
-                    );
-                  },
+                  onPressed: () async {},
                 ),
               ),
             )
