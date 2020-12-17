@@ -47,8 +47,7 @@ class _SessionLoopState extends State<SessionLoop> {
               return adminScaffold(context, id, title);
               break;
             case -1:
-              // deletePoll(id).);
-
+              return MyPollDone();
               break;
             default:
               return FutureBuilder(

@@ -81,10 +81,12 @@ Future<void> editQuestion(
         .set({"text": option});
     counter++;
   }
-  await updateNumberQuestions(pollId);
 }
 
 Future<void> deleteQuestion(String pollId, String id) async {
+  DocumentReference pollReference =
+      FirebaseFirestore.instance.collection('polls').doc(pollId);
+  int nr_questions = await getNumberQuestions(pollId);
   DocumentReference databaseReference = FirebaseFirestore.instance
       .collection('polls')
       .doc(pollId)
@@ -92,6 +94,9 @@ Future<void> deleteQuestion(String pollId, String id) async {
       .doc(id);
 
   await databaseReference.delete();
+
+  await pollReference.update({"nr_questions": nr_questions - 1}).then(
+      (value) => print("Status updated!"));
 }
 
 Future<void> updateNumberQuestions(String id) async {
