@@ -175,7 +175,7 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 - **Actor**. User
 
-- **Description**. this use case exists so that the user is able to enter in their personal account associated with their already existing google account in order save their data such as the polls they will use in upcoming conferences.
+- **Description**. this use case exists so that the user is able to enter in their personal account associated with their already existing google account in order to save their data such as the polls they will use in upcoming conferences.
 
 - **Preconditions and Postconditions**. in order to register in the app via google the user must have a personal google account.
 
@@ -191,7 +191,7 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 - **Actor**. User
 
-- **Description**. 
+- **Description**. this use case exists so that the user can access their personal account in order to save their data such as the polls they will use in upcoming conferences.
 
 - **Preconditions and Postconditions**. in order to log in on the app the user must have previously registered in it and insert the same credentials. 
 
@@ -213,11 +213,13 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 - **Actor**. User
 
-- **Description**. 
+- **Description**. this use case exists so that the user can safely log out from their personal account saving all the changes they made.
 
 - **Preconditions and Postconditions**. In order to log out from the app, the user must be already logged in. 
 
 - **Normal Flow**.
+    1. The user taps the log out button.
+    2. The user is redirected to the log in screen, safely logging out from their account.
     
 - **Alternative Flows and Exceptions**.
 
