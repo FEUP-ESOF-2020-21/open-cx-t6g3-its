@@ -1,12 +1,13 @@
 import 'dart:ffi';
 import 'dart:io';
 
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:whowhat/pages/list_questions.dart';
 import 'package:whowhat/pages/upload_image.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
+import 'package:whowhat/widgets/database/db_polls.dart';
 
 class MyEditPoll extends StatefulWidget {
   final Map<String, dynamic> info;
@@ -20,8 +21,10 @@ class _MyEditPollState extends State<MyEditPoll> {
   final Map<String, dynamic> info;
   _MyEditPollState(this.info);
 
-  final titleController = TextEditingController();
-  final descriptionController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  bool changedTitle = false;
+  bool changedDescription = false;
 
   File _imageFile;
 
@@ -42,10 +45,13 @@ class _MyEditPollState extends State<MyEditPoll> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    titleController.text = this.info['title'];
-    descriptionController.text = this.info['description'];
+  void initState() {
+    titleController.text = info['title'];
+    descriptionController.text = info['description'];
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: Text("Edit WHoWhat"),
@@ -159,8 +165,18 @@ class _MyEditPollState extends State<MyEditPoll> {
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: GradientButton(
-                  text: 'Create and continue',
-                  onPressed: () async {},
+                  text: 'Confirme and continue',
+                  onPressed: () async {
+                    await addPoll(this.info['id'], titleController.text,
+                        descriptionController.text, _imageFile);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ListQuestions(id: this.info['id'])),
+                    );
+                  },
                 ),
               ),
             )
