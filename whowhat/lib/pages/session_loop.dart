@@ -47,8 +47,7 @@ class _SessionLoopState extends State<SessionLoop> {
               return adminScaffold(context, id, title);
               break;
             case -1:
-              // deletePoll(id).then((value) {});
-              return MyPollDone(id: id);
+              // deletePoll(id).);
 
               break;
             default:
@@ -76,7 +75,7 @@ class _SessionLoopState extends State<SessionLoop> {
               return userScaffold(context, id, title);
               break;
             case -1:
-              return MyPollDone(id: id);
+              return MyPollDone();
               break;
             default:
               return FutureBuilder(

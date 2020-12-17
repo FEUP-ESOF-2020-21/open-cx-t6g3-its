@@ -8,11 +8,11 @@ import 'package:whowhat/widgets/database/db_polls.dart';
 class MyPollDone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return endingScaffold(context, id);
+    return endingScaffold(context);
   }
 }
 
-Scaffold endingScaffold(BuildContext context, String id) {
+Scaffold endingScaffold(BuildContext context) {
   return Scaffold(
     //resizeToAvoidBottomPadding: false,
     body: SingleChildScrollView(
