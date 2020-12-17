@@ -165,7 +165,7 @@ class _MyEditPollState extends State<MyEditPoll> {
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: GradientButton(
-                  text: 'Confirme and continue',
+                  text: 'Confirm and continue',
                   onPressed: () async {
                     await addPoll(this.info['id'], titleController.text,
                         descriptionController.text, _imageFile);

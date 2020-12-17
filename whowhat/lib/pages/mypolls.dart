@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:whowhat/pages/edit_poll.dart';
 import 'package:whowhat/widgets/PollCard.dart';
 import 'package:whowhat/pages/create_poll.dart';
 import 'package:whowhat/widgets/database/create_session.dart';
@@ -48,11 +47,13 @@ class MyPolls extends StatelessWidget {
               onEdit: () async {
                 Map<String, dynamic> info =
                     await getPollInfo(element.id.toString());
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MyEditPoll(info: info)),
-                );
+                /*Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MyEditPoll(id: element.id.toString())),
+                            );*/
+                print(info);
               }));
         });
 
@@ -69,7 +70,7 @@ class MyPolls extends StatelessWidget {
           body: SingleChildScrollView(
             child: Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 20),
+                padding: EdgeInsets.only(top: 20, bottom: 120),
                 child: Column(
                   children: polls,
                 ),
