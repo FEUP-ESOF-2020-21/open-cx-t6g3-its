@@ -62,8 +62,11 @@ class _MyListQuestions extends State<ListQuestions> {
                     scrollDirection: Axis.vertical,
                     itemCount: entries.length,
                     itemBuilder: (BuildContext ctxt, int index) {
-                      return GestureDetector(
-                          onHorizontalDragUpdate: (details) => {x},
+                      return Dismissible(
+                          direction: DismissDirection.endToStart,
+                          onDismissed: (direction) =>
+                              {deleteQuestion(id, (index + 1).toString())},
+                          key: ValueKey(index),
                           child: InkWell(
                               child: Container(
                                 height:

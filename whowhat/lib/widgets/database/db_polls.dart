@@ -84,6 +84,16 @@ Future<void> editQuestion(
   await updateNumberQuestions(pollId);
 }
 
+Future<void> deleteQuestion(String pollId, String id) async {
+  DocumentReference databaseReference = FirebaseFirestore.instance
+      .collection('polls')
+      .doc(pollId)
+      .collection('questions')
+      .doc(id);
+
+  await databaseReference.delete();
+}
+
 Future<void> updateNumberQuestions(String id) async {
   DocumentReference pollReference =
       FirebaseFirestore.instance.collection('polls').doc(id);
