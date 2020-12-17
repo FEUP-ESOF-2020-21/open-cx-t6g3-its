@@ -7,9 +7,8 @@ class PollCard extends StatelessWidget {
   final String description;
   final String imageURL;
   final Function onTap;
-  final Function onEdit;
 
-  PollCard({Key key, this.title, this.description, this.imageURL, this.onTap, this.onEdit})
+  PollCard({Key key, this.title, this.description, this.imageURL, this.onTap})
       : super(key: key);
 
   @override
@@ -92,9 +91,7 @@ class PollCard extends StatelessWidget {
                     color: Colors.blue[400],
                     size: 30,
                   ),
-                  onPressed: () {
-                    onEdit();
-                  }),
+                  onPressed: () {}),
             ),
             Padding(
               padding:
