@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/mypolls.dart';
 import 'package:whowhat/pages/profile.dart';
+import 'package:whowhat/pages/settings.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
@@ -148,6 +149,12 @@ class _MyMenuState extends State<MyMenu> {
           MaterialPageRoute(
             builder: (context) => MyProfile(),
           ));
-    } else {}
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MySettings(),
+          ));
+    }
   }
 }
