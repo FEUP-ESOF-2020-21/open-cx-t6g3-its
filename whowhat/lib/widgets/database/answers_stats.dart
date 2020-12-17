@@ -50,10 +50,14 @@ class AnswersNumber extends StatelessWidget {
             if (snapshot2.connectionState == ConnectionState.waiting) {
               return Text("Loading");
             }
+
             int totalAnswers = 1;
             double percentage = 0;
             int nAnswers = 0;
-            if (snapshot.data != null) nAnswers = snapshot.data.docs.length;
+
+            if (snapshot.data.docs.isNotEmpty) {
+              if (snapshot.data != null) nAnswers = snapshot.data.docs.length;
+            }
 
             if (nAnswers != 0) {
               if (snapshot2.data != null)

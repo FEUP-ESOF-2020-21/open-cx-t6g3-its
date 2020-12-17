@@ -55,13 +55,26 @@ Future<void> increaseStatus(BuildContext context, String id) async {
       FirebaseFirestore.instance.collection('sessions').doc(id);
 
   DocumentSnapshot ds = await databaseReference.get();
+  int status = ds.data()["status"];
   int newStatus = 0;
-  int tmpStatus = ds.data()["status"] + 1;
+  int tmpStatus = status + 1;
   int maxQuestions = await ds.data()["nrQuestions"];
   if (tmpStatus > maxQuestions) {
     tmpStatus = -1;
   }
   newStatus = tmpStatus;
+
+  prepareNextQuestion(tmpStatus, id);
+
   await databaseReference
       .update({"status": newStatus}).then((value) => print("Status updated!"));
+}
+
+Future<void> prepareNextQuestion(tmpStatus, sessionId) async {
+  CollectionReference databaseReference = FirebaseFirestore.instance
+      .collection('sessions')
+      .doc(sessionId.toString())
+      .collection('questions');
+
+  await databaseReference.doc(tmpStatus.toString()).set({"totalAnswers": 0});
 }
