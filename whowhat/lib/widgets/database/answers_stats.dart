@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:whowhat/pages/loading.dart';
 
 class AnswersNumber extends StatelessWidget {
   final String session;

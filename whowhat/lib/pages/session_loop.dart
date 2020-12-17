@@ -6,8 +6,6 @@ import 'package:whowhat/pages/connection.dart';
 import 'package:whowhat/pages/pollDone.dart';
 import 'package:whowhat/widgets/database/db_polls.dart';
 
-import 'loading.dart';
-
 class SessionLoop extends StatefulWidget {
   final String id;
   final String title;
@@ -61,7 +59,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("Loading");
+                      return Text("");
                     }
 
                     return AnswerQuestion(

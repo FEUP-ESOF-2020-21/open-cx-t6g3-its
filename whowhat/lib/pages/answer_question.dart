@@ -29,7 +29,7 @@ class _MyAnswerQuestion extends State<AnswerQuestion> {
   _MyAnswerQuestion(this.info, this.session, this.speaker);
 
   List<Widget> _getOption() {
-    List<Widget> list = new List();
+    List<Widget> list = [];
 
     info['options'].entries.forEach(
         (element) => list.add(Option(context, element.key, element.value)));
@@ -38,7 +38,7 @@ class _MyAnswerQuestion extends State<AnswerQuestion> {
   }
 
   List<Widget> _getStats() {
-    List<Widget> list = new List();
+    List<Widget> list = [];
 
     info['options'].entries.forEach((element) => list.add(AnswersNumber(
         session: session,
@@ -50,7 +50,7 @@ class _MyAnswerQuestion extends State<AnswerQuestion> {
   }
 
   List<Widget> _getStatsSpeaker() {
-    List<Widget> list = new List();
+    List<Widget> list = [];
 
     info['options'].entries.forEach((element) => list.add(AnswersNumber(
         session: session,

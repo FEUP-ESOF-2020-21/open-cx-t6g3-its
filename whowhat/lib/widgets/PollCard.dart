@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:whowhat/widgets/GradientButton.dart';
-import 'package:whowhat/widgets/TextPanel.dart';
 
 class PollCard extends StatelessWidget {
   // final Gradient gradient;
