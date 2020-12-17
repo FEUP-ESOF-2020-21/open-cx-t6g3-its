@@ -4,16 +4,7 @@ import 'package:whowhat/pages/menu.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
 
-class MyPollDone extends StatefulWidget {
-  MyPollDone({Key key}) : super(key: key);
-
-  @override
-  _MyPollDoneState createState() => _MyPollDoneState();
-}
-
-class _MyPollDoneState extends State<MyPollDone> {
-  _MyPollDoneState();
-
+class MyPollDone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return endingScaffold(context);

@@ -139,7 +139,7 @@ class _MyProfileState extends State<MyProfile> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                              top: height * 0.05, bottom: height * 0.02),
+                              top: height * 0.05, bottom: height * 0.010),
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
