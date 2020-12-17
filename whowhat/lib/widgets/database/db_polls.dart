@@ -27,6 +27,13 @@ Future<void> addPoll(
   });
 }
 
+Future<void> deletePoll(String pollID) async {
+  CollectionReference databaseReference =
+      FirebaseFirestore.instance.collection('polls');
+
+  await databaseReference.doc(pollID).delete();
+}
+
 Future<void> addQuestion(
     String pollId, String question, List<String> options) async {
   CollectionReference databaseReference = FirebaseFirestore.instance
@@ -136,8 +143,32 @@ Future<Map<String, dynamic>> getPollInfo(String id) async {
     "id": ds.id.toString(),
     "title": ds.data()["title"],
     "description": ds.data()["description"],
-    "image": ds.data()["image"]
+    "image": ds.data()["image"],
+    "nr_questions": ds.data()["nr_questions"],
   };
 
   return info;
+}
+
+Future<void> editPoll(String pollID, String name, String description,
+    File image, String url, int nr_questions) async {
+  CollectionReference databaseReference =
+      FirebaseFirestore.instance.collection('polls');
+
+  String uid = FirebaseAuth.instance.currentUser.uid.toString();
+
+  String imageURL;
+  if (image != null) {
+    imageURL = await uploadPoll(image, pollID);
+  } else {
+    imageURL = url;
+  }
+
+  await databaseReference.doc(pollID).set({
+    "uid": uid,
+    "title": name,
+    "description": description,
+    "image": imageURL,
+    "nr_questions": nr_questions,
+  });
 }

@@ -74,6 +74,7 @@ class _SessionLoopState extends State<SessionLoop> {
               return userScaffold(context, id, title);
               break;
             case -1:
+              deletePoll(id);
               return MyPollDone();
               break;
             default:

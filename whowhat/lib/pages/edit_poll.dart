@@ -167,8 +167,13 @@ class _MyEditPollState extends State<MyEditPoll> {
                 child: GradientButton(
                   text: 'Confirm and continue',
                   onPressed: () async {
-                    await addPoll(this.info['id'], titleController.text,
-                        descriptionController.text, _imageFile);
+                    await editPoll(
+                        this.info['id'],
+                        titleController.text,
+                        descriptionController.text,
+                        _imageFile,
+                        this.info['image'],
+                        this.info['nr_questions']);
 
                     Navigator.push(
                       context,

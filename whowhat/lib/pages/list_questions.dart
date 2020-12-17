@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/create_question.dart';
+import 'package:whowhat/pages/edit_question.dart';
+import 'package:whowhat/widgets/database/db_polls.dart';
 
 class ListQuestions extends StatefulWidget {
   final String id;
@@ -84,8 +86,19 @@ class _MyListQuestions extends State<ListQuestions> {
                               ),
                             ),
                           ),
-                          onTap: () {
-                            print('teste' + index.toString());
+                          onTap: () async {
+                            Map<String, dynamic> info =
+                                await getQuestion(this.id, 0);
+
+                            print(this.id);
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      EditQuestion(id: this.id),
+                                ));
+                            ;
                           });
                     },
                   ),
