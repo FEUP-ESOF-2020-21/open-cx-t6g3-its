@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:whowhat/widgets/PollCard.dart';
 import 'package:whowhat/pages/create_poll.dart';
 import 'package:whowhat/widgets/database/create_session.dart';
+import 'package:whowhat/widgets/database/db_polls.dart';
 
-import 'loading.dart';
 
 class MyPolls extends StatelessWidget {
   const MyPolls({Key key}) : super(key: key);
@@ -44,7 +44,18 @@ class MyPolls extends StatelessWidget {
                     element.id.toString(),
                     element.data()['title'].toString(),
                     element.data()['nr_questions']);
-              }));
+              },
+              onEdit: () async {
+                Map<String, dynamic> info = await getPollInfo(element.id.toString());
+                /*Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MyEditPoll(id: element.id.toString())),
+                            );*/
+                print(info);
+              }
+              ));
         });
 
         return Scaffold(

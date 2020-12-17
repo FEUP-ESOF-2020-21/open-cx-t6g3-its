@@ -125,3 +125,20 @@ Future<String> getImagePath(String sessionId) async {
 
   return ds.data()["image"];
 }
+
+
+Future<Map<String, dynamic>> getPollInfo(String id) async{
+    DocumentReference dr =
+      FirebaseFirestore.instance.collection('polls').doc(id);
+
+    DocumentSnapshot ds = await dr.get();
+
+    Map<String, dynamic> info;
+    info = {
+      "title" : ds.data()["title"],
+      "description" : ds.data()["description"],
+      "image" : ds.data()["image"]
+    };
+  
+    return info;
+ }
