@@ -600,16 +600,18 @@ Releases include the source code and built versions for Android and iOS.
 
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
+In order to test our application we have decided to use Unit Tests and Automated Acceptance Tests using the gherkin package, however the implementation is not yet completed, hence the code is not available in the current release version of the app.
 
-In this section it is only expected to include the following:
+These tests were divided into .feature and .step files. In the features section we can find the formal description of the event using natural language and specific keywords such as 'Given', 'When', 'And' and 'Then'. On the other hand, the steps files include the unit tests which will be used to perform certain actions mentioned in the features. These tests are defined in the Dart language and are a means of testing small pieces of code which can be logically isolated in the program.
 
-- test plan describing the list of features to be tested and the testing methods and tools;
-- test case specifications to verify the functionalities, using unit tests and acceptance tests.
+Some of the objectives of the tests in development are essential characteristics such as assuring the flow between screens by tapping certain buttons or the verification of input errors. One example of an acceptance test in development is the insert code feature, which tests the insertion of a code that gives access to a specific session.
 
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
+In order to execute the acceptance tests, several unit tests were developed such as:
+- Inserting code screen;
+- Inserting a code for a session;
+- Tapping a certain button such as the submit code button;
+- Verifying of certain inputs such as the credentials when logging in;
 
----
 
 ## Configuration and change management
 
