@@ -29,7 +29,7 @@ Future<void> addPoll(
 
 Future<void> deletePoll(String id) async {
   CollectionReference databaseReference =
-      FirebaseFirestore.instance.collection('sessions');
+      FirebaseFirestore.instance.collection('polls');
 
   await databaseReference.doc(id).delete();
 }

@@ -34,6 +34,7 @@ class MyPolls extends StatelessWidget {
         List<Widget> polls = [];
         snapshot.data.docs.forEach((element) {
           polls.add(PollCard(
+              id: element.id,
               title: element.data()['title'].toString(),
               description:
                   element.data()['nr_questions'].toString() + ' questions',
