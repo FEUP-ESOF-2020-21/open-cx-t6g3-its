@@ -36,7 +36,7 @@ class AnswersNumber extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Text("");
         }
         return StreamBuilder(
           stream: questions.snapshots(),
@@ -47,7 +47,7 @@ class AnswersNumber extends StatelessWidget {
             }
 
             if (snapshot2.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
+              return Text("");
             }
 
             int totalAnswers = 1;

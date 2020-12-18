@@ -22,7 +22,7 @@ class UserSessionInformation extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Text("");
         }
 
         int nUsers = snapshot.data.docs.length;

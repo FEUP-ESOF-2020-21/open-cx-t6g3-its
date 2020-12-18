@@ -34,7 +34,7 @@ class _MyListQuestions extends State<ListQuestions> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Text("");
         }
 
         final List<String> entries = <String>[];
@@ -62,48 +62,52 @@ class _MyListQuestions extends State<ListQuestions> {
                     scrollDirection: Axis.vertical,
                     itemCount: entries.length,
                     itemBuilder: (BuildContext ctxt, int index) {
-                      return InkWell(
-                          child: Container(
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            color: Colors.grey[200],
-                            margin: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).size.height * 0.01),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: MediaQuery.of(context).size.width *
-                                        0.05),
-                                child: Text(
-                                  (index + 1).toString() +
-                                      '. ' +
-                                      entries[index],
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: 'Roboto'),
+                      return GestureDetector(
+                          onHorizontalDragUpdate: (details) => {x},
+                          child: InkWell(
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.10,
+                                color: Colors.grey[200],
+                                margin: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context).size.height *
+                                        0.01),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.05),
+                                    child: Text(
+                                      (index + 1).toString() +
+                                          '. ' +
+                                          entries[index],
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: 'Roboto'),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                          onTap: () async {
-                            /**/
-                            print(id);
-                            print(index + 1);
-                            Map<String, dynamic> info =
-                                await getQuestionByPollId(id, index + 1);
-                            print(info['options']['1']);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => EditQuestion(
-                                      id: this.id,
-                                      info: info,
-                                      index: index + 1),
-                                ));
-                            ;
-                          });
+                              onTap: () async {
+                                /**/
+                                print(id);
+                                print(index + 1);
+                                Map<String, dynamic> info =
+                                    await getQuestionByPollId(id, index + 1);
+                                print(info['options']['1']);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => EditQuestion(
+                                          id: this.id,
+                                          info: info,
+                                          index: index + 1),
+                                    ));
+                                ;
+                              }));
                     },
                   ),
                 ),

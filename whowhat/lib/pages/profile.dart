@@ -56,7 +56,6 @@ class _MyProfileState extends State<MyProfile> {
 
   @override
   Widget build(BuildContext context) {
-    print("user id " + uid);
     CollectionReference usersReference =
         FirebaseFirestore.instance.collection('users');
     return FutureBuilder<DocumentSnapshot>(
