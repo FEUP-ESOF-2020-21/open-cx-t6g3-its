@@ -20,19 +20,20 @@ class AuthService {
     }
   }
 
-  Future signInWithEmail(String email, String password) async {
+  Future<String> signInWithEmail(String email, String password) async {
     try {
-      UserCredential result = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      User user = result.user;
-      return (user);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      print(e.toString());
-      return null;
+      if (e.code == 'user-not-found') {
+        return 'No user found for that email.';
+      } else if (e.code == 'wrong-password') {
+        return 'Wrong password';
+      }
+      return "An Error has ocurred";
     }
   }
 
-  Future registerWithEmail(
+  Future<String> registerWithEmail(
       String email, String password, String name, String job) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -41,13 +42,19 @@ class AuthService {
 
       String uid = user.uid.toString();
 
-      await databaseReference.doc(uid).set({'name': name, 'job': job});
-
-      return (user);
+      await databaseReference
+          .doc(uid)
+          .set({'name': name, 'job': job, "email": email});
     } catch (e) {
-      print(e.toString());
-      return null;
+      print("code" + e.code);
+      if (e.code == 'weak-password') {
+        return 'The password provided is too weak.';
+      } else if (e.code == 'email-already-in-use') {
+        return 'The account already exists for that email.';
+      }
+      return "An Error has ocurred";
     }
+    return null;
   }
 
   Future<String> getUserName() async {

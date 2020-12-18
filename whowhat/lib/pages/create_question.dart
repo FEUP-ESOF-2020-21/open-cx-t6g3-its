@@ -41,7 +41,7 @@ class _MyListQuestions extends State<CreateQuestion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Create WHoWhat"),
+          title: Text("WHoWhat Questions"),
           backgroundColor: Colors.blue[800],
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios_rounded),
@@ -71,10 +71,10 @@ class _MyListQuestions extends State<CreateQuestion> {
                         controller: questionController,
                       ),
                     ),
-                    Option(1, 'Option 1', option1Controller),
-                    Option(2, 'Option 2', option2Controller),
-                    Option(3, 'Option 3', option3Controller),
-                    Option(4, 'Option 4', option4Controller),
+                    Option(1, 'option 1', option1Controller),
+                    Option(2, 'option 2', option2Controller),
+                    Option(3, 'option 3', option3Controller),
+                    Option(4, 'option 4', option4Controller),
                   ],
                 ),
                 decoration: BoxDecoration(

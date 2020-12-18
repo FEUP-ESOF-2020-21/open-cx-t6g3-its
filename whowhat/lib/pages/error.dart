@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:whowhat/widgets/database/session_connection.dart';
-
-//final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
 class MyError extends StatefulWidget {
   final String errorMsg;

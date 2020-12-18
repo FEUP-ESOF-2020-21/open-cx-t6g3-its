@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:whowhat/pages/edit_poll.dart';
 import 'package:whowhat/widgets/PollCard.dart';
 import 'package:whowhat/pages/create_poll.dart';
 import 'package:whowhat/widgets/database/create_session.dart';
+import 'package:whowhat/widgets/database/db_polls.dart';
 
 class MyPolls extends StatelessWidget {
   const MyPolls({Key key}) : super(key: key);
@@ -24,24 +26,34 @@ class MyPolls extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Text("");
         }
 
         bool keyboardIsOpened = MediaQuery.of(context).viewInsets.bottom != 0.0;
 
-        if (auth.currentUser != null) {
-          print(auth.currentUser.uid);
-        }
-
         List<Widget> polls = [];
         snapshot.data.docs.forEach((element) {
           polls.add(PollCard(
+              id: element.id,
               title: element.data()['title'].toString(),
               description:
                   element.data()['nr_questions'].toString() + ' questions',
               imageURL: element.data()['image'].toString(),
               onTap: () {
-                createSession(context, element.data()['title'].toString());
+                createSession(
+                    context,
+                    element.id.toString(),
+                    element.data()['title'].toString(),
+                    element.data()['nr_questions']);
+              },
+              onEdit: () async {
+                Map<String, dynamic> info =
+                    await getPollInfo(element.id.toString());
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyEditPoll(info: info)),
+                );
               }));
         });
 
@@ -58,7 +70,7 @@ class MyPolls extends StatelessWidget {
           body: SingleChildScrollView(
             child: Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 20),
+                padding: EdgeInsets.only(top: 20, bottom: 120),
                 child: Column(
                   children: polls,
                 ),
@@ -94,11 +106,3 @@ class MyPolls extends StatelessWidget {
     );
   }
 }
-
-/*
-Future<List> getPollsByUser(BuildContext context) async {
-  CollectionReference databaseReference =
-      FirebaseFirestore.instance.collection('polls');
-
-  
-}*/

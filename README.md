@@ -1,8 +1,8 @@
-# openCX-its WHoWhat Development Report
+# openCX-WHoWhat Development Report
 
-Welcome to the documentation pages of the _your (sub)product name_ of **openCX**!
+Welcome to the documentation pages of the _WHoWhat_ of **openCX**!
 
-You can find here detailed about the (sub)product, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP):
+You can find here detailed about the WHoWhat, hereby mentioned as module, from a high-level vision to low-level implementation decisions, a kind of Software Development Report (see [template](https://github.com/softeng-feup/open-cx/blob/master/docs/templates/Development-Report.md)), organized by discipline (as of RUP):
 
 - Business modeling
   - [Product Vision](#Product-Vision)
@@ -26,31 +26,29 @@ Please contact us!
 
 Thank you!
 
-_Emanuel Trigo, Muriel Pinho, Rodrigo Reis, Teresa Corado, Tomás Torres_
+_Emanuel Trigo, Muriel Pinho, Rodrigo Reis, Teresa Corado_
 
 ---
 
 ## Product Vision
 
-Increase the engagement between speakers and attendees perspectives on a matter, creating a more captivating experience of a remote conference.
+Polling perspectives on a matter, creating a more captivating experience of a remote conference.
 
 ---
 
 ## Elevator Pitch
 
-Presenters sometimes have a difficult time getting the attendees perspectives in a conference while keeping the audience engaged. WHoWhat solves that with an app that provides an easy and engaging way to poll your audience anywhere, in real-time.
+Presenters sometimes have a difficult time getting the attendees perspectives in a conference while keeping the audience engaged. WHoWhat solves that with an app that provides an easy and engaging way to poll audiences anywhere, in real-time.
 
 ---
 
 ## Requirements
 
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
-
-Start by contextualizing your module, describing the main concepts, terms, roles, scope and boundaries of the application domain addressed by the project.
+In this section, we describe all kinds of requirements for our module: functional and non-functional requirements.
 
 ### Use case diagram
 
-![use case diagram](docs/diagrams/use_case_diagram.png)
+<img src="docs/diagrams/use_case_diagram.png" width="1000">
 
 - **Actor**. Name only the actor that will be initiating this use case, i.e. a person or other entity external to the software system being specified who interacts with the system and performs use cases to accomplish tasks.
 - **Description**. Provide a brief description of the reason for and outcome of this use case, or a high-level description of the sequence of actions and the outcome of executing the use case.
@@ -59,7 +57,174 @@ Start by contextualizing your module, describing the main concepts, terms, roles
 - **Normal Flow**. Provide a detailed description of the user actions and system responses that will take place during execution of the use case under normal, expected conditions. This dialog sequence will ultimately lead to accomplishing the goal stated in the use case name and description. This is best done as a numbered list of actions performed by the actor, alternating with responses provided by the system.
 - **Alternative Flows and Exceptions**. Document other, legitimate usage scenarios that can take place within this use case, stating any differences in the sequence of steps that take place. In addition, describe any anticipated error conditions that could occur during execution of the use case, and define how the system is to respond to those conditions.
 
+##### Answer Poll
+
+- **Actor**. Atendee
+
+- **Description**. This use case exists so that the attendee can answer a certain poll.
+
+- **Preconditions and Postconditions**. The poll must have already been created and started by its speaker.
+
+- **Normal Flow**. 
+    1. The attendee inserts a code that gives access to a session.
+    2. The attendee taps the "connect" button.
+    3. The attendee gets in the poll and is presented with its questions.
+
+- **Alternative Flows and Exceptions**.
+    1. The attendee inserts an invalid code that gives access to a session.
+    2. The code is rejected.
+    3. The attendee inserts a valid code.
+    2. The attendee taps the "connect" button.
+    3. The attendee gets in the poll and is presented with its questions.
+
+##### Start Poll Session
+
+- **Actor**. Speaker
+
+- **Description**. This use case exists in order to start a poll that has been previously created.
+
+- **Preconditions and Postconditions**. The user must have already created the poll.
+
+- **Normal Flow**.
+    1. The speaker selects a poll from their created polls area.
+    2. The speaker selects start poll session.
+    3. The poll session is started.
+
+- **Alternative Flows and Exceptions**.
+
+##### Create Poll
+
+- **Actor**. Speaker
+
+- **Description**. This use case exists so that the speaker can create new polls.
+
+- **Preconditions and Postconditions**. The user must have a valid account. After the creating the poll will be added to the account polls.
+
+- **Normal Flow**.
+    1. The speaker chooses to create a new poll.
+    2. A new poll screen will be prompt.
+    3. The speaker type the poll information.
+    4. The speaker chooses to add questions.
+    5. The speaker type the question and options.
+    6. The new poll is added to the database and the speaker account
+
+- **Alternative Flows and Exceptions**.
+    1. The speaker chooses to create a new poll.
+    2. A new poll screen will be prompt.
+    3. The speaker invalid information.
+    4. An error message will appear.
+
+
+
+##### Edit Poll
+
+- **Actor**. Speaker
+
+- **Description**. This use case exists so that the speaker can change at any time his polls attributes .
+
+- **Preconditions and Postconditions**. The speaker must have a valid poll selected . After being submitted the poll information is updated in the database.
+
+- **Normal Flow**.
+    1. The speaker selects a valid poll.
+    2. A new screen will open with the poll information.
+    3. The speaker changes the poll information and submits.
+    4. All the poll attributes will be updated on the database.
+
+- **Alternative Flows and Exceptions**.
+    1. The speaker selects a valid poll.
+    2. A new screen will open with the poll information.
+    3. The speaker changes the poll information.
+    4. The new information is invalid.
+    5. An error message will appear warning the speaker to redo the changes.
+
+
+##### Delete Poll
+
+- **Actor**. Speaker
+
+- **Description**.  This use case exists so that the speaker can delete his previous created polls.
+
+- **Preconditions and Postconditions**. The speaker must select a valid poll.
+
+- **Normal Flow**.
+    1. The speaker select a valid poll.
+    2. The speaker chooses to delete the selected poll.
+    3. The poll will be deleted in the database.
+
+- **Alternative Flows and Exceptions**.
+
+
+##### Register
+
+- **Actor**. User
+
+- **Description**. this use case exists so that the user is able to create a personal account in order save their data such as the polls they will use in upcoming conferences.
+
+- **Preconditions and Postconditions**. in order to register in the app the user must insert their respective data, such as their personal email and a password.
+
+- **Normal Flow**.
+    1. The user selects the register option.
+    2. The user inserts their personal email and password.
+    3. The user selects the submitting button.
+    4. A new account is created with the data of the user.
+    5. The screen is redirrected to the home page of the app with the user's new account logged in.
+
+- **Alternative Flows and Exceptions**.
+
+##### Log in with google
+
+- **Actor**. User
+
+- **Description**. this use case exists so that the user is able to enter in their personal account associated with their already existing google account in order save their data such as the polls they will use in upcoming conferences.
+
+- **Preconditions and Postconditions**. in order to register in the app via google the user must have a personal google account.
+
+- **Normal Flow**.
+    1. The user selects the 'Log in with google' option.
+    2. The user logs in their google account.
+    3. The user selects the submitting button.
+    4. The screen is redirrected to the home page of the app with the user's account logged in.
+
+- **Alternative Flows and Exceptions**.
+
+##### Log in
+
+- **Actor**. User
+
+- **Description**. 
+
+- **Preconditions and Postconditions**. in order to log in on the app the user must have previously registered in it and insert the same credentials. 
+
+- **Normal Flow**.
+    1. The user inserts the email and password associated with their account.
+    2. The user selects the log in button.
+    3. The screen is redirrected to the home page with the user's logged in account.
+
+- **Alternative Flows and Exceptions**.
+    1. The user inserts an incorrect email or password associated with their personal account.
+    2. The user selects the log in button.
+    3. An error message appears, stating that one of the fields was typed incorrectly.
+    4. The user inserts the correct data associated with their account.
+    5. The user selects the log in button.
+    6. The screen is redirrected to the home page with the user's logged in account.
+
+
+##### Log out
+
+- **Actor**. User
+
+- **Description**. 
+
+- **Preconditions and Postconditions**. In order to log out from the app, the user must be already logged in. 
+
+- **Normal Flow**.
+    
+- **Alternative Flows and Exceptions**.
+
+
 ### User stories
+
+<img src="docs/diagrams/user_story_map.jpg" width="1000">
 
 User story #1
 
@@ -67,7 +232,7 @@ User story #1
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-07.png" with="300">
+<img src="docs/mockups/WHOWHAT-07.png" width="300">
 
 Acceptance Test:
 
@@ -76,7 +241,7 @@ Acceptance Test:
     Given an existing session code
     When I insert the code
     And I tap the "connect" button
-    Then I have access to the session
+    Then I have joined the session
 ```
 
 Value and effort
@@ -87,18 +252,19 @@ Value and effort
 
 User story #2
 
-**As a speaker I want to create a session**
+**As a speaker I want to start a poll**
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-10.png" with="300">
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
 
 Acceptance Test:
 
 ```gherkin
-    Scenario: create a new session
-    When I tap the "WHoWhat" button
-    Then I have created a session
+    Scenario: start a poll
+    When I tap the "WHoWhat" button and select my poll
+    And tap the Start Session button
+    Then I have started a session
 ```
 
 Value and effort
@@ -109,19 +275,19 @@ Value and effort
 
 User story #3
 
-**As a user I want to register in the app in order to login afterwards**
+**As a user I want to register in the app**
 
 User interface mockup
 
-<img src="docs/mockups/WHOWHAT-03.png" with="300">
-<img src="docs/mockups/WHOWHAT-04.png" with="300">
+<img src="docs/mockups/WHOWHAT-04.png" width="300">
+
 
 Acceptance Test:
 
 ```gherkin
 Scenario: register in the app
     Given a user that has the app
-    When I tap the "register" button
+    When I tap the "Sign Up" button
     And I insert my data
     Then my account is created
 ```
@@ -133,19 +299,19 @@ Value and effort
 
 User story #4
 
-**As a user I want to create polls in order to create a session**
+**As a speaker I want to create a poll**
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-09.png)
+<img src="docs/mockups/WHOWHAT-09.png" width="300">
 
 Acceptance Test:
 
 ```gherkin
 Scenario: create a poll
     Given a speaker registered in the app
-    When I tap the "add poll" button
-    And insert the questions and respective answers
+    When I tap the "add poll" button and insert name and description
+    And I tap create and continue
     Then my poll is created
 ```
 
@@ -158,20 +324,20 @@ Value and effort
 
 User story #5
 
-**As a user I want to select one of my polls, so I can edit or delete it**
+**As a user I want to manage my polls**
 
 User interface mockup
 
-![image](docs/mockups/WHOWHAT-11.png)
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
 
 Acceptance Test:
 
 ```gherkin
-Scenario: select and edit or delete a previously created poll
-    Given a user with a previously created poll
-    When I tap the "my polls" button and select my poll
-    And tap "edit" or "delete"
-    Then I can edit or delete the data of the poll selected
+Scenario: edit or delete a previously created poll
+    Given a user with previously created polls
+    When I tap the "profile" button and select my poll
+    And tap the "poll card"
+    Then I can edit or delete the data of the poll
 ```
 
 Value and effort
@@ -179,29 +345,206 @@ Value and effort
 - Value: Should have
 - Effort: L
 
-This section will contain the requirements of the product described as **user stories**, organized in a global **[user story map](https://plan.io/blog/user-story-mapping/)** with **user roles** or **themes**.
+User story #6
 
-For each theme, or role, you may add a small description. User stories should be detailed in the tool you decided to use for project management (e.g. trello or github projects).
+**As a user I want to login with my account**
 
-A user story is a description of desired functionality told from the perspective of the user or customer. A starting template for the description of a user story is
+User interface mockup
 
-_As a < user role >, I want < goal > so that < reason >._
+<img src="docs/mockups/WHOWHAT-03.png" width="300" >
 
-**INVEST in good user stories**.
-You may add more details after, but the shorter and complete, the better. In order to decide if the user story is good, please follow the [INVEST guidelines](https://xp123.com/articles/invest-in-good-stories-and-smart-tasks/).
 
-**User interface mockups**.
-After the user story text, you should add a draft of the corresponding user interfaces, a simple mockup or draft, if applicable.
+Acceptance Test:
 
-**Acceptance tests**.
-For each user story you should write also the acceptance tests (textually in Gherkin), i.e., a description of scenarios (situations) that will help to confirm that the system satisfies the requirements addressed by the user story.
+```gherkin
+Scenario: login in the app
+    Given a user that has an created account
+    When I insert my data
+    And I tap the "Sign In" button
+    Then my account is used to sign in
+```
 
-**Value and effort**.
-At the end, it is good to add a rough indication of the value of the user story to the customers (e.g. [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) method) and the team should add an estimation of the effort to implement it, for example, using t-shirt sizes (XS, S, M, L, XL).
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+User story #7
+
+**As a speaker i want to insert the options to a question**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-12.png" width="300" >
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: add options to question
+    Given a speaker that has a created poll
+    When I create a "question"
+    And I fill the options 
+    Then options are added to the question
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: L
+
+User story #8
+
+**As a speaker i want to add and image representing my poll**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-09.png" width="300" >
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: add image to poll
+    Given a speaker registered in the app
+    When I tap the "add poll" button and click on the image
+    And select and image from the gallery
+    Then my image is added to my poll
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+User story #9
+
+**As a speaker i want to create the questions of a poll**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-13.png" width="300" >
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: add question to poll
+    Given a speaker that has an created poll
+    When I select a created "poll" and 
+    And press the "+" button
+    Then a question is added to poll
+```
+
+Value and effort
+
+- Value: Must have
+- Effort: M
+
+User story #10
+
+**As a user I want to login with google**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-03.png" width="300" >
+
+
+Acceptance Test:
+
+```gherkin
+Scenario: login with google
+    Given a user that has an google account
+    When I Tap the "google" icon
+    And I insert my data
+    Then my google account is used to sign in
+```
+
+Value and effort
+
+- Value: Should have
+- Effort: S
+
+User story #11
+
+**As a user I want to select a polls**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
+
+Acceptance Test:
+
+```gherkin
+Scenario: select a previously created poll
+    Given a user with a previously created poll
+    When I tap the "WHoWhat" button 
+    And select my poll
+    Then i can start a session or edit the poll
+```
+
+Value and effort
+
+- Value: must have
+- Effort: M
+
+User story #12
+
+**As a atendee I want to answer the question on a poll**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-06.png" width="300">
+
+Acceptance Test:
+
+```gherkin
+Scenario: answer question in poll
+    Given a user who joined a session
+    When the session starts and the "questions" appear 
+    Then i can select an option to answer the question
+```
+
+Value and effort
+
+- Value: must have
+- Effort: L
+
+
+User story #13
+
+**As a user I want to select my polls**
+
+User interface mockup
+
+<img src="docs/mockups/WHOWHAT-11.png" width="300">
+
+Acceptance Test:
+
+```gherkin
+Scenario: select my previously created polls
+    Given a user with previously created polls
+    When I tap the "WHoWhat" button 
+    Then i have acess to my polls
+```
+
+Value and effort
+
+- Value: must have
+- Effort: M
+
 
 ### Domain model
 
-To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module.
+<img src="docs/diagrams/problem_domain.png" width="600">
+
+Our domain consists of two main classes Session and Poll and a Ternary relation called Answer.
+- Poll is composed of Question and Session, having Zero or more Sessions and 1 or more Questions which in turn are composed of between 2 and 4 Options. 
+- Poll has one Speaker but a Speaker can have multiple Polls.
+- Speaker and Atendee are generalizations of User.
+- Session has exactly one Speaker and 0 or more Atendees
+- Answer is a ternary relation between Session, Atendeee and Option, as an answer depends on those three to be created. 
+
 
 ---
 
@@ -209,46 +552,47 @@ To better understand the context of the software system, it is very useful to ha
 
 The architecture of a software system encompasses the set of key decisions about its overall organization.
 
-A well written architecture document is brief but reduces the amount of time it takes new programmers to a project to understand the code to feel able to make modifications and enhancements.
-
-To document the architecture requires describing the decomposition of the system in their parts (high-level components) and the key behaviors and collaborations between them.
-
-In this section you should start by briefly describing the overall components of the project and their interrelations. You should also describe how you solved typical problems you may have encountered, pointing to well-known architectural and design patterns, if applicable.
+We will be talking about the logical architecture, a high-level view of the code structure, and the physical architecture, which will show the connection between each machine and the used technologies.
 
 ### Logical architecture
 
-The purpose of this subsection is to document the high-level logical structure of the code, using a UML diagram with logical packages, without the worry of allocating to components, processes or machines.
+<img src="docs/diagrams/logic_diagram.png" width="1000">
 
-It can be beneficial to present the system both in a horizontal or vertical decomposition:
 
-- horizontal decomposition may define layers and implementation concepts, such as the user interface, business logic and concepts;
-- vertical decomposition can define a hierarchy of subsystems that cover all layers of implementation.
+We choose the MVC approach because it fits perfectly the project structure and it's simple.
+
+The Model contains the main packages of data: Sessions, Polls, Users, Questions. The View is composed of Widgets and Pages that are responsible of displaying the information.
+
+The Controller responsability is to query the database using Model (Authenticator and Database Controller) and retrieve the information to the View, in order to display it.
 
 ### Physical architecture
 
-<img src="docs/diagrams/physical_architecture.png" height="200" align="left"/>
+<img src="docs/diagrams/physical_architecture.png" height="350" />
 <br>
 
-<img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="100" align="right"/>
+<img src="https://firebase.flutter.dev/img/flutterfire_300x.png" width="200" align="right"/>
 
 - We chose **Flutter** in order to integrate our app with the `open-cx` main project.
 - We chose **Firebase** for database management and backend server, because has a good integration with **Flutter**.
+- Our project's physical architecture is simple, the user installs the **WHoWhat** app on his smartphone, serving as his client, and the app communicates with the firebase server via HTTPS requests, where our database is stored, the server handles the communication of the API with the Database, storing and retrieving all information needed for **WHoWhat**.
 
 ### Prototype
 
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
+To design our project's UI we used **Figma**, which enabled us to create screen mockups, plan an usage flow to the app and link them together to create a usable prototype. Here's a GIF from the result:
 
-In this subsection please describe in more detail which, and how, user(s) story(ies) were implemented.
+![Prototype](docs/Prototype.gif)
 
 ---
 
 ## Implementation
 
-Regular product increments are a good practice of product management.
+The implementation was divided in iterations, here are the releases for each of them:
 
-While not necessary, sometimes it might be useful to explain a few aspects of the code that have the greatest potential to confuse software engineers about how it works. Since the code should speak by itself, try to keep this section as short and simple as possible.
+- [Iteration #1 - v0.1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
+- [Iteration #2 - v0.2](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.2)
+- [Iteration #3 - v0.3](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.3)
 
-Use cross-links to the code repository and only embed real fragments of code when strictly needed, since they tend to become outdated very soon.
+Releases include the source code and built versions for Android and iOS.
 
 ---
 
@@ -269,24 +613,15 @@ A good practice is to simplify this, avoiding repetitions, and automating the te
 
 Configuration and change management are key activities to control change to, and maintain the integrity of, a project’s artifacts (code, models, documents).
 
-For the purpose of ESOF, we will use a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
+For the purpose of ESOF, we used a very simple approach, just to manage feature requests, bug fixes, and improvements, using GitHub issues and following the [GitHub flow](https://guides.github.com/introduction/flow/).
 
 ---
 
 ## Project management
 
-Software project management is an art and science of planning and leading software projects, in which software projects are planned, implemented, monitored and controlled.
+To plan and manage our product development we used **Github Projects**:
+[WHoWhat Project Board](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/projects/1)
 
-In the context of ESOF, we expect that each team adopts a project management tool capable of registering tasks, assign tasks to people, add estimations to tasks, monitor tasks progress, and therefore being able to track their projects.
-
-Example of tools to do this are:
-
-- [Trello.com](https://trello.com)
-- [Github Projects](https://github.com/features/project-management/com)
-- [Pivotal Tracker](https://www.pivotaltracker.com)
-- [Jira](https://www.atlassian.com/software/jira)
-
-We recommend to use the simplest tool that can possibly work for the team.
 
 ---
 
@@ -294,10 +629,5 @@ We recommend to use the simplest tool that can possibly work for the team.
 
 Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
 
----
 
-## Releases
 
-- [Sprint #1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
-
-Releases include the source code and built versions for Android and iOS.
