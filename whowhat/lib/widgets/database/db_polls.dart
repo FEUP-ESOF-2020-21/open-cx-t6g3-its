@@ -243,3 +243,13 @@ Future<void> editPoll(String pollID, String name, String description,
     "nr_questions": nr_questions,
   });
 }
+
+Future<String> getSessionTitle(code) async {
+  String pollId = await getPollId(code);
+  DocumentReference dr =
+      FirebaseFirestore.instance.collection('polls').doc(pollId);
+
+  DocumentSnapshot ds = await dr.get();
+
+  return ds.data()['title'];
+}
