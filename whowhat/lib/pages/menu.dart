@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/mypolls.dart';
 import 'package:whowhat/pages/profile.dart';
+import 'package:whowhat/pages/settings.dart';
 import 'package:whowhat/widgets/AppIcon.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextBox.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
 import 'package:whowhat/pages/session_loop.dart';
 import 'package:whowhat/widgets/database/session_connection.dart';
+import 'package:whowhat/widgets/database/db_polls.dart';
 
 class MyMenu extends StatefulWidget {
   @override
@@ -74,11 +76,12 @@ class _MyMenuState extends State<MyMenu> {
                         } else {
                           if (await availableSession(code)) {
                             await joinSession(code);
+                            String title = await getSessionTitle(code);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      SessionLoop(id: codeInput.text)),
+                                  builder: (context) => SessionLoop(
+                                      id: codeInput.text, title: title)),
                             );
                           } else {
                             _updateStatus("Session is not available!");
@@ -109,11 +112,11 @@ class _MyMenuState extends State<MyMenu> {
             label: 'Profile',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.info_outline),
+            label: 'Info',
           ),
         ],
-        selectedItemColor: Colors.blue[800],
+        selectedItemColor: Colors.grey[600],
         onTap: _onItemTapped,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -148,6 +151,12 @@ class _MyMenuState extends State<MyMenu> {
           MaterialPageRoute(
             builder: (context) => MyProfile(),
           ));
-    } else {}
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MySettings(),
+          ));
+    }
   }
 }

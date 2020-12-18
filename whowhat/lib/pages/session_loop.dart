@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:whowhat/pages/answer_question.dart';
 import 'package:whowhat/pages/connection.dart';
+import 'package:whowhat/pages/loading.dart';
 import 'package:whowhat/pages/pollDone.dart';
 import 'package:whowhat/widgets/database/db_polls.dart';
 
@@ -37,7 +38,7 @@ class _SessionLoopState extends State<SessionLoop> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Text("");
         }
 
         if (snapshot.data["speaker"] == auth.currentUser.uid) {
@@ -47,7 +48,6 @@ class _SessionLoopState extends State<SessionLoop> {
               break;
             case -1:
               return MyPollDone();
-
               break;
             default:
               return FutureBuilder(
@@ -59,7 +59,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("");
+                      return MyLoading();
                     }
 
                     return AnswerQuestion(
@@ -86,7 +86,7 @@ class _SessionLoopState extends State<SessionLoop> {
                     }
 
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text("Loading");
+                      return Text("");
                     }
 
                     return AnswerQuestion(

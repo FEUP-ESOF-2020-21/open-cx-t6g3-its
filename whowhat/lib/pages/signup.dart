@@ -16,6 +16,14 @@ class MySignup extends StatefulWidget {
 class _MySignupState extends State<MySignup> {
   final AuthService _auth = AuthService();
 
+  String _statusLabel = "";
+
+  _updateStatus(String message) {
+    setState(() {
+      _statusLabel = message;
+    });
+  }
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
@@ -39,6 +47,15 @@ class _MySignupState extends State<MySignup> {
                 widthFactor: 0.8,
                 child: Column(
                   children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Text(
+                          _statusLabel,
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontFamily: 'Roboto',
+                              fontSize: 16),
+                        )),
                     /*Image(image: AssetImage('assets/images/login.png')),*/
                     Padding(
                       padding: EdgeInsets.all(screenHeight * 0.01),
@@ -114,8 +131,8 @@ class _MySignupState extends State<MySignup> {
                               passwordController.text,
                               nameController.text,
                               jobController.text);
-                          if (result == null) {
-                            print("Error signing in");
+                          if (result != null) {
+                            _updateStatus(result);
                           } else {
                             print('signed in');
                             print(result);

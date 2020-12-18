@@ -18,11 +18,19 @@ class _MyLoginState extends State<MyLogin> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  String _statusLabel = "";
+
+  _updateStatus(String message) {
+    setState(() {
+      _statusLabel = message;
+    });
+  }
+
   checkSignIn() async {
     dynamic result = await _auth.signInWithEmail(
         emailController.text, passwordController.text);
-    if (result == null) {
-      print("Error signing in");
+    if (result != null) {
+      _updateStatus(result);
     } else {
       print('signed in');
       print(result);
@@ -50,6 +58,15 @@ class _MyLoginState extends State<MyLogin> {
               child: Column(
                 children: <Widget>[
                   Image(image: AssetImage('assets/images/login.png')),
+                  Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                        _statusLabel,
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontFamily: 'Roboto',
+                            fontSize: 16),
+                      )),
                   Padding(
                     padding: EdgeInsets.all(screenHeight * 0.01),
                     child: TextBox(

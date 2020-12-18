@@ -3,17 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:whowhat/pages/menu.dart';
 import 'package:whowhat/widgets/GradientButton.dart';
 import 'package:whowhat/widgets/TextPanel.dart';
+import 'package:whowhat/widgets/database/db_polls.dart';
 
-class MyPollDone extends StatefulWidget {
-  MyPollDone({Key key}) : super(key: key);
-
-  @override
-  _MyPollDoneState createState() => _MyPollDoneState();
-}
-
-class _MyPollDoneState extends State<MyPollDone> {
-  _MyPollDoneState();
-
+class MyPollDone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return endingScaffold(context);
@@ -60,7 +52,7 @@ Scaffold endingScaffold(BuildContext context) {
                   width: MediaQuery.of(context).size.width * 0.6,
                   child: GradientButton(
                     text: 'Return to Menu',
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => MyMenu()),
