@@ -600,7 +600,9 @@ Releases include the source code and built versions for Android and iOS.
 
 ## Test
 
-In order to test our application we have decided to use Unit Tests and Automated Acceptance Tests using the gherkin package, however the implementation is not yet completed, hence the code is not available in the current release version of the app.
+In the interest of verifying that the developed program performed as expected, multiple functional tests were conducted for each user story, previously mentioned in the report. For instance, in order to verify that the functionalities developed for the User Story #1 ("As an attendee I want to insert a code in order to join a session") ran properly and that each requisite was met, an individual assuming the role of an attendee inserted in the application a generated code that would allow said attendee to join a conference session as mentioned in the user story at hand, assuring the correct behaviour of the application.
+
+Additionally, we decided to use Unit Tests and Automated Acceptance Tests using the gherkin package, however the implementation is not yet completed, hence the code is not available in the current release version of the app.
 
 These tests were divided into .feature and .step files. In the features section we can find the formal description of the event using natural language and specific keywords such as 'Given', 'When', 'And' and 'Then'. On the other hand, the steps files include the unit tests which will be used to perform certain actions mentioned in the features. These tests are defined in the Dart language and are a means of testing small pieces of code which can be logically isolated in the program.
 
@@ -611,6 +613,7 @@ In order to execute the acceptance tests, several unit tests were developed such
 - Inserting a code for a session;
 - Tapping a certain button such as the submit code button;
 - Verifying of certain inputs such as the credentials when logging in;
+
 
 
 ## Configuration and change management
