@@ -175,7 +175,7 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 - **Actor**. User
 
-- **Description**. this use case exists so that the user is able to enter in their personal account associated with their already existing google account in order save their data such as the polls they will use in upcoming conferences.
+- **Description**. this use case exists so that the user is able to enter in their personal account associated with their already existing google account in order to save their data such as the polls they will use in upcoming conferences.
 
 - **Preconditions and Postconditions**. in order to register in the app via google the user must have a personal google account.
 
@@ -191,7 +191,7 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 - **Actor**. User
 
-- **Description**. 
+- **Description**. this use case exists so that the user can access their personal account in order to save their data such as the polls they will use in upcoming conferences.
 
 - **Preconditions and Postconditions**. in order to log in on the app the user must have previously registered in it and insert the same credentials. 
 
@@ -213,11 +213,13 @@ In this section, we describe all kinds of requirements for our module: functiona
 
 - **Actor**. User
 
-- **Description**. 
+- **Description**. this use case exists so that the user can safely log out from their personal account saving all the changes they made.
 
 - **Preconditions and Postconditions**. In order to log out from the app, the user must be already logged in. 
 
 - **Normal Flow**.
+    1. The user taps the log out button.
+    2. The user is redirected to the log in screen, safely logging out from their account.
     
 - **Alternative Flows and Exceptions**.
 
@@ -591,6 +593,7 @@ The implementation was divided in iterations, here are the releases for each of 
 - [Iteration #1 - v0.1](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.1)
 - [Iteration #2 - v0.2](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.2)
 - [Iteration #3 - v0.3](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.3)
+- [Iteration #4 - v0.4](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/releases/tag/v0.4)
 
 Releases include the source code and built versions for Android and iOS.
 
@@ -598,16 +601,7 @@ Releases include the source code and built versions for Android and iOS.
 
 ## Test
 
-There are several ways of documenting testing activities, and quality assurance in general, being the most common: a strategy, a plan, test case specifications, and test checklists.
-
-In this section it is only expected to include the following:
-
-- test plan describing the list of features to be tested and the testing methods and tools;
-- test case specifications to verify the functionalities, using unit tests and acceptance tests.
-
-A good practice is to simplify this, avoiding repetitions, and automating the testing actions as much as possible.
-
----
+In the interest of verifying that the developed program performed as expected, multiple functional tests were conducted for each user story, previously mentioned in the report. For instance, in order to verify that the functionalities developed for the User Story #1 ("As an attendee I want to insert a code in order to join a session") ran properly and that each requisite was met, an individual assuming the role of an attendee inserted in the application a generated code that would allow said attendee to join a conference session as mentioned in the user story at hand, assuring the correct behaviour of the application.
 
 ## Configuration and change management
 
@@ -622,12 +616,8 @@ For the purpose of ESOF, we used a very simple approach, just to manage feature 
 To plan and manage our product development we used **Github Projects**:
 [WHoWhat Project Board](https://github.com/FEUP-ESOF-2020-21/open-cx-t6g3-its/projects/1)
 
-
 ---
 
 ## Evolution - contributions to open-cx
 
 Describe your contribution to open-cx (iteration 5), linking to the appropriate pull requests, issues, documentation.
-
-
-
